@@ -1,0 +1,9 @@
+﻿CREATE TABLE [aies].[ICS_ZCP_CONTROL_CO] (
+    [ID]             NUMERIC (19) NOT NULL,
+    [ZCP_ID]         NUMERIC (19) NULL,
+    [CODE]           VARCHAR (8)  NULL,
+    [NAME]           VARCHAR (8)  NULL,
+    [ZCP_ADDRESS_ID] NUMERIC (19) NULL,
+    CONSTRAINT [pk_ICS_ZCP_CONTROL_CO] PRIMARY KEY CLUSTERED ([ID] ASC) ON [FG_AIES]
+);
+

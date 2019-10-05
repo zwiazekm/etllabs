@@ -1,0 +1,15 @@
+﻿CREATE TABLE [ncts].[CUST_OFF_ADDR] (
+    [SID]                INT          NOT NULL,
+    [CUST_OFF_ID]        VARCHAR (8)  NOT NULL,
+    [ID_WITHIN_CUST_OFF] VARCHAR (17) NOT NULL,
+    [ADDR_TYP_ID]        CHAR (1)     NOT NULL,
+    [COUNTRY_ID]         CHAR (2)     NOT NULL,
+    [REG_ID]             VARCHAR (3)  NULL,
+    [LOC_ID]             VARCHAR (3)  NULL,
+    [POST_COD]           VARCHAR (9)  NULL,
+    [TRAD_SID]           INT          NULL,
+    CONSTRAINT [PK_CUST_OFF_ADDR] PRIMARY KEY CLUSTERED ([SID] ASC) ON [FG_NCTS],
+    CONSTRAINT [OA_C_BEL_TO_CO] FOREIGN KEY ([CUST_OFF_ID]) REFERENCES [ncts].[CUST_OFF] ([ID]),
+    CONSTRAINT [OA_C_PREM_OF_T] FOREIGN KEY ([TRAD_SID]) REFERENCES [ncts].[TRAD] ([SID])
+);
+

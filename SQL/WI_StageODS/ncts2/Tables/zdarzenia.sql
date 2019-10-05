@@ -1,0 +1,27 @@
+﻿CREATE TABLE [ncts2].[zdarzenia] (
+    [id]                                 BIGINT         NOT NULL,
+    [typ]                                NVARCHAR (1)   NULL,
+    [poz_id]                             INT            NULL,
+    [operacja_tranzytowa_id]             BIGINT         NULL,
+    [miejsce]                            NVARCHAR (35)  NULL,
+    [kraj]                               NVARCHAR (2)   NULL,
+    [czy_inne_zdarzenie]                 BIT            NULL,
+    [czy_w_systemie]                     BIT            NULL,
+    [zdarzenie_opis]                     NVARCHAR (350) NULL,
+    [zdarzenie_data_adnotacji]           DATETIME       NULL,
+    [zdarzenie_kraj_adnotacji]           NVARCHAR (2)   NULL,
+    [zdarzenie_wladze_adnotacji]         NVARCHAR (35)  NULL,
+    [zdarzenie_miejsce_adnotacji]        NVARCHAR (35)  NULL,
+    [przeladunek_znaki]                  NVARCHAR (27)  NULL,
+    [przeladunek_kraj_srodka_transportu] NVARCHAR (2)   NULL,
+    [przeladunek_data_adnotacji]         DATETIME       NULL,
+    [przeladunek_kraj_adnotacji]         NVARCHAR (2)   NULL,
+    [przeladunek_wladze_adnotacji]       NVARCHAR (35)  NULL,
+    [przeladunek_miejsce_adnotacji]      NVARCHAR (35)  NULL,
+    [ilosc_zamkniec]                     SMALLINT       NULL,
+    [wniosek_o_aar_id]                   BIGINT         NULL,
+    [wniosek_o_atr_id]                   BIGINT         NULL,
+    [kod_uc]                             NVARCHAR (8)   NULL,
+    CONSTRAINT [zdarzenia_pk] PRIMARY KEY CLUSTERED ([id] ASC)
+);
+

@@ -1,0 +1,27 @@
+﻿CREATE TABLE [ncts2].[operacje_tranzytowe_szczegoly] (
+    [id]                                                        BIGINT         NOT NULL,
+    [operacja_tranzytowa_id]                                    BIGINT         NULL,
+    [wynik_kontroli_skontrolowal_uc_wyjscia]                    NVARCHAR (35)  NULL,
+    [wynik_kontroli_uwagi_uc_wyjscia]                           NVARCHAR (350) NULL,
+    [lokalizacja_kod_miejsca_uznanego]                          NVARCHAR (17)  NULL,
+    [lokalizacja_miejsce_uznane]                                NVARCHAR (35)  NULL,
+    [lokalizacja_miejsce_odpraw_celnych]                        NVARCHAR (17)  NULL,
+    [lokalizacja_kod_miejsca_wskazanego_w_pozwoleniu]           NVARCHAR (17)  NULL,
+    [przybycie_lokalizacja_kod_miejsca_uznanego]                NVARCHAR (17)  NULL,
+    [przybycie_lokalizacja_miejsce_uznane]                      NVARCHAR (35)  NULL,
+    [przybycie_lokalizacja_miejsce_odpraw_celnych]              NVARCHAR (17)  NULL,
+    [przybycie_lokalizacja_kod_miejsca_wskazanego_w_pozwoleniu] NVARCHAR (17)  NULL,
+    [status_komunikacji_aes]                                    NVARCHAR (24)  NULL,
+    [nadawca_certyfikat_aeo]                                    NVARCHAR (35)  NULL,
+    [odbiorca_certyfikat_aeo]                                   NVARCHAR (35)  NULL,
+    [przedstawiajacy_certyfikat_aeo]                            NVARCHAR (35)  NULL,
+    [glowny_zobowiazany_certyfikat_aeo]                         NVARCHAR (35)  NULL,
+    [glowny_zobowiazany_przedstawiciel_certyfikat_aeo]          NVARCHAR (35)  NULL,
+    [upowazniony_odbiorca_certyfikat_aeo]                       NVARCHAR (35)  NULL,
+    [bezpieczenstwo_nadawca_certyfikat_aeo]                     NVARCHAR (35)  NULL,
+    [bezpieczenstwo_odbiorca_certyfikat_aeo]                    NVARCHAR (35)  NULL,
+    [bezpieczenstwo_przewoznik_certyfikat_aeo]                  NVARCHAR (35)  NULL,
+    [przybycie_nr_pozwolenia]                                   NVARCHAR (25)  NULL,
+    CONSTRAINT [operacje_tranzytowe_szczegoly_pk] PRIMARY KEY CLUSTERED ([id] ASC)
+);
+

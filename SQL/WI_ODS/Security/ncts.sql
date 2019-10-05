@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [ncts]
+    AUTHORIZATION [dbo];
+

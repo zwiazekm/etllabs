@@ -1,0 +1,8 @@
+﻿CREATE TABLE [cel].[ProcPU] (
+    [id_dok]  VARCHAR (30) NOT NULL,
+    [PozId]   NUMERIC (2)  NOT NULL,
+    [KodProc] VARCHAR (6)  NULL,
+    CONSTRAINT [PK_PROCPU] PRIMARY KEY CLUSTERED ([id_dok] ASC, [PozId] ASC) WITH (FILLFACTOR = 90) ON [FG_CEL],
+    CONSTRAINT [FK_PROCPU_REFERENCE_DOK_INFO] FOREIGN KEY ([id_dok]) REFERENCES [cel].[dok_info] ([id_dok])
+);
+

@@ -1,0 +1,28 @@
+﻿CREATE TABLE [ncts].[ARE_NAM] (
+    [LANG_ID]     CHAR (2)      NULL,
+    [NAM]         VARCHAR (140) NULL,
+    [ARE_ACT_SID] INT           NOT NULL,
+    [STATUS]      CHAR (1)      NULL,
+    [ARE_ID]      CHAR (2)      NULL,
+    CONSTRAINT [FK_AN_A] FOREIGN KEY ([ARE_ID]) REFERENCES [ncts].[ARE] ([ID]),
+    CONSTRAINT [FK_AN_AA] FOREIGN KEY ([ARE_ACT_SID]) REFERENCES [ncts].[ARE_ACT] ([SID])
+) ON [FG_NCTS];
+
+
+GO
+CREATE NONCLUSTERED INDEX [AN_AAS_I]
+    ON [ncts].[ARE_NAM]([ARE_ACT_SID] ASC)
+    ON [FG_NCTS];
+
+
+GO
+CREATE NONCLUSTERED INDEX [AN_AI_I]
+    ON [ncts].[ARE_NAM]([ARE_ID] ASC)
+    ON [FG_NCTS];
+
+
+GO
+CREATE NONCLUSTERED INDEX [AN_LI_I]
+    ON [ncts].[ARE_NAM]([LANG_ID] ASC)
+    ON [FG_NCTS];
+

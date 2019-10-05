@@ -1,0 +1,25 @@
+﻿CREATE TABLE [zc].[DWA_Towar] (
+    [Id]                      DECIMAL (19)    NOT NULL,
+    [NrPozycji]               INT             NULL,
+    [CRN]                     VARCHAR (70)    NULL,
+    [CRNNaGranicy]            VARCHAR (70)    NULL,
+    [TowNiebezp]              VARCHAR (4)     NULL,
+    [TowNiebezpPid]           INT             NULL,
+    [TowNiebezpNaGranicy]     VARCHAR (4)     NULL,
+    [TowNiebezpNaGranicyPid]  INT             NULL,
+    [OpisTowaru]              VARCHAR (280)   NULL,
+    [OpisTowaruNaGranicy]     VARCHAR (280)   NULL,
+    [KodTowarowy]             VARCHAR (8)     NULL,
+    [KodTowarowyPid]          INT             NULL,
+    [KodTowarowyNaGranicy]    VARCHAR (8)     NULL,
+    [KodTowarowyNaGranicyPid] INT             NULL,
+    [MasaBrutto]              DECIMAL (18, 3) NULL,
+    [MasaBruttoNaGranicy]     DECIMAL (18, 3) NULL,
+    [OplTransp]               CHAR (1)        NULL,
+    [OplTranspPid]            INT             NULL,
+    [OplTranspNaGranicy]      CHAR (1)        NULL,
+    [OplTranspNaGranicyPid]   INT             NULL,
+    [IdDokDWA]                DECIMAL (19)    NULL,
+    CONSTRAINT [PK_DWA_Towar] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

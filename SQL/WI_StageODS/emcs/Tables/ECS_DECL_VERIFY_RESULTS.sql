@@ -1,0 +1,13 @@
+﻿CREATE TABLE [emcs].[ECS_DECL_VERIFY_RESULTS] (
+    [ID]                  BIGINT         NOT NULL,
+    [ECSD_ID]             BIGINT         NOT NULL,
+    [ITEM_NUMBER]         DECIMAL (3)    NULL,
+    [ARC]                 VARCHAR (21)   NULL,
+    [MVMT_PRODUCT_NUMBER] DECIMAL (3)    NULL,
+    [MVMT_PRODUCT_ID]     BIGINT         NULL,
+    [ERROR_CODE]          DECIMAL (2)    NOT NULL,
+    [ERROR_DESCRIPTION]   NVARCHAR (350) NULL,
+    [DIAGNOSIS_CODE]      DECIMAL (1)    NULL,
+    CONSTRAINT [PK_ECS_DECL_VERIFY_RESULTS] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

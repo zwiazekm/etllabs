@@ -1,0 +1,8 @@
+﻿CREATE TABLE [ncts].[ITINERARY] (
+    [SID]            INT         NOT NULL,
+    [TRANS_OPER_SID] INT         NOT NULL,
+    [VERS_NUMB]      DECIMAL (8) NOT NULL,
+    [COUNTRY_ID]     CHAR (2)    NOT NULL,
+    CONSTRAINT [PK_ITINERARY] PRIMARY KEY CLUSTERED ([SID] ASC)
+);
+

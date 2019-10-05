@@ -1,0 +1,7 @@
+﻿CREATE TABLE [ARIFORM].[MF_STATUS] (
+    [ID]   SMALLINT     NOT NULL,
+    [NAME] VARCHAR (50) NULL,
+    [CODE] INT          NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

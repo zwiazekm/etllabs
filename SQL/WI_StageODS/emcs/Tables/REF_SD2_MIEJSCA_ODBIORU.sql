@@ -1,0 +1,17 @@
+﻿CREATE TABLE [emcs].[REF_SD2_MIEJSCA_ODBIORU] (
+    [ID]                   BIGINT         NOT NULL,
+    [REF_SD2_PODMIOTY_NRA] VARCHAR (13)   NOT NULL,
+    [NAZWA]                NVARCHAR (300) NULL,
+    [NR_AKCYZOWY]          NVARCHAR (13)  NULL,
+    [UC_KONTROLI]          VARCHAR (8)    NULL,
+    [KOD_KRAJU]            CHAR (2)       NOT NULL,
+    [ULICA]                NVARCHAR (70)  NULL,
+    [NR_DOMU]              NVARCHAR (10)  NOT NULL,
+    [NR_LOKALU]            NVARCHAR (10)  NULL,
+    [MIEJSCOWOSC]          NVARCHAR (60)  NULL,
+    [KOD_POCZTOWY]         NVARCHAR (10)  NOT NULL,
+    [POCZTA]               NVARCHAR (60)  NULL,
+    [REF_SD2_PODMIOTY_TYP] VARCHAR (5)    NOT NULL,
+    CONSTRAINT [PK_REF_SD2_MIEJSCA_ODBIORU] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

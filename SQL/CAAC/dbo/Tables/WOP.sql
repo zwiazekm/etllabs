@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[WOP] (
+    [LP]    FLOAT (53)     NULL,
+    [EORI]  NVARCHAR (255) NULL,
+    [SWIAD] NVARCHAR (255) NULL,
+    [DATA]  DATETIME       NULL
+);
+

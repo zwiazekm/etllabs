@@ -1,0 +1,25 @@
+﻿CREATE TABLE [int].[INTRASTAT_Towar] (
+    [IdDeklWynikowej]             VARCHAR (30)  NOT NULL,
+    [IdPozycji]                   SMALLINT      NOT NULL,
+    [Status]                      CHAR (1)      NULL,
+    [Komentarz]                   VARCHAR (255) NULL,
+    [OpisTowaru]                  VARCHAR (255) NULL,
+    [KrajPrzeznaczeniaWysylki]    CHAR (2)      NULL,
+    [KrajPrzeznaczeniaWysylkiPid] INT           NULL,
+    [WarunkiDostawy]              CHAR (3)      NULL,
+    [WarunkiDostawyPid]           INT           NULL,
+    [RodzajTransakcji]            CHAR (2)      NULL,
+    [RodzajTransakcjiPid]         INT           NULL,
+    [RodzajTransportu]            CHAR (2)      NULL,
+    [RodzajTransportuPid]         INT           NULL,
+    [KodTowarowy]                 VARCHAR (8)   NULL,
+    [KodTowarowyPid]              INT           NULL,
+    [KrajPochodzenia]             CHAR (2)      NULL,
+    [KrajPochodzeniaPid]          INT           NULL,
+    [MasaNetto]                   DECIMAL (11)  NULL,
+    [IloscUjm]                    DECIMAL (11)  NULL,
+    [WartoscFaktury]              DECIMAL (15)  NULL,
+    [WartoscStatystyczna]         DECIMAL (15)  NULL,
+    CONSTRAINT [PK_INTRASTAT_Towar] PRIMARY KEY CLUSTERED ([IdDeklWynikowej] ASC, [IdPozycji] ASC)
+);
+

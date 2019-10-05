@@ -1,0 +1,27 @@
+﻿CREATE TABLE [ncts2].[PoszukiwaniaPobory] (
+    [Id]                     BIGINT         NOT NULL,
+    [Typ]                    NVARCHAR (5)   NULL,
+    [Status]                 NVARCHAR (50)  NULL,
+    [MRN]                    NVARCHAR (18)  NULL,
+    [UrzadWyjscia]           NVARCHAR (8)   NULL,
+    [UrzadPytajacy]          NVARCHAR (8)   NULL,
+    [Odbiorca]               NVARCHAR (17)  NULL,
+    [DataWyslaniaZapytania]  DATETIME       NULL,
+    [CzyPrzekroczonyCzasOdp] BIT            NULL,
+    [DataObsluzenia]         DATETIME       NULL,
+    [KodOdpowiedzi]          NUMERIC (2)    NULL,
+    [TrescOdpowiedzi]        NVARCHAR (140) NULL,
+    [TrescInformacji]        NVARCHAR (140) NULL,
+    [IdOperacjiTranzytowej]  BIGINT         NULL,
+    [IdKomunikatZapytania]   BIGINT         NULL,
+    [IdKomunikatOdpowiedzi]  BIGINT         NULL,
+    [CzyInfDodatkoweIE144]   BIT            NULL,
+    [CzyInfDodatkoweIE145]   BIT            NULL,
+    [TerminNaOdpowiedz]      DATETIME       NULL,
+    [RolaUrzeduOdbiorcy]     NVARCHAR (1)   NULL,
+    [DataUtworzenia]         DATETIME       NULL,
+    [DataModyfikacji]        DATETIME       NULL,
+    CONSTRAINT [PoszukiwaniaPobory_pk] PRIMARY KEY CLUSTERED ([Id] ASC) ON [FG_NCTS2],
+    CONSTRAINT [PoszukiwaniaPobory_IdOperacjiTranzytowej_OperacjeTranzytowe_fk] FOREIGN KEY ([IdOperacjiTranzytowej]) REFERENCES [ncts2].[OperacjeTranzytowe] ([Id])
+);
+

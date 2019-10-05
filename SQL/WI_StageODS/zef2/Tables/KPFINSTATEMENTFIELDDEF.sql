@@ -1,0 +1,28 @@
+﻿CREATE TABLE [zef2].[KPFINSTATEMENTFIELDDEF] (
+    [LABEL]                 NVARCHAR (80)    NULL,
+    [ALLOWEDIT]             INT              NULL,
+    [FIELDIDX]              INT              NULL,
+    [ORDERFLD]              INT              NULL,
+    [FINANCIALPLAN]         INT              NULL,
+    [EXECUTION]             INT              NULL,
+    [CALCULATED]            INT              NULL,
+    [XMLTAG]                NVARCHAR (50)    NULL,
+    [FIELDSSUM]             NVARCHAR (120)   NULL,
+    [ROWID]                 NVARCHAR (10)    NULL,
+    [FINSTATEMENTDEF_FK]    BIGINT           NULL,
+    [MODIFIEDDATETIME]      DATETIME         NULL,
+    [MODIFIEDBY]            NVARCHAR (8)     NULL,
+    [MODIFIEDTRANSACTIONID] BIGINT           NULL,
+    [CREATEDDATETIME]       DATETIME         NULL,
+    [CREATEDBY]             NVARCHAR (8)     NULL,
+    [CREATEDTRANSACTIONID]  BIGINT           NULL,
+    [RECVERSION]            INT              NULL,
+    [PARTITION]             BIGINT           NULL,
+    [RECID]                 BIGINT           NOT NULL,
+    [MRDOSTAG]              NVARCHAR (30)    NULL,
+    [TREZOREXCLUDEFROMXML]  INT              NULL,
+    [AMOUNTROUNDOFF]        NUMERIC (32, 16) NULL,
+    [operacja]              NVARCHAR (1)     NULL,
+    CONSTRAINT [I_103063RECID] PRIMARY KEY CLUSTERED ([RECID] ASC)
+);
+

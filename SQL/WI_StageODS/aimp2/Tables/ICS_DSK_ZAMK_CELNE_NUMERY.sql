@@ -1,0 +1,8 @@
+﻿CREATE TABLE [aimp2].[ICS_DSK_ZAMK_CELNE_NUMERY] (
+    [ID]                    NUMERIC (19)  NOT NULL,
+    [ICS_DSK_ZAMK_CELNE_ID] NUMERIC (19)  NOT NULL,
+    [NUMER]                 NVARCHAR (35) NULL,
+    [version]               INT           NOT NULL,
+    CONSTRAINT [ICS_DSK_ZAMK_CELNE_NUMERY$PK_ICS_DSK_ZAMK_CELNE_NUMERY] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

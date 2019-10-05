@@ -1,0 +1,7 @@
+﻿CREATE TABLE [ncts].[DECL_GOODS_ITEM_CONT] (
+    [SID]                 INT          NOT NULL,
+    [CONT_NUMB]           VARCHAR (17) NOT NULL,
+    [DECL_GOODS_ITEM_SID] INT          NULL,
+    CONSTRAINT [PK_DECL_GOODS_ITEM_CONT] PRIMARY KEY CLUSTERED ([SID] ASC)
+);
+

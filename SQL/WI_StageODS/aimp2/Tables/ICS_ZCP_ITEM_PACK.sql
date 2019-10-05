@@ -1,0 +1,11 @@
+﻿CREATE TABLE [aimp2].[ICS_ZCP_ITEM_PACK] (
+    [ID]               NUMERIC (19)  NOT NULL,
+    [ZCP_ITEM_ID]      NUMERIC (19)  NULL,
+    [PACK_QUANTITY]    NUMERIC (8)   NULL,
+    [PACK_NUMBER_SIGN] NVARCHAR (42) NULL,
+    [PACK_TYPE]        NVARCHAR (3)  NULL,
+    [ZCP_ACF]          NTEXT         NULL,
+    [version]          INT           NOT NULL,
+    CONSTRAINT [ICS_ZCP_ITEM_PACK$PK_ICS_ZCP_ITEM_PACK] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

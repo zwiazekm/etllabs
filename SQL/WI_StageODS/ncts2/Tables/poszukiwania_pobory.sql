@@ -1,0 +1,27 @@
+﻿CREATE TABLE [ncts2].[poszukiwania_pobory] (
+    [id]                               BIGINT         NOT NULL,
+    [typ]                              NVARCHAR (5)   NULL,
+    [status]                           NVARCHAR (50)  NULL,
+    [mrn]                              NVARCHAR (18)  NULL,
+    [urzad_wyjscia]                    NVARCHAR (8)   NULL,
+    [urzad_pytajacy]                   NVARCHAR (8)   NULL,
+    [odbiorca]                         NVARCHAR (17)  NULL,
+    [data_wyslania_zapytania]          DATETIME       NULL,
+    [czy_przekroczony_czas_odpowiedzi] BIT            NULL,
+    [data_obsluzenia]                  DATETIME       NULL,
+    [kod_odpowiedzi]                   NUMERIC (2)    NULL,
+    [tresc_odpowiedzi]                 NVARCHAR (140) NULL,
+    [tresc_informacji]                 NVARCHAR (140) NULL,
+    [operacja_tranzytowa_id]           BIGINT         NULL,
+    [komunikat_zapytania_id]           BIGINT         NULL,
+    [komunikat_odpowiedzi_id]          BIGINT         NULL,
+    [czy_informacje_dodatkowe_ie144]   BIT            NULL,
+    [czy_informacje_dodatkowe_ie145]   BIT            NULL,
+    [rewizja]                          INT            NULL,
+    [termin_na_odpowiedz]              DATETIME       NULL,
+    [rola_urzedu_odbiorcy]             NVARCHAR (1)   NULL,
+    [data_utworzenia]                  DATETIME       NULL,
+    [data_modyfikacji]                 DATETIME       NULL,
+    CONSTRAINT [poszukiwania_pobory_pk] PRIMARY KEY CLUSTERED ([id] ASC)
+);
+

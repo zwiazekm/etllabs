@@ -1,0 +1,27 @@
+﻿CREATE TABLE [emcs2].[AD_AnalizaRyzykaKontrola] (
+    [Id]                       NUMERIC (38)   NOT NULL,
+    [IdDokAR]                  NUMERIC (38)   NULL,
+    [NumerDokumentuZISAR]      VARCHAR (100)  NOT NULL,
+    [Zrodlo]                   VARCHAR (36)   NOT NULL,
+    [NrAlgorytmu]              VARCHAR (30)   NULL,
+    [Autor]                    VARCHAR (30)   NULL,
+    [WAR1]                     VARCHAR (36)   NULL,
+    [WAR1SO]                   VARCHAR (36)   NULL,
+    [WAR24]                    VARCHAR (36)   NULL,
+    [WAR24SO]                  VARCHAR (36)   NULL,
+    [WAR5SO]                   VARCHAR (36)   NULL,
+    [ZmianaWarUzasadnSO]       VARCHAR (200)  NULL,
+    [ObszarRyzyka]             VARCHAR (36)   NULL,
+    [ZmianaMKUzasadnSO]        VARCHAR (200)  NULL,
+    [TrescDyrektywy]           VARCHAR (350)  NULL,
+    [InformacjaDlaDyspozytora] VARCHAR (200)  NULL,
+    [DecyzjaDyspozytoraSO]     CHAR (1)       NULL,
+    [OdstOdKontroliUzasadnSO]  VARCHAR (100)  NULL,
+    [AdresaciDyrektywySO]      VARCHAR (2000) NULL,
+    [ZalecenieDyspozytoraSO]   VARCHAR (350)  NULL,
+    [DyrDlaKolejnegoUCWprSO]   VARCHAR (500)  NULL,
+    [ZakresPrzebiegKontroliSO] VARCHAR (200)  NULL,
+    [WynikKontroliSO]          VARCHAR (36)   NULL,
+    CONSTRAINT [AD_AnalizaRyzykaKontrola$PK_AD_AnalizaRyzykaKontrola] PRIMARY KEY CLUSTERED ([Id] ASC) ON [FG_EMCS2]
+);
+

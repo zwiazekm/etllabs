@@ -1,0 +1,8 @@
+﻿CREATE TABLE [aimp2].[ICS_ZCP_OFFICIAL_ANNOTATION] (
+    [id]          NUMERIC (19)   NOT NULL,
+    [zcp_item_id] NUMERIC (19)   NOT NULL,
+    [annotation]  NVARCHAR (256) NOT NULL,
+    [version]     INT            NOT NULL,
+    CONSTRAINT [ICS_ZCP_OFFICIAL_ANNOTATION$ICS_ZCP_OF_13551488421] PRIMARY KEY CLUSTERED ([id] ASC)
+);
+

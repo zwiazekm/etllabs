@@ -1,0 +1,28 @@
+﻿CREATE TABLE [zef2DW].[DORA_Dokument] (
+    [IdentyfikatorDokumentu]        BIGINT          NOT NULL,
+    [TypDochodu]                    NVARCHAR (32)   NULL,
+    [DataDecyzji]                   DATE            NULL,
+    [NumerDecyzji]                  NVARCHAR (255)  NULL,
+    [OrganWydajacy]                 NVARCHAR (255)  NULL,
+    [DataWniosku]                   DATE            NULL,
+    [NumerWniosku]                  NVARCHAR (255)  NULL,
+    [LacznaKwotaRat]                DECIMAL (19, 2) NULL,
+    [MaksKwotaRat]                  DECIMAL (19, 2) NULL,
+    [TerminPierwszejRaty]           DATE            NULL,
+    [IloscRat]                      INT             NULL,
+    [PierwotneKwotaNaleznosciRazem] DECIMAL (19, 2) NULL,
+    [PierwotneKwotaRozkladanaRazem] DECIMAL (19, 2) NULL,
+    [KwotaNaleznosciRazem]          DECIMAL (19, 2) NULL,
+    [KwotaRozkladanaRazem]          DECIMAL (19, 2) NULL,
+    [RazemRatyKwota]                DECIMAL (19, 2) NULL,
+    [SumaRatyOdsetki]               DECIMAL (19, 2) NULL,
+    [SumaRatyOplaty]                DECIMAL (19, 2) NULL,
+    [AdnotacjeIUwagi]               NVARCHAR (512)  NULL,
+    [RaportWyslaniaSK]              NVARCHAR (MAX)  NULL,
+    [DataArch]                      DATE            NULL,
+    [ID_Pismo_xml]                  BIGINT          NULL,
+    [IdentyfikatorPodatnika]        BIGINT          NOT NULL,
+    [MigracjaReczna]                NVARCHAR (5)    NULL,
+    CONSTRAINT [DORA_Dokument_PK] PRIMARY KEY CLUSTERED ([IdentyfikatorDokumentu] ASC) ON [FG_ZEF2DW]
+) TEXTIMAGE_ON [FG_ZEF2DW];
+

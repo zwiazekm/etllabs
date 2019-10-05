@@ -1,0 +1,27 @@
+﻿CREATE TABLE [zc].[SAD_UrzadKontrolny] (
+    [IdDok]              BIGINT       NOT NULL,
+    [UCZgloszenia]       VARCHAR (8)  NULL,
+    [UCZgloszeniaPid]    INT          NULL,
+    [KodUrzedu]          VARCHAR (8)  NULL,
+    [KodUrzeduPid]       INT          NULL,
+    [Nazwa]              VARCHAR (35) NULL,
+    [Kraj]               CHAR (2)     NULL,
+    [KrajPid]            INT          NULL,
+    [UlicaNumer]         VARCHAR (35) NULL,
+    [KodPocztowy]        VARCHAR (9)  NULL,
+    [Miejscowosc]        VARCHAR (35) NULL,
+    [UCGraniczny]        VARCHAR (8)  NULL,
+    [UCGranicznyPid]     INT          NULL,
+    [LokalizacjaMiejsce] VARCHAR (17) NULL,
+    [LokalizacjaUC]      VARCHAR (8)  NULL,
+    [LokalizacjaOpis]    VARCHAR (35) NULL,
+    [SkladTyp]           CHAR (1)     NULL,
+    [SkladTypPid]        INT          NULL,
+    [SkladMiejsce]       VARCHAR (14) NULL,
+    [SkladKraj]          CHAR (2)     NULL,
+    [SkladKrajPid]       INT          NULL,
+    [UCPrzeznaczenia]    VARCHAR (8)  NULL,
+    [UCPrzeznaczeniaPid] INT          NULL,
+    CONSTRAINT [PK_SAD_UrzadKontrolny] PRIMARY KEY CLUSTERED ([IdDok] ASC)
+);
+

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [pta]
+    AUTHORIZATION [dbo];
+

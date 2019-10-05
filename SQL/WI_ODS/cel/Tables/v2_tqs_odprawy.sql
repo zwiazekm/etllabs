@@ -1,0 +1,26 @@
+﻿CREATE TABLE [cel].[v2_tqs_odprawy] (
+    [Nr_zgloszenia]          VARCHAR (40)    NOT NULL,
+    [Nr_pozycji]             SMALLINT        NOT NULL,
+    [Typ_zgloszenia]         CHAR (1)        NULL,
+    [Nr_wniosku]             VARCHAR (35)    NULL,
+    [UC_zgloszenia]          VARCHAR (8)     NULL,
+    [Login_funkcjonariusza]  VARCHAR (16)    NULL,
+    [Nr_srodka]              SMALLINT        NULL,
+    [Typ_srodka]             VARCHAR (3)     NULL,
+    [Nr_porzadkowy]          VARCHAR (6)     NULL,
+    [Rodzaj_nr_porzadkowego] VARCHAR (20)    NULL,
+    [TIN_podmiotu]           VARCHAR (12)    NULL,
+    [Kod_towarowy]           VARCHAR (8)     NULL,
+    [Kraj_pochodzenia]       VARCHAR (2)     NULL,
+    [Data_odprawy]           DATETIME        NULL,
+    [Wnioskowana_ilosc]      DECIMAL (15, 3) NULL,
+    [Przyznana_ilosc]        DECIMAL (15, 3) NULL,
+    [Wykorzystana_ilosc]     DECIMAL (15, 3) NULL,
+    [Wykorzystanie]          CHAR (1)        NULL,
+    [Status_TQS]             CHAR (1)        NULL,
+    [Przyczyna_odrzucenia]   VARCHAR (10)    NULL,
+    [Raportowana_ilosc]      DECIMAL (21, 5) NULL,
+    [Kontyngent_PozId]       SMALLINT        NULL,
+    [Powod_odrzucenia]       VARCHAR (20)    NULL
+) ON [FG_CEL];
+

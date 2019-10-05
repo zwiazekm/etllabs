@@ -1,0 +1,21 @@
+﻿CREATE TABLE [ncts].[TRANS_OPER_MESS] (
+    [CUST_OFF_ID]    VARCHAR (8)  NULL,
+    [MESS_IDENT_ID]  VARCHAR (14) NOT NULL,
+    [SID]            INT          NOT NULL,
+    [MESS_ID]        VARCHAR (50) NOT NULL,
+    [MESS_TYP_ID]    VARCHAR (6)  NOT NULL,
+    [TRANS_OPER_SID] INT          NULL,
+    [SENT]           CHAR (1)     NULL,
+    [MESS_REC]       VARCHAR (50) NULL,
+    [MESS_SEND]      VARCHAR (50) NULL,
+    [UNIQ_REC_ID]    VARCHAR (50) NULL,
+    [UNIQ_SEND_ID]   VARCHAR (50) NULL,
+    [MRN]            VARCHAR (21) NULL,
+    [LRN]            VARCHAR (22) NULL,
+    [DAT_CR]         DATETIME     NULL,
+    [DAT_REC]        DATETIME     NULL,
+    [AUD_DAT_TIM]    DATETIME     NULL,
+    [CHECK_SUM]      DECIMAL (8)  NULL,
+    CONSTRAINT [PK_TRANS_OPER_MESS] PRIMARY KEY CLUSTERED ([SID] ASC)
+);
+

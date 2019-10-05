@@ -1,0 +1,26 @@
+﻿CREATE TABLE [ncts2].[Gwarancje] (
+    [Id]                                    BIGINT          NOT NULL,
+    [IdOperacjiTranzytowejDlaGwarancji]     BIGINT          NULL,
+    [GRN]                                   NVARCHAR (24)   NULL,
+    [KodDostepu]                            NVARCHAR (4)    NULL,
+    [NiewaznaNaUE]                          BIT             NULL,
+    [IdPozycji]                             INT             NULL,
+    [Numer]                                 NVARCHAR (35)   NULL,
+    [Kwota]                                 NUMERIC (15, 2) NULL,
+    [Waluta]                                NVARCHAR (3)    NULL,
+    [Status]                                NVARCHAR (33)   NULL,
+    [NumerOperacjiZajeciaZabezpieczenia]    NVARCHAR (75)   NULL,
+    [NumerOperacjiZwolnieniaZabezpieczenia] NVARCHAR (75)   NULL,
+    [NumerOperacjiWycofaniaZabezpieczenia]  NVARCHAR (75)   NULL,
+    [NiewaznaNaStronyKonwencji]             NVARCHAR (500)  NULL,
+    [KwotaEuro]                             NUMERIC (15, 2) NULL,
+    [UCGwarancji]                           NVARCHAR (8)    NULL,
+    [KwotaPln]                              NUMERIC (15, 2) NULL,
+    [KodPrzyczynyOdrzucenia]                NVARCHAR (3)    NULL,
+    [OpisPrzyczynyOdrzucenia]               NVARCHAR (350)  NULL,
+    [StatusIntegralnosci]                   NVARCHAR (12)   NULL,
+    [DataSprawdzeniaIntegralnosci]          DATETIME        NULL,
+    [DataZapytaniaOIntegralnosc]            DATETIME        NULL,
+    CONSTRAINT [Gwarancje_pk] PRIMARY KEY CLUSTERED ([Id] ASC) ON [FG_NCTS2]
+);
+

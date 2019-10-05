@@ -1,0 +1,26 @@
+﻿CREATE TABLE [zef].[dok_akc4z] (
+    [id_dok]        VARCHAR (30)    NOT NULL,
+    [zalacznik]     CHAR (2)        NOT NULL,
+    [nr_zal]        INT             NOT NULL,
+    [numer]         VARCHAR (10)    NULL,
+    [rodzaj]        VARCHAR (10)    NULL,
+    [seed_id_komor] VARCHAR (20)    NULL,
+    [seed_id_kontr] NUMERIC (10)    NULL,
+    [seed_typ]      CHAR (2)        NULL,
+    [p_7]           DECIMAL (20, 3) NULL,
+    [p_8]           DECIMAL (20, 3) NULL,
+    [p_9]           DECIMAL (20, 3) NULL,
+    [p_10]          DECIMAL (20, 3) NULL,
+    [p_11]          DECIMAL (20, 3) NULL,
+    [p_12]          DECIMAL (20, 3) NULL,
+    [p_13]          DECIMAL (20, 3) NULL,
+    [p_14]          DECIMAL (20, 3) NULL,
+    [p_15]          DECIMAL (20, 3) NULL,
+    [p_16]          DECIMAL (20, 3) NULL,
+    [p_17]          DECIMAL (20, 3) NULL,
+    [okres]         DATETIME        NULL,
+    [okres_do]      DATETIME        NULL,
+    [nr_poz_ewid]   SMALLINT        NULL,
+    CONSTRAINT [PK_DOK_AKC4Z] PRIMARY KEY CLUSTERED ([id_dok] ASC, [zalacznik] ASC, [nr_zal] ASC)
+);
+

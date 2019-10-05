@@ -1,0 +1,8 @@
+﻿CREATE TABLE [ARIFORM].[FA_ZAL_32SC_DZ3_BACKUP] (
+    [ID]      BIGINT       NOT NULL,
+    [DZ_01]   VARCHAR (80) NOT NULL,
+    [DZ_02]   BIGINT       NULL,
+    [DZ_03]   BIGINT       NULL,
+    [ID_ARCH] BIGINT       NOT NULL
+);
+

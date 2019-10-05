@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [MF\FPLC]
+    AUTHORIZATION [dbo]--[MF\FPLC];
+

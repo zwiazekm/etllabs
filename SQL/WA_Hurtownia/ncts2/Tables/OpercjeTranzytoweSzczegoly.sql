@@ -1,0 +1,28 @@
+﻿CREATE TABLE [ncts2].[OpercjeTranzytoweSzczegoly] (
+    [Id]                                                  BIGINT         NOT NULL,
+    [IdOperacjiTranzytowej]                               BIGINT         NULL,
+    [WynikKontroliSkontrolowalUCWyjscia]                  NVARCHAR (35)  NULL,
+    [WynikKontroliUwagiUCWyjscia]                         NVARCHAR (350) NULL,
+    [LokalizacjaKodMiejscaUznanego]                       NVARCHAR (17)  NULL,
+    [LokalizacjaMiejsceUznane]                            NVARCHAR (35)  NULL,
+    [LokalizacjaMiejsceOdprawCelnych]                     NVARCHAR (17)  NULL,
+    [LokalizacjaKodMiejscaWskazanegoWPozwoleniu]          NVARCHAR (17)  NULL,
+    [PrzybycieLokalizacjaKodMiejscaUznanego]              NVARCHAR (17)  NULL,
+    [PrzybycieLokalizacjaMiejsceUznane]                   NVARCHAR (35)  NULL,
+    [PrzybycieLokalizacjaMiejsceOdprawCelnych]            NVARCHAR (17)  NULL,
+    [PrzybycieLokalizacjaKodMiejscaWskazanegoWPozwoleniu] NVARCHAR (17)  NULL,
+    [StatusKomunikacjiAES]                                NVARCHAR (24)  NULL,
+    [NadawcaCertyfikatAEO]                                NVARCHAR (35)  NULL,
+    [OdbiorcaCertyfikatAEO]                               NVARCHAR (35)  NULL,
+    [PrzedstawiajacyCertyfikatAEO]                        NVARCHAR (35)  NULL,
+    [GlownyZobowiazanyCertyfikatAEO]                      NVARCHAR (35)  NULL,
+    [GlownyZobowiazanyPrzedstawicielCertyfikatAEO]        NVARCHAR (35)  NULL,
+    [UpowaznionyOdbiorcaCertyfikatAEO]                    NVARCHAR (35)  NULL,
+    [BezpieczenstwoNadawcaCertyfikatAEO]                  NVARCHAR (35)  NULL,
+    [BezpieczenstwoOdbiorcaCertyfikatAEO]                 NVARCHAR (35)  NULL,
+    [BezpieczenstwoPrzewoznikCertyfikatAEO]               NVARCHAR (35)  NULL,
+    [PrzybycieNrPozwolenia]                               NVARCHAR (25)  NULL,
+    CONSTRAINT [OpercjeTranzytoweSzczegoly_pk] PRIMARY KEY CLUSTERED ([Id] ASC) ON [FG_NCTS2],
+    CONSTRAINT [OpercjeTranzytoweSzczegoly_IdOperacjiTranzytowej_OperacjeTranzytowe_fk] FOREIGN KEY ([IdOperacjiTranzytowej]) REFERENCES [ncts2].[OperacjeTranzytowe] ([Id])
+);
+

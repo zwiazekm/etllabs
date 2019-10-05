@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [emcs2]
+    AUTHORIZATION [dbo];
+

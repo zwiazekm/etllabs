@@ -1,0 +1,26 @@
+﻿CREATE TABLE [emcs2].[EMCS_HELPDESK] (
+    [ID]                   NUMERIC (38)    NOT NULL,
+    [ID_HELPDESK]          VARCHAR (14)    NULL,
+    [CREATION_DATE]        DATETIME2 (6)   NOT NULL,
+    [STATUS]               CHAR (1)        NOT NULL,
+    [OFFICE_NUMBER]        VARCHAR (8)     NULL,
+    [ARC]                  VARCHAR (21)    NULL,
+    [LRN]                  NVARCHAR (22)   NULL,
+    [GRN]                  VARCHAR (25)    NULL,
+    [NRA]                  VARCHAR (17)    NULL,
+    [LOGIN]                NVARCHAR (255)  NULL,
+    [DATE_FROM]            DATETIME2 (6)   NOT NULL,
+    [DATE_TO]              DATETIME2 (6)   NOT NULL,
+    [DESCRIPTION]          NVARCHAR (2000) NOT NULL,
+    [DECISION_DATE]        DATETIME2 (6)   NULL,
+    [DECISION_REASON]      CHAR (1)        NULL,
+    [DECISION_PERSON]      NVARCHAR (100)  NULL,
+    [DECISION_INFO]        NVARCHAR (2000) NULL,
+    [DECISION_SELECTED_ID] CHAR (3)        NULL,
+    [DECISION_DATE_FROM]   DATETIME2 (6)   NULL,
+    [DECISION_DATE_TO]     DATETIME2 (6)   NULL,
+    [HD001_MSG_ID]         NUMERIC (38)    NULL,
+    [HD002_MSG_ID]         NUMERIC (38)    NULL,
+    CONSTRAINT [PK_EMCS_HELPDESK] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

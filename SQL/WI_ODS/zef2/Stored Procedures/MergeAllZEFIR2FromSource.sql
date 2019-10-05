@@ -1,0 +1,36 @@
+﻿---- =============================================
+---- Author:		Gwidon Józwiak
+---- Create date: 2015-08-26
+---- Description:	
+---- =============================================
+
+--CREATE PROCEDURE [zef2].[MergeAllZEFIR2FromSource]
+--AS
+--BEGIN
+--	SET NOCOUNT ON;
+
+--		EXEC [zef2].[MergeTableFromSource] 'Pismo';
+--		EXEC [zef2].[MergeTableFromSource] 'Pismo_Historia';
+--		EXEC [zef2].[MergeTableFromSource] 'Pismo_XML';
+--		EXEC [zef2].[MergeTableFromSource] 'Pismo_XML_Historia';
+--		EXEC [zef2].[MergeTableFromSource] 'Dedykowane_OpisyStatusow';
+--		EXEC [zef2].[MergeTableFromSource] 'Komorka';
+--		EXEC [zef2].[MergeTableFromSource] 'Pracownik';
+--		EXEC [zef2].[MergeTableFromSource] 'Priorytet';
+--		EXEC [zef2].[MergeTableFromSource] 'KierunekPisma';
+--		EXEC [zef2].[MergeTableFromSource] 'rodzaj_deklaracji';
+--		EXEC [zef2].[MergeTableFromSource] 'formy';
+--		EXEC [zef2].[MergeTableFromSource] 'KPfinstatementTable';
+--		EXEC [zef2].[MergeTableFromSource] 'KPfinstatementTrans';
+--		EXEC [zef2].[MergeTableFromSource] 'KPorganizationUnitTable';
+--		EXEC [zef2].[MergeTableFromSource] 'KPProgramTable';
+--		EXEC [zef2].[MergeTableFromSource] 'KPEmploymentGroup';
+--		EXEC [zef2].[MergeTableFromSource] 'KPClassificationAttributeTable';
+--		EXEC [zef2].[MergeTableFromSource] 'KPfinstatementTypeDef';
+--		EXEC [zef2].[MergeTableFromSource] 'KPFinstatementDef';
+--		EXEC [zef2].[MergeTableFromSource] 'KPfinstatementFielddef';
+--		EXEC [zef2].[MergeTableFromSource] 'KPfinstatementRowDef';
+--		EXEC [zef2].[MergeTableFromSource] 'KPJournalStatusTable';
+--		EXEC [zef2].[MergeTableFromSource] 'KPJournalStatusLine';
+--		EXEC [zef2].[MergeTableFromSource] 'orbeon_form_data';
+--END

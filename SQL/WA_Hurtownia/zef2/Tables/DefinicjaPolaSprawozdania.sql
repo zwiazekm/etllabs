@@ -1,0 +1,28 @@
+﻿CREATE TABLE [zef2].[DefinicjaPolaSprawozdania] (
+    [EtykietaPola]                      NVARCHAR (80)    NOT NULL,
+    [CzyDoEdycji]                       INT              NOT NULL,
+    [IndeksPola]                        INT              NOT NULL,
+    [Sekwencja]                         INT              NOT NULL,
+    [CzyPlanFinansowy]                  INT              NOT NULL,
+    [CzyWykonanie]                      INT              NOT NULL,
+    [CzyWyliczeniowe]                   INT              NOT NULL,
+    [TagXML]                            NVARCHAR (50)    NOT NULL,
+    [PoleSumowane]                      NVARCHAR (120)   NOT NULL,
+    [KodWiersza]                        NVARCHAR (10)    NOT NULL,
+    [IdentyfikatorSprawozdania]         BIGINT           NOT NULL,
+    [DataGodzOstatnModyfikacji]         DATETIME         NOT NULL,
+    [IdUzytkownikaOstatnModyfikujacego] NVARCHAR (8)     NOT NULL,
+    [IdTransakcjiModyfikacji]           BIGINT           NOT NULL,
+    [DataGodzUtworzenia]                DATETIME         NOT NULL,
+    [IdUzytkownikaTworzacego]           NVARCHAR (8)     NOT NULL,
+    [IdTransakcjiUtworzeniaRekordu]     BIGINT           NOT NULL,
+    [WersjaRekordu]                     INT              NOT NULL,
+    [Partycja]                          BIGINT           NOT NULL,
+    [IdentyfikatorRekordu]              BIGINT           NOT NULL,
+    [TagMRDOS]                          NVARCHAR (30)    NOT NULL,
+    [Zaokraglenie]                      NUMERIC (32, 16) NOT NULL,
+    [CzyWykluczZTrezora]                INT              NOT NULL,
+    CONSTRAINT [DefinicjaPolaSprawozdania_pk] PRIMARY KEY CLUSTERED ([IdentyfikatorRekordu] ASC) ON [FG_ZEF2],
+    CHECK ([IdentyfikatorRekordu]<>(0))
+);
+

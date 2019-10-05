@@ -1,0 +1,25 @@
+﻿CREATE TABLE [intr2].[istat_dekl_wynik_poz] (
+    [id_dok]            NVARCHAR (30)   NOT NULL,
+    [pozid]             SMALLINT        NOT NULL,
+    [status]            NCHAR (1)       NULL,
+    [komentarz]         NVARCHAR (255)  NULL,
+    [opis_towaru]       NVARCHAR (420)  NULL,
+    [kraj_przezn_wysyl] NVARCHAR (2)    NULL,
+    [warunki_dostawy]   NVARCHAR (3)    NULL,
+    [rodzaj_transakcji] NVARCHAR (4)    NULL,
+    [rodzaj_transportu] NVARCHAR (4)    NULL,
+    [kod_towarowy]      NVARCHAR (8)    NULL,
+    [kraj_pochodzenia]  NVARCHAR (2)    NULL,
+    [masa_netto]        NUMERIC (13, 2) NULL,
+    [uzup_jm]           NUMERIC (13, 2) NULL,
+    [wartosc_faktury]   NUMERIC (17, 2) NULL,
+    [wartosc_stat]      NUMERIC (17, 2) NULL,
+    [wsk_progowy]       NCHAR (1)       NULL,
+    [flaga]             NVARCHAR (12)   NULL,
+    [id_kontrahenta]    NVARCHAR (17)   NULL,
+    [timer]             DATETIME2 (3)   NULL,
+    [blad_informacyjny] BIT             NOT NULL,
+    [autokorekta]       NVARCHAR (1)    NULL,
+    CONSTRAINT [istat_dekl_wynik_poz$PK_ISTAT_DEKL_WYNIK_POZ] PRIMARY KEY CLUSTERED ([id_dok] ASC, [pozid] ASC)
+);
+

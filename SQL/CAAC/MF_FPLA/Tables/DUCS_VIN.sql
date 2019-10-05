@@ -1,0 +1,5 @@
+﻿CREATE TABLE [MF\FPLA].[DUCS_VIN] (
+    [LP]  FLOAT (53)     NULL,
+    [VIN] NVARCHAR (255) NULL
+);
+

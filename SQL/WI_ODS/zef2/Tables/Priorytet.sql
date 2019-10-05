@@ -1,0 +1,10 @@
+﻿CREATE TABLE [zef2].[Priorytet] (
+    [IDPriorytetu] INT           NOT NULL,
+    [Nazwa]        NVARCHAR (15) NULL,
+    CONSTRAINT [PK_Priorytet] PRIMARY KEY CLUSTERED ([IDPriorytetu] ASC) WITH (FILLFACTOR = 90) ON [FG_ZEF2]
+);
+
+
+GO
+ALTER TABLE [zef2].[Priorytet] ENABLE CHANGE_TRACKING WITH (TRACK_COLUMNS_UPDATED = OFF);
+

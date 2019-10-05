@@ -1,0 +1,16 @@
+﻿CREATE TABLE [aies].[ICS_DSK_OPERACJA_DECYZJA_OPLAT] (
+    [ID]                            NUMERIC (19)    NOT NULL,
+    [ICS_DSK_OPERACJA_DECYZJA_ID]   NUMERIC (19)    NOT NULL,
+    [DATA_POWIADOMIENIA_O_DLUGU]    DATETIME        NULL,
+    [DATA_ZAPOZNANIA_SIE_Z_DLUGIEM] DATETIME        NULL,
+    [KWOTA]                         NUMERIC (16, 2) NULL,
+    [KWOTA_DO_ZABEZPIECZENIA]       NUMERIC (16, 2) NULL,
+    [KWOTA_ZABEZPIECZONA]           NUMERIC (1)     NULL,
+    [KWOTA_ZAPLACONA]               NUMERIC (1)     NULL,
+    [METODA_PLATNOSCI]              CHAR (1)        NULL,
+    [PODSTAWA_OPLATY]               NUMERIC (16, 2) NULL,
+    [STAWKA]                        NUMERIC (17, 2) NULL,
+    [TYP_OPLATY]                    VARCHAR (3)     NULL,
+    CONSTRAINT [pk_ICS_DSK_OPERACJA_DECYZJA_OPLAT] PRIMARY KEY CLUSTERED ([ID] ASC) ON [FG_AIES]
+);
+

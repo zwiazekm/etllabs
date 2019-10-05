@@ -1,0 +1,27 @@
+﻿CREATE TABLE [zef2].[DefinicjaWierszySprawozdania] (
+    [KodWiersza]                         NVARCHAR (10)  NOT NULL,
+    [Opis]                               NVARCHAR (250) NOT NULL,
+    [Kolejnosc]                          INT            NOT NULL,
+    [TagXML]                             NVARCHAR (30)  NOT NULL,
+    [WierszSumowany]                     NVARCHAR (250) NOT NULL,
+    [WierszDynamiczny]                   INT            NOT NULL,
+    [NaDzien]                            DATETIME       NOT NULL,
+    [KodWierszaSprawozdSkonsolidowanego] NVARCHAR (10)  NOT NULL,
+    [IdentyfikatorSprawozdania]          BIGINT         NOT NULL,
+    [WierszNaglowkowy]                   INT            NOT NULL,
+    [DataGodzOstatnModyfikacji]          DATETIME       NOT NULL,
+    [IdUzytkownikaOstatnModyfikujacego]  NVARCHAR (8)   NOT NULL,
+    [IdTransakcjiModyfikacji]            BIGINT         NOT NULL,
+    [DataGodzUtworzeniaRekordu]          DATETIME       NOT NULL,
+    [IdUzytkownikaTworzacego]            NVARCHAR (8)   NOT NULL,
+    [IdTransakcjiUtworzeniaRekordu]      BIGINT         NOT NULL,
+    [WersjaRekordu]                      INT            NOT NULL,
+    [Partycja]                           BIGINT         NOT NULL,
+    [IdentyfikatorRekordu]               BIGINT         NOT NULL,
+    [TypWierszaKonsolidacja]             INT            NOT NULL,
+    [KodSekcjiTrezor]                    NVARCHAR (60)  NOT NULL,
+    [KodPozycjiTrezor]                   NVARCHAR (60)  NOT NULL,
+    CONSTRAINT [DefinicjaWierszySprawozdania_pk] PRIMARY KEY CLUSTERED ([IdentyfikatorRekordu] ASC) ON [FG_ZEF2],
+    CHECK ([IdentyfikatorRekordu]<>(0))
+);
+

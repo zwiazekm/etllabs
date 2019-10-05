@@ -1,0 +1,3870 @@
+﻿
+
+
+
+
+
+---- =============================================
+---- Author:		
+---- Create date: 2014-07-07
+---- Description:	
+---- =============================================
+
+--CREATE PROCEDURE [pdr].[MergeTableFromStageHurtownia] (@TableName VARCHAR(50) = NULL)
+--AS
+--BEGIN
+--	SET NOCOUNT ON;
+--	DECLARE @Merged BIT = 0;
+
+--	IF (@TableName IS NULL) BEGIN
+--		;THROW 51001, 'Nie wskazano nazwy tabeli w parametrze @TableName procedury.', 0;
+--	END
+
+--	IF @TableName = 'c001' BEGIN
+--		MERGE INTO pdr.c001 AS tgt
+--		USING [WA_StageHurtownia].pdr.c001 AS src
+--		ON (tgt.c001_id=src.c001_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.email=src.email, tgt.fax=src.fax, tgt.geo_info=src.geo_info, tgt.kod_pocztowy=src.kod_pocztowy, tgt.kod_urzedu=src.kod_urzedu, tgt.kraj=src.kraj, tgt.last_modification_tm=src.last_modification_tm, tgt.miejscowosc=src.miejscowosc, tgt.nazwa_krotka=src.nazwa_krotka, tgt.nazwa_pelna=src.nazwa_pelna, tgt.poczta=src.poczta, tgt.rodzaj=src.rodzaj, tgt.telefon=src.telefon, tgt.uc_nadrzedny=src.uc_nadrzedny, tgt.ulica=src.ulica, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c001_id, creation_tm, email, fax, geo_info, kod_pocztowy, kod_urzedu, kraj, last_modification_tm, miejscowosc, nazwa_krotka, nazwa_pelna, poczta, rodzaj, telefon, uc_nadrzedny, ulica, valid_from, valid_to, version_)
+--		VALUES (src.c001_id, src.creation_tm, src.email, src.fax, src.geo_info, src.kod_pocztowy, src.kod_urzedu, src.kraj, src.last_modification_tm, src.miejscowosc, src.nazwa_krotka, src.nazwa_pelna, src.poczta, src.rodzaj, src.telefon, src.uc_nadrzedny, src.ulica, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c009' BEGIN
+--		MERGE INTO pdr.c009 AS tgt
+--		USING [WA_StageHurtownia].pdr.c009 AS src
+--		ON (tgt.c009_id=src.c009_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.model=src.model, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.dostawczylubciezarowy=src.dostawczylubciezarowy, tgt.osobowy=src.osobowy
+--		WHEN NOT MATCHED
+--		THEN INSERT (c009_id, code, creation_tm, last_modification_tm, model, valid_from, valid_to, version_, dostawczylubciezarowy, osobowy)
+--		VALUES (src.c009_id, src.code, src.creation_tm, src.last_modification_tm, src.model, src.valid_from, src.valid_to, src.version_, src.dostawczylubciezarowy, src.osobowy);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c010' BEGIN
+--		MERGE INTO pdr.c010 AS tgt
+--		USING [WA_StageHurtownia].pdr.c010 AS src
+--		ON (tgt.c010_id=src.c010_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c010_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.c010_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c010_modele' BEGIN
+--		MERGE INTO pdr.c010_modele AS tgt
+--		USING [WA_StageHurtownia].pdr.c010_modele AS src
+--		ON (tgt.c010_modele_id=src.c010_modele_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.dostawczylubciezarowy=src.dostawczylubciezarowy, tgt.model=src.model, tgt.osobowy=src.osobowy, tgt.c010_id=src.c010_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c010_modele_id, dostawczylubciezarowy, model, osobowy, c010_id)
+--		VALUES (src.c010_modele_id, src.dostawczylubciezarowy, src.model, src.osobowy, src.c010_id);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c028a' BEGIN
+--		MERGE INTO pdr.c028a AS tgt
+--		USING [WA_StageHurtownia].pdr.c028a AS src
+--		ON (tgt.c028a_id=src.c028a_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.klucz=src.klucz, tgt.kodcn=src.kodcn, tgt.last_modification_tm=src.last_modification_tm, tgt.ujm=src.ujm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.wyszczegolnienie=src.wyszczegolnienie
+--		WHEN NOT MATCHED
+--		THEN INSERT (c028a_id, creation_tm, klucz, kodcn, last_modification_tm, ujm, valid_from, valid_to, version_, wyszczegolnienie)
+--		VALUES (src.c028a_id, src.creation_tm, src.klucz, src.kodcn, src.last_modification_tm, src.ujm, src.valid_from, src.valid_to, src.version_, src.wyszczegolnienie);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c084' BEGIN
+--		MERGE INTO pdr.c084 AS tgt
+--		USING [WA_StageHurtownia].pdr.c084 AS src
+--		ON (tgt.c084_id=src.c084_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.email=src.email, tgt.fax=src.fax, tgt.kod_miejsca=src.kod_miejsca, tgt.kod_pocztowy=src.kod_pocztowy, tgt.kraj=src.kraj, tgt.last_modification_tm=src.last_modification_tm, tgt.miejscowosc=src.miejscowosc, tgt.nazwa_krotka=src.nazwa_krotka, tgt.nazwa_pelna=src.nazwa_pelna, tgt.placowka_nadrzedna=src.placowka_nadrzedna, tgt.poczta=src.poczta, tgt.rodzaj=src.rodzaj, tgt.telefon=src.telefon, tgt.ulica=src.ulica, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c084_id, creation_tm, email, fax, kod_miejsca, kod_pocztowy, kraj, last_modification_tm, miejscowosc, nazwa_krotka, nazwa_pelna, placowka_nadrzedna, poczta, rodzaj, telefon, ulica, valid_from, valid_to, version_)
+--		VALUES (src.c084_id, src.creation_tm, src.email, src.fax, src.kod_miejsca, src.kod_pocztowy, src.kraj, src.last_modification_tm, src.miejscowosc, src.nazwa_krotka, src.nazwa_pelna, src.placowka_nadrzedna, src.poczta, src.rodzaj, src.telefon, src.ulica, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c171' BEGIN
+--		MERGE INTO pdr.c171 AS tgt
+--		USING [WA_StageHurtownia].pdr.c171 AS src
+--		ON (tgt.c171_id=src.c171_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kod_urzedu=src.kod_urzedu, tgt.last_modification_tm=src.last_modification_tm, tgt.rok=src.rok, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c171_id, creation_tm, kod_urzedu, last_modification_tm, rok, valid_from, valid_to, version_)
+--		VALUES (src.c171_id, src.creation_tm, src.kod_urzedu, src.last_modification_tm, src.rok, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c171_sezon' BEGIN
+--		MERGE INTO pdr.c171_sezon AS tgt
+--		USING [WA_StageHurtownia].pdr.c171_sezon AS src
+--		ON (tgt.c171_sezon_id=src.c171_sezon_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.nazwa=src.nazwa, tgt.wazny_do=src.wazny_do, tgt.wazny_od=src.wazny_od, tgt.c171_id=src.c171_id, tgt.nr=src.nr
+--		WHEN NOT MATCHED
+--		THEN INSERT (c171_sezon_id, nazwa, wazny_do, wazny_od, c171_id, nr)
+--		VALUES (src.c171_sezon_id, src.nazwa, src.wazny_do, src.wazny_od, src.c171_id, src.nr);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c171_pozycja' BEGIN
+--		MERGE INTO pdr.c171_pozycja AS tgt
+--		USING [WA_StageHurtownia].pdr.c171_pozycja AS src
+--		ON (tgt.c171_pozycja_id=src.c171_pozycja_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.do_dnia=src.do_dnia, tgt.do_godziny=src.do_godziny, tgt.do_godziny2=src.do_godziny2, tgt.od_dnia=src.od_dnia, tgt.od_godziny=src.od_godziny, tgt.od_godziny2=src.od_godziny2, tgt.c171_sezon_id=src.c171_sezon_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c171_pozycja_id, do_dnia, do_godziny, do_godziny2, od_dnia, od_godziny, od_godziny2, c171_sezon_id)
+--		VALUES (src.c171_pozycja_id, src.do_dnia, src.do_godziny, src.do_godziny2, src.od_dnia, src.od_godziny, src.od_godziny2, src.c171_sezon_id);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c171_rola' BEGIN
+--		MERGE INTO pdr.c171_rola AS tgt
+--		USING [WA_StageHurtownia].pdr.c171_rola AS src
+--		ON (tgt.c171_rola_id=src.c171_rola_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.rola=src.rola, tgt.transport=src.transport, tgt.c171_pozycja_id=src.c171_pozycja_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c171_rola_id, rola, transport, c171_pozycja_id)
+--		VALUES (src.c171_rola_id, src.rola, src.transport, src.c171_pozycja_id);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c212' BEGIN
+--		MERGE INTO pdr.c212 AS tgt
+--		USING [WA_StageHurtownia].pdr.c212 AS src
+--		ON (tgt.c212_id=src.c212_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.nr=src.nr, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.id_old_pdr=src.id_old_pdr, tgt.urzad_wydania=src.urzad_wydania, tgt.tin=src.tin
+--		WHEN NOT MATCHED
+--		THEN INSERT (c212_id, creation_tm, last_modification_tm, nr, valid_from, valid_to, version_, id_old_pdr, urzad_wydania, tin)
+--		VALUES (src.c212_id, src.creation_tm, src.last_modification_tm, src.nr, src.valid_from, src.valid_to, src.version_, src.id_old_pdr, src.urzad_wydania, src.tin);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c212_na_urzad' BEGIN
+--		MERGE INTO pdr.c212_na_urzad AS tgt
+--		USING [WA_StageHurtownia].pdr.c212_na_urzad AS src
+--		ON (tgt.c212_na_urzad_id=src.c212_na_urzad_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.elektroniczna_dv1=src.elektroniczna_dv1, tgt.podpis_elektroniczny=src.podpis_elektroniczny, tgt.urzad=src.urzad, tgt.zgloszenie_bez_zalacznikow=src.zgloszenie_bez_zalacznikow, tgt.zgloszenie_przed_towarem=src.zgloszenie_przed_towarem, tgt.c212_id=src.c212_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c212_na_urzad_id, elektroniczna_dv1, podpis_elektroniczny, urzad, zgloszenie_bez_zalacznikow, zgloszenie_przed_towarem, c212_id)
+--		VALUES (src.c212_na_urzad_id, src.elektroniczna_dv1, src.podpis_elektroniczny, src.urzad, src.zgloszenie_bez_zalacznikow, src.zgloszenie_przed_towarem, src.c212_id);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c213' BEGIN
+--		MERGE INTO pdr.c213 AS tgt
+--		USING [WA_StageHurtownia].pdr.c213 AS src
+--		ON (tgt.c213_id=src.c213_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.id_old_pdr=src.id_old_pdr, tgt.kod=src.kod, tgt.last_modification_tm=src.last_modification_tm, tgt.lp=src.lp, tgt.nr=src.nr, tgt.placowka_przedlozenia=src.placowka_przedlozenia, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c213_id, creation_tm, id_old_pdr, kod, last_modification_tm, lp, nr, placowka_przedlozenia, valid_from, valid_to, version_)
+--		VALUES (src.c213_id, src.creation_tm, src.id_old_pdr, src.kod, src.last_modification_tm, src.lp, src.nr, src.placowka_przedlozenia, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c232' BEGIN
+--		MERGE INTO pdr.c232 AS tgt
+--		USING [WA_StageHurtownia].pdr.c232 AS src
+--		ON (tgt.c232_id=src.c232_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kod_urzedu=src.kod_urzedu, tgt.last_modification_tm=src.last_modification_tm, tgt.rok=src.rok, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c232_id, creation_tm, kod_urzedu, last_modification_tm, rok, valid_from, valid_to, version_)
+--		VALUES (src.c232_id, src.creation_tm, src.kod_urzedu, src.last_modification_tm, src.rok, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c232_sezon' BEGIN
+--		MERGE INTO pdr.c232_sezon AS tgt
+--		USING [WA_StageHurtownia].pdr.c232_sezon AS src
+--		ON (tgt.c232_sezon_id=src.c232_sezon_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.nazwa=src.nazwa, tgt.wazny_do=src.wazny_do, tgt.wazny_od=src.wazny_od, tgt.c232_id=src.c232_id, tgt.nr=src.nr
+--		WHEN NOT MATCHED
+--		THEN INSERT (c232_sezon_id, nazwa, wazny_do, wazny_od, c232_id, nr)
+--		VALUES (src.c232_sezon_id, src.nazwa, src.wazny_do, src.wazny_od, src.c232_id, src.nr);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c232_pozycja' BEGIN
+--		MERGE INTO pdr.c232_pozycja AS tgt
+--		USING [WA_StageHurtownia].pdr.c232_pozycja AS src
+--		ON (tgt.c232_pozycja_id=src.c232_pozycja_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.do_dnia=src.do_dnia, tgt.do_godziny=src.do_godziny, tgt.do_godziny2=src.do_godziny2, tgt.od_dnia=src.od_dnia, tgt.od_godziny=src.od_godziny, tgt.od_godziny2=src.od_godziny2, tgt.c232_sezon_id=src.c232_sezon_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c232_pozycja_id, do_dnia, do_godziny, do_godziny2, od_dnia, od_godziny, od_godziny2, c232_sezon_id)
+--		VALUES (src.c232_pozycja_id, src.do_dnia, src.do_godziny, src.do_godziny2, src.od_dnia, src.od_godziny, src.od_godziny2, src.c232_sezon_id);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3021' BEGIN
+--		MERGE INTO pdr.c3021 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3021 AS src
+--		ON (tgt.c3021_id=src.c3021_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.rodzdruku=src.rodzdruku, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.nazwadruku=src.nazwadruku, tgt.symboldruku=src.symboldruku
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3021_id, creation_tm, last_modification_tm, rodzdruku, valid_from, valid_to, version_, nazwadruku, symboldruku)
+--		VALUES (src.c3021_id, src.creation_tm, src.last_modification_tm, src.rodzdruku, src.valid_from, src.valid_to, src.version_, src.nazwadruku, src.symboldruku);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3022' BEGIN
+--		MERGE INTO pdr.c3022 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3022 AS src
+--		ON (tgt.c3022_id=src.c3022_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kodbanderoli=src.kodbanderoli, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.grupabanderol=src.grupabanderol, tgt.nazwabanderoli=src.nazwabanderoli, tgt.rodzbanderol=src.rodzbanderol, tgt.typbanderol=src.typbanderol
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3022_id, creation_tm, kodbanderoli, last_modification_tm, valid_from, valid_to, version_, grupabanderol, nazwabanderoli, rodzbanderol, typbanderol)
+--		VALUES (src.c3022_id, src.creation_tm, src.kodbanderoli, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.grupabanderol, src.nazwabanderoli, src.rodzbanderol, src.typbanderol);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3061' BEGIN
+--		MERGE INTO pdr.c3061 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3061 AS src
+--		ON (tgt.c3061_id=src.c3061_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kodformyprawnej=src.kodformyprawnej, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.kodszczegolnejformyprawnej=src.kodszczegolnejformyprawnej, tgt.opisformyprawnej=src.opisformyprawnej, tgt.opisszczegolnejformyprawnej=src.opisszczegolnejformyprawnej
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3061_id, creation_tm, kodformyprawnej, last_modification_tm, valid_from, valid_to, version_, kodszczegolnejformyprawnej, opisformyprawnej, opisszczegolnejformyprawnej)
+--		VALUES (src.c3061_id, src.creation_tm, src.kodformyprawnej, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.kodszczegolnejformyprawnej, src.opisformyprawnej, src.opisszczegolnejformyprawnej);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3065' BEGIN
+--		MERGE INTO pdr.c3065 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3065 AS src
+--		ON (tgt.c3065_id=src.c3065_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kodrodzajunaleznosci=src.kodrodzajunaleznosci, tgt.kodtypudochodow=src.kodtypudochodow, tgt.kodtypuodsetek=src.kodtypuodsetek, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwarodzajunaleznosci=src.nazwarodzajunaleznosci, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3065_id, creation_tm, kodrodzajunaleznosci, kodtypudochodow, kodtypuodsetek, last_modification_tm, nazwarodzajunaleznosci, valid_from, valid_to, version_)
+--		VALUES (src.c3065_id, src.creation_tm, src.kodrodzajunaleznosci, src.kodtypudochodow, src.kodtypuodsetek, src.last_modification_tm, src.nazwarodzajunaleznosci, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3068' BEGIN
+--		MERGE INTO pdr.c3068 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3068 AS src
+--		ON (tgt.c3068_id=src.c3068_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kodtypudochodow=src.kodtypudochodow, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.kodtypudochodownadrzedne=src.kodtypudochodownadrzedne, tgt.nazwatypudochodow=src.nazwatypudochodow
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3068_id, creation_tm, kodtypudochodow, last_modification_tm, valid_from, valid_to, version_, kodtypudochodownadrzedne, nazwatypudochodow)
+--		VALUES (src.c3068_id, src.creation_tm, src.kodtypudochodow, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.kodtypudochodownadrzedne, src.nazwatypudochodow);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3087' BEGIN
+--		MERGE INTO pdr.c3087 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3087 AS src
+--		ON (tgt.c3087_id=src.c3087_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.idurzedu=src.idurzedu, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwaurzedu=src.nazwaurzedu, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3087_id, creation_tm, idurzedu, last_modification_tm, nazwaurzedu, valid_from, valid_to, version_)
+--		VALUES (src.c3087_id, src.creation_tm, src.idurzedu, src.last_modification_tm, src.nazwaurzedu, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3088' BEGIN
+--		MERGE INTO pdr.c3088 AS tgt
+--		USING WA_StageHurtownia.pdr.c3088 AS src
+--		ON (tgt.c3088_id=src.c3088_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.idurzedy=src.idurzedy, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwaurzedu=src.nazwaurzedu, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3088_id, creation_tm, idurzedy, last_modification_tm, nazwaurzedu, valid_from, valid_to, version_)
+--		VALUES (src.c3088_id, src.creation_tm, src.idurzedy, src.last_modification_tm, src.nazwaurzedu, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END	
+--	IF @TableName = 'c3100' BEGIN
+--		MERGE INTO pdr.c3100 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3100 AS src
+--		ON (tgt.c3100_id=src.c3100_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kod=src.kod, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.nazwa=src.nazwa, tgt.nieaktywny=src.nieaktywny
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3100_id, creation_tm, kod, last_modification_tm, valid_from, valid_to, version_, nazwa, nieaktywny)
+--		VALUES (src.c3100_id, src.creation_tm, src.kod, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.nazwa, src.nieaktywny);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3101' BEGIN
+--		MERGE INTO pdr.c3101 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3101 AS src
+--		ON (tgt.c3101_id=src.c3101_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kod=src.kod, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.nieaktywny=src.nieaktywny, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3101_id, creation_tm, kod, last_modification_tm, nazwa, nieaktywny, valid_from, valid_to, version_)
+--		VALUES (src.c3101_id, src.creation_tm, src.kod, src.last_modification_tm, src.nazwa, src.nieaktywny, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3122' BEGIN
+--		MERGE INTO pdr.c3122 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3122 AS src
+--		ON (tgt.c3122_id=src.c3122_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.iddokumentu=src.iddokumentu, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwadok=src.nazwadok, tgt.symbolrodz=src.symbolrodz, tgt.typdokumentu=src.typdokumentu, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3122_id, creation_tm, iddokumentu, last_modification_tm, nazwadok, symbolrodz, typdokumentu, valid_from, valid_to, version_)
+--		VALUES (src.c3122_id, src.creation_tm, src.iddokumentu, src.last_modification_tm, src.nazwadok, src.symbolrodz, src.typdokumentu, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END	
+--	IF @TableName = 'c3500' BEGIN
+--		MERGE INTO pdr.c3500 AS tgt
+--		USING WA_StageHurtownia.pdr.c3500 AS src
+--		ON (tgt.c3500_id=src.c3500_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.nazwa=src.nazwa
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3500_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, nazwa)
+--		VALUES (src.c3500_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.nazwa);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3501' BEGIN
+--		MERGE INTO pdr.c3501 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3501 AS src
+--		ON (tgt.c3501_id=src.c3501_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.nazwa=src.nazwa
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3501_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, nazwa)
+--		VALUES (src.c3501_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.nazwa);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3502' BEGIN
+--		MERGE INTO pdr.c3502 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3502 AS src
+--		ON (tgt.c3502_id=src.c3502_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.nazwa=src.nazwa
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3502_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, nazwa)
+--		VALUES (src.c3502_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.nazwa);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3503' BEGIN
+--		MERGE INTO pdr.c3503 AS tgt
+--		USING WA_StageHurtownia.pdr.c3503 AS src
+--		ON (tgt.c3503_id=src.c3503_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3503_id, code, creation_tm, last_modification_tm, nazwa, valid_from, valid_to, version_)
+--		VALUES (src.c3503_id, src.code, src.creation_tm, src.last_modification_tm, src.nazwa, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3504' BEGIN
+--		MERGE INTO pdr.c3504 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3504 AS src
+--		ON (tgt.c3504_id=src.c3504_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3504_id, code, creation_tm, last_modification_tm, nazwa, valid_from, valid_to, version_)
+--		VALUES (src.c3504_id, src.code, src.creation_tm, src.last_modification_tm, src.nazwa, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c350234' BEGIN
+--		MERGE INTO pdr.c350234 AS tgt
+--		USING pdr.v350234 AS src
+--		ON (tgt.c350234_id=src.c350234_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.nazwa=src.nazwa
+--		WHEN NOT MATCHED
+--		THEN INSERT (c350234_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, nazwa)
+--		VALUES (src.c350234_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.nazwa);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3505' BEGIN
+--		MERGE INTO pdr.c3505 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3505 AS src
+--		ON (tgt.c3505_id=src.c3505_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3505_id, code, creation_tm, last_modification_tm, nazwa, valid_from, valid_to, version_)
+--		VALUES (src.c3505_id, src.code, src.creation_tm, src.last_modification_tm, src.nazwa, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3506' BEGIN
+--		MERGE INTO pdr.c3506 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3506 AS src
+--		ON (tgt.c3506_id=src.c3506_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.nazwa=src.nazwa
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3506_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, nazwa)
+--		VALUES (src.c3506_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.nazwa);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3507' BEGIN
+--		MERGE INTO pdr.c3507 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3507 AS src
+--		ON (tgt.c3507_id=src.c3507_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3507_id, code, creation_tm, last_modification_tm, nazwa, valid_from, valid_to, version_)
+--		VALUES (src.c3507_id, src.code, src.creation_tm, src.last_modification_tm, src.nazwa, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3508' BEGIN
+--		MERGE INTO pdr.c3508 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3508 AS src
+--		ON (tgt.c3508_id=src.c3508_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3508_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description)
+--		VALUES (src.c3508_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3509' BEGIN
+--		MERGE INTO pdr.c3509 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3509 AS src
+--		ON (tgt.c3509_id=src.c3509_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3509_id, code, creation_tm, last_modification_tm, nazwa, valid_from, valid_to, version_)
+--		VALUES (src.c3509_id, src.code, src.creation_tm, src.last_modification_tm, src.nazwa, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END	
+--	IF @TableName = 'c3510' BEGIN
+--		MERGE INTO pdr.c3510 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3510 AS src
+--		ON (tgt.c3510_id=src.c3510_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.nazwa=src.nazwa
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3510_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, nazwa)
+--		VALUES (src.c3510_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.nazwa);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3511' BEGIN
+--		MERGE INTO pdr.c3511 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3511 AS src
+--		ON (tgt.c3511_id=src.c3511_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3511_id, code, creation_tm, last_modification_tm, nazwa, valid_from, valid_to, version_)
+--		VALUES (src.c3511_id, src.code, src.creation_tm, src.last_modification_tm, src.nazwa, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3512' BEGIN
+--		MERGE INTO pdr.c3512 AS tgt
+--		USING [WA_StageHurtownia].pdr.c3512 AS src
+--		ON (tgt.c3512_id=src.c3512_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3512_id, code, creation_tm, description, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.c3512_id, src.code, src.creation_tm, src.description, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3513' BEGIN
+--		MERGE INTO pdr.c3513 AS tgt
+--		USING WA_StageHurtownia.pdr.c3513 AS src
+--		ON (tgt.c3513_id=src.c3513_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.nazwa=src.nazwa, tgt.kodprzeznaczenia=src.kodprzeznaczenia
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3513_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, nazwa, kodprzeznaczenia)
+--		VALUES (src.c3513_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.nazwa, src.kodprzeznaczenia);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c400' BEGIN
+--		MERGE INTO pdr.c400 AS tgt
+--		USING [WA_StageHurtownia].pdr.c400 AS src
+--		ON (tgt.c400_id=src.c400_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.currency_code=src.currency_code, tgt.currency_name=src.currency_name, tgt.exchange_rate=src.exchange_rate, tgt.last_modification_tm=src.last_modification_tm, tgt.multiplier=src.multiplier, tgt.table_number=src.table_number, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c400_id, creation_tm, currency_code, currency_name, exchange_rate, last_modification_tm, multiplier, table_number, valid_from, valid_to, version_)
+--		VALUES (src.c400_id, src.creation_tm, src.currency_code, src.currency_name, src.exchange_rate, src.last_modification_tm, src.multiplier, src.table_number, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c404' BEGIN
+--		MERGE INTO pdr.c404 AS tgt
+--		USING [WA_StageHurtownia].pdr.c404 AS src
+--		ON (tgt.c404_id=src.c404_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.currency_code=src.currency_code, tgt.currency_name=src.currency_name, tgt.exchange_rate=src.exchange_rate, tgt.last_modification_tm=src.last_modification_tm, tgt.multiplier=src.multiplier, tgt.publication_date=src.publication_date, tgt.table_number=src.table_number, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c404_id, creation_tm, currency_code, currency_name, exchange_rate, last_modification_tm, multiplier, publication_date, table_number, valid_from, valid_to, version_)
+--		VALUES (src.c404_id, src.creation_tm, src.currency_code, src.currency_name, src.exchange_rate, src.last_modification_tm, src.multiplier, src.publication_date, src.table_number, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c405' BEGIN
+--		MERGE INTO pdr.c405 AS tgt
+--		USING [WA_StageHurtownia].pdr.c405 AS src
+--		ON (tgt.c405_id=src.c405_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.currency_code=src.currency_code, tgt.currency_name=src.currency_name, tgt.exchange_rate=src.exchange_rate, tgt.last_modification_tm=src.last_modification_tm, tgt.multiplier=src.multiplier, tgt.table_number=src.table_number, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c405_id, creation_tm, currency_code, currency_name, exchange_rate, last_modification_tm, multiplier, table_number, valid_from, valid_to, version_)
+--		VALUES (src.c405_id, src.creation_tm, src.currency_code, src.currency_name, src.exchange_rate, src.last_modification_tm, src.multiplier, src.table_number, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c409' BEGIN
+--		MERGE INTO pdr.c409 AS tgt
+--		USING [WA_StageHurtownia].pdr.c409 AS src
+--		ON (tgt.c409_id=src.c409_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kod=src.kod, tgt.last_modification_tm=src.last_modification_tm, tgt.opis=src.opis, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c409_id, creation_tm, kod, last_modification_tm, opis, valid_from, valid_to, version_)
+--		VALUES (src.c409_id, src.creation_tm, src.kod, src.last_modification_tm, src.opis, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END	
+--	IF @TableName = 'c410' BEGIN
+--		MERGE INTO pdr.c410 AS tgt
+--		USING [WA_StageHurtownia].pdr.c410 AS src
+--		ON (tgt.c410_id=src.c410_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.klucz=src.klucz, tgt.kodcn=src.kodcn, tgt.last_modification_tm=src.last_modification_tm, tgt.ujm=src.ujm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.wyszczegolnienie=src.wyszczegolnienie
+--		WHEN NOT MATCHED
+--		THEN INSERT (c410_id, creation_tm, klucz, kodcn, last_modification_tm, ujm, valid_from, valid_to, version_, wyszczegolnienie)
+--		VALUES (src.c410_id, src.creation_tm, src.klucz, src.kodcn, src.last_modification_tm, src.ujm, src.valid_from, src.valid_to, src.version_, src.wyszczegolnienie);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c411' BEGIN
+--		MERGE INTO pdr.c411 AS tgt
+--		USING [WA_StageHurtownia].pdr.c411 AS src
+--		ON (tgt.c411_id=src.c411_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.klucz=src.klucz, tgt.kodcn=src.kodcn, tgt.last_modification_tm=src.last_modification_tm, tgt.ujm=src.ujm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.wyszczegolnienie=src.wyszczegolnienie
+--		WHEN NOT MATCHED
+--		THEN INSERT (c411_id, creation_tm, klucz, kodcn, last_modification_tm, ujm, valid_from, valid_to, version_, wyszczegolnienie)
+--		VALUES (src.c411_id, src.creation_tm, src.klucz, src.kodcn, src.last_modification_tm, src.ujm, src.valid_from, src.valid_to, src.version_, src.wyszczegolnienie);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c412' BEGIN
+--		MERGE INTO pdr.c412 AS tgt
+--		USING [WA_StageHurtownia].pdr.c412 AS src
+--		ON (tgt.c412_id=src.c412_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.klucz=src.klucz, tgt.kodcn=src.kodcn, tgt.last_modification_tm=src.last_modification_tm, tgt.ujm=src.ujm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.wyszczegolnienie=src.wyszczegolnienie
+--		WHEN NOT MATCHED
+--		THEN INSERT (c412_id, creation_tm, klucz, kodcn, last_modification_tm, ujm, valid_from, valid_to, version_, wyszczegolnienie)
+--		VALUES (src.c412_id, src.creation_tm, src.klucz, src.kodcn, src.last_modification_tm, src.ujm, src.valid_from, src.valid_to, src.version_, src.wyszczegolnienie);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c413' BEGIN
+--		MERGE INTO pdr.c413 AS tgt
+--		USING [WA_StageHurtownia].pdr.c413 AS src
+--		ON (tgt.c413_id=src.c413_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.klucz=src.klucz, tgt.kodcn=src.kodcn, tgt.last_modification_tm=src.last_modification_tm, tgt.ujm=src.ujm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.wyszczegolnienie=src.wyszczegolnienie
+--		WHEN NOT MATCHED
+--		THEN INSERT (c413_id, creation_tm, klucz, kodcn, last_modification_tm, ujm, valid_from, valid_to, version_, wyszczegolnienie)
+--		VALUES (src.c413_id, src.creation_tm, src.klucz, src.kodcn, src.last_modification_tm, src.ujm, src.valid_from, src.valid_to, src.version_, src.wyszczegolnienie);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c414' BEGIN
+--		MERGE INTO pdr.c414 AS tgt
+--		USING [WA_StageHurtownia].pdr.c414 AS src
+--		ON (tgt.c414_id=src.c414_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.klucz=src.klucz, tgt.kodcn=src.kodcn, tgt.last_modification_tm=src.last_modification_tm, tgt.ujm=src.ujm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.wyszczegolnienie=src.wyszczegolnienie
+--		WHEN NOT MATCHED
+--		THEN INSERT (c414_id, creation_tm, klucz, kodcn, last_modification_tm, ujm, valid_from, valid_to, version_, wyszczegolnienie)
+--		VALUES (src.c414_id, src.creation_tm, src.klucz, src.kodcn, src.last_modification_tm, src.ujm, src.valid_from, src.valid_to, src.version_, src.wyszczegolnienie);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c5000' BEGIN
+--		MERGE INTO pdr.c5000 AS tgt
+--		USING [WA_StageHurtownia].pdr.c5000 AS src
+--		ON (tgt.id=src.id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.KodJednostki=src.KodJednostki, tgt.validFrom=src.validFrom, tgt.validTo=src.validTo, tgt.NazwaJednostki=src.NazwaJednostki, tgt.KodJednostkiNadrzednej=src.KodJednostkiNadrzednej, tgt.NazwaJednostkiNadrzednej=src.NazwaJednostkiNadrzednej, tgt.KodTypuJednostki=src.KodTypuJednostki, tgt.NazwaTypuJednostki=src.NazwaTypuJednostki, tgt.KodRangikomorki=src.KodRangikomorki, tgt.NazwaRangiKomorki=src.NazwaRangiKomorki, tgt.IsJednostka=src.IsJednostka, tgt.CzyKomorka=src.CzyKomorka
+--		WHEN NOT MATCHED
+--		THEN INSERT (id, KodJednostki, validFrom, validTo, NazwaJednostki, KodJednostkiNadrzednej, NazwaJednostkiNadrzednej, KodTypuJednostki, NazwaTypuJednostki, KodRangikomorki, NazwaRangiKomorki, IsJednostka, CzyKomorka)
+--		VALUES (src.id, src.KodJednostki, src.validFrom, src.validTo, src.NazwaJednostki, src.KodJednostkiNadrzednej, src.NazwaJednostkiNadrzednej, src.KodTypuJednostki, src.NazwaTypuJednostki, src.KodRangikomorki, src.NazwaRangiKomorki, src.IsJednostka, src.CzyKomorka);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c501' BEGIN
+--		MERGE INTO pdr.c501 AS tgt
+--		USING WA_StageHurtownia.pdr.c501 AS src
+--		ON (tgt.c501_id=src.c501_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.gmi=src.gmi, tgt.kod=src.kod, tgt.last_modification_tm=src.last_modification_tm, tgt.nazdod=src.nazdod, tgt.nazwa=src.nazwa, tgt.pow=src.pow, tgt.rodz=src.rodz, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.woj=src.woj
+--		WHEN NOT MATCHED
+--		THEN INSERT (c501_id, creation_tm, gmi, kod, last_modification_tm, nazdod, nazwa, pow, rodz, valid_from, valid_to, version_, woj)
+--		VALUES (src.c501_id, src.creation_tm, src.gmi, src.kod, src.last_modification_tm, src.nazdod, src.nazwa, src.pow, src.rodz, src.valid_from, src.valid_to, src.version_, src.woj);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c502' BEGIN
+--		MERGE INTO pdr.c502 AS tgt
+--		USING WA_StageHurtownia.pdr.c502 AS src
+--		ON (tgt.c502_id=src.c502_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.sym=src.sym, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.gmi=src.gmi, tgt.kod=src.kod, tgt.mz=src.mz, tgt.nazwa=src.nazwa, tgt.pow=src.pow, tgt.rm=src.rm, tgt.rodz_gmi=src.rodz_gmi, tgt.sympod=src.sympod, tgt.woj=src.woj
+--		WHEN NOT MATCHED
+--		THEN INSERT (c502_id, creation_tm, last_modification_tm, sym, valid_from, valid_to, version_, gmi, kod, mz, nazwa, pow, rm, rodz_gmi, sympod, woj)
+--		VALUES (src.c502_id, src.creation_tm, src.last_modification_tm, src.sym, src.valid_from, src.valid_to, src.version_, src.gmi, src.kod, src.mz, src.nazwa, src.pow, src.rm, src.rodz_gmi, src.sympod, src.woj);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c503' BEGIN
+--		MERGE INTO pdr.c503 AS tgt
+--		USING [WA_StageHurtownia].pdr.c503 AS src
+--		ON (tgt.c503_id=src.c503_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.cecha=src.cecha, tgt.creation_tm=src.creation_tm, tgt.kodgm=src.kodgm, tgt.kodulicy=src.kodulicy, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwaulicy1=src.nazwaulicy1, tgt.nazwaulicy2=src.nazwaulicy2, tgt.symgm=src.symgm, tgt.symmiejsc=src.symmiejsc, tgt.sympow=src.sympow, tgt.symrodzgm=src.symrodzgm, tgt.symulicy=src.symulicy, tgt.symwoj=src.symwoj, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c503_id, cecha, creation_tm, kodgm, kodulicy, last_modification_tm, nazwaulicy1, nazwaulicy2, symgm, symmiejsc, sympow, symrodzgm, symulicy, symwoj, valid_from, valid_to, version_)
+--		VALUES (src.c503_id, src.cecha, src.creation_tm, src.kodgm, src.kodulicy, src.last_modification_tm, src.nazwaulicy1, src.nazwaulicy2, src.symgm, src.symmiejsc, src.sympow, src.symrodzgm, src.symulicy, src.symwoj, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c555' BEGIN
+--		MERGE INTO pdr.c555 AS tgt
+--		USING WA_StageHurtownia.pdr.c555 AS src
+--		ON (tgt.c555_id=src.c555_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.bec=src.bec, tgt.nazwajm=src.nazwajm, tgt.opisbec=src.opisbec, tgt.opiscn=src.opiscn, tgt.opiskierunku=src.opiskierunku, tgt.opispkwiu=src.opispkwiu, tgt.opissitcnazwapublikacyjna=src.opissitcnazwapublikacyjna, tgt.opissitcpelny=src.opissitcpelny, tgt.pkwiu=src.pkwiu, tgt.sitc=src.sitc, tgt.wskaznikkierunkuprzeznaczenia=src.wskaznikkierunkuprzeznaczenia
+--		WHEN NOT MATCHED
+--		THEN INSERT (c555_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, bec, nazwajm, opisbec, opiscn, opiskierunku, opispkwiu, opissitcnazwapublikacyjna, opissitcpelny, pkwiu, sitc, wskaznikkierunkuprzeznaczenia)
+--		VALUES (src.c555_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.bec, src.nazwajm, src.opisbec, src.opiscn, src.opiskierunku, src.opispkwiu, src.opissitcnazwapublikacyjna, src.opissitcpelny, src.pkwiu, src.sitc, src.wskaznikkierunkuprzeznaczenia);
+--        SET @Merged = 1;
+--	END
+
+--	IF @TableName = 's1500' BEGIN
+--		MERGE INTO pdr.s1500 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1500 AS src
+--		ON (tgt.s1500_id=src.s1500_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1500_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s1500_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1501' BEGIN
+--		MERGE INTO pdr.s1501 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1501 AS src
+--		ON (tgt.s1501_id=src.s1501_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1501_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s1501_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1502' BEGIN
+--		MERGE INTO pdr.s1502 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1502 AS src
+--		ON (tgt.s1502_id=src.s1502_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1502_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s1502_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1503' BEGIN
+--		MERGE INTO pdr.s1503 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1503 AS src
+--		ON (tgt.s1503_id=src.s1503_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1503_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s1503_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1504' BEGIN
+--		MERGE INTO pdr.s1504 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1504 AS src
+--		ON (tgt.s1504_id=src.s1504_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1504_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s1504_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1505' BEGIN
+--		MERGE INTO pdr.s1505 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1505 AS src
+--		ON (tgt.s1505_id=src.s1505_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1505_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s1505_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1506' BEGIN
+--		MERGE INTO pdr.s1506 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1506 AS src
+--		ON (tgt.s1506_id=src.s1506_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1506_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s1506_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1507' BEGIN
+--		MERGE INTO pdr.s1507 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1507 AS src
+--		ON (tgt.s1507_id=src.s1507_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1507_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s1507_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1508' BEGIN
+--		MERGE INTO pdr.s1508 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1508 AS src
+--		ON (tgt.s1508_id=src.s1508_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1508_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s1508_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1509' BEGIN
+--		MERGE INTO pdr.s1509 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1509 AS src
+--		ON (tgt.s1509_id=src.s1509_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1509_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s1509_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's151' BEGIN
+--		MERGE INTO pdr.s151 AS tgt
+--		USING [WA_StageHurtownia].pdr.s151 AS src
+--		ON (tgt.s151_id=src.s151_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s151_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s151_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1510' BEGIN
+--		MERGE INTO pdr.s1510 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1510 AS src
+--		ON (tgt.s1510_id=src.s1510_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1510_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s1510_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1511' BEGIN
+--		MERGE INTO pdr.s1511 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1511 AS src
+--		ON (tgt.s1511_id=src.s1511_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1511_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s1511_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1513' BEGIN
+--		MERGE INTO pdr.s1513 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1513 AS src
+--		ON (tgt.s1513_id=src.s1513_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1513_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s1513_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1514' BEGIN
+--		MERGE INTO pdr.s1514 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1514 AS src
+--		ON (tgt.s1514_id=src.s1514_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1514_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s1514_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1515' BEGIN
+--		MERGE INTO pdr.s1515 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1515 AS src
+--		ON (tgt.s1515_id=src.s1515_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1515_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s1515_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1516' BEGIN
+--		MERGE INTO pdr.s1516 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1516 AS src
+--		ON (tgt.s1516_id=src.s1516_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1516_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s1516_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1517' BEGIN
+--		MERGE INTO pdr.s1517 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1517 AS src
+--		ON (tgt.s1517_id=src.s1517_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1517_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s1517_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1518' BEGIN
+--		MERGE INTO pdr.s1518 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1518 AS src
+--		ON (tgt.s1518_id=src.s1518_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1518_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s1518_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1519' BEGIN
+--		MERGE INTO pdr.s1519 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1519 AS src
+--		ON (tgt.s1519_id=src.s1519_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1519_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s1519_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's1520' BEGIN
+--		MERGE INTO pdr.s1520 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1520 AS src
+--		ON (tgt.s1520_id=src.s1520_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1520_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s1520_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END	
+--	IF @TableName = 's1521' BEGIN
+--		MERGE INTO pdr.s1521 AS tgt
+--		USING [WA_StageHurtownia].pdr.s1521 AS src
+--		ON (tgt.s1521_id=src.s1521_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s1521_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s1521_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END	
+--	IF @TableName = 's163' BEGIN
+--		MERGE INTO pdr.s163 AS tgt
+--		USING [WA_StageHurtownia].pdr.s163 AS src
+--		ON (tgt.s163_id=src.s163_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s163_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s163_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's166' BEGIN
+--		MERGE INTO pdr.s166 AS tgt
+--		USING [WA_StageHurtownia].pdr.s166 AS src
+--		ON (tgt.s166_id=src.s166_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s166_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s166_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's167' BEGIN
+--		MERGE INTO pdr.s167 AS tgt
+--		USING [WA_StageHurtownia].pdr.s167 AS src
+--		ON (tgt.s167_id=src.s167_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s167_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s167_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's168' BEGIN
+--		MERGE INTO pdr.s168 AS tgt
+--		USING [WA_StageHurtownia].pdr.s168 AS src
+--		ON (tgt.s168_id=src.s168_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s168_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s168_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's172' BEGIN
+--		MERGE INTO pdr.s172 AS tgt
+--		USING [WA_StageHurtownia].pdr.s172 AS src
+--		ON (tgt.s172_id=src.s172_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s172_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s172_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's173' BEGIN
+--		MERGE INTO pdr.s173 AS tgt
+--		USING [WA_StageHurtownia].pdr.s173 AS src
+--		ON (tgt.s173_id=src.s173_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s173_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s173_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's174' BEGIN
+--		MERGE INTO pdr.s174 AS tgt
+--		USING [WA_StageHurtownia].pdr.s174 AS src
+--		ON (tgt.s174_id=src.s174_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s174_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s174_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's175' BEGIN
+--		MERGE INTO pdr.s175 AS tgt
+--		USING [WA_StageHurtownia].pdr.s175 AS src
+--		ON (tgt.s175_id=src.s175_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s175_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s175_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's176' BEGIN
+--		MERGE INTO pdr.s176 AS tgt
+--		USING [WA_StageHurtownia].pdr.s176 AS src
+--		ON (tgt.s176_id=src.s176_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s176_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s176_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's177' BEGIN
+--		MERGE INTO pdr.s177 AS tgt
+--		USING [WA_StageHurtownia].pdr.s177 AS src
+--		ON (tgt.s177_id=src.s177_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s177_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s177_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's178' BEGIN
+--		MERGE INTO pdr.s178 AS tgt
+--		USING [WA_StageHurtownia].pdr.s178 AS src
+--		ON (tgt.s178_id=src.s178_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s178_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s178_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's179' BEGIN
+--		MERGE INTO pdr.s179 AS tgt
+--		USING [WA_StageHurtownia].pdr.s179 AS src
+--		ON (tgt.s179_id=src.s179_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s179_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s179_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's180' BEGIN
+--		MERGE INTO pdr.s180 AS tgt
+--		USING [WA_StageHurtownia].pdr.s180 AS src
+--		ON (tgt.s180_id=src.s180_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s180_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s180_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's181' BEGIN
+--		MERGE INTO pdr.s181 AS tgt
+--		USING [WA_StageHurtownia].pdr.s181 AS src
+--		ON (tgt.s181_id=src.s181_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s181_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s181_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's182' BEGIN
+--		MERGE INTO pdr.s182 AS tgt
+--		USING [WA_StageHurtownia].pdr.s182 AS src
+--		ON (tgt.s182_id=src.s182_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s182_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s182_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's183' BEGIN
+--		MERGE INTO pdr.s183 AS tgt
+--		USING [WA_StageHurtownia].pdr.s183 AS src
+--		ON (tgt.s183_id=src.s183_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s183_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s183_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's185' BEGIN
+--		MERGE INTO pdr.s185 AS tgt
+--		USING [WA_StageHurtownia].pdr.s185 AS src
+--		ON (tgt.s185_id=src.s185_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s185_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s185_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's186' BEGIN
+--		MERGE INTO pdr.s186 AS tgt
+--		USING [WA_StageHurtownia].pdr.s186 AS src
+--		ON (tgt.s186_id=src.s186_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s186_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s186_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's187' BEGIN
+--		MERGE INTO pdr.s187 AS tgt
+--		USING [WA_StageHurtownia].pdr.s187 AS src
+--		ON (tgt.s187_id=src.s187_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s187_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s187_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's188' BEGIN
+--		MERGE INTO pdr.s188 AS tgt
+--		USING [WA_StageHurtownia].pdr.s188 AS src
+--		ON (tgt.s188_id=src.s188_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s188_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s188_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's189' BEGIN
+--		MERGE INTO pdr.s189 AS tgt
+--		USING [WA_StageHurtownia].pdr.s189 AS src
+--		ON (tgt.s189_id=src.s189_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s189_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s189_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's190' BEGIN
+--		MERGE INTO pdr.s190 AS tgt
+--		USING [WA_StageHurtownia].pdr.s190 AS src
+--		ON (tgt.s190_id=src.s190_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s190_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s190_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's191' BEGIN
+--		MERGE INTO pdr.s191 AS tgt
+--		USING [WA_StageHurtownia].pdr.s191 AS src
+--		ON (tgt.s191_id=src.s191_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s191_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s191_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's192' BEGIN
+--		MERGE INTO pdr.s192 AS tgt
+--		USING [WA_StageHurtownia].pdr.s192 AS src
+--		ON (tgt.s192_id=src.s192_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s192_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s192_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's193' BEGIN
+--		MERGE INTO pdr.s193 AS tgt
+--		USING [WA_StageHurtownia].pdr.s193 AS src
+--		ON (tgt.s193_id=src.s193_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s193_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s193_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's210' BEGIN
+--		MERGE INTO pdr.s210 AS tgt
+--		USING [WA_StageHurtownia].pdr.s210 AS src
+--		ON (tgt.s210_id=src.s210_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s210_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s210_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's215' BEGIN
+--		MERGE INTO pdr.s215 AS tgt
+--		USING [WA_StageHurtownia].pdr.s215 AS src
+--		ON (tgt.s215_id=src.s215_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s215_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s215_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's216' BEGIN
+--		MERGE INTO pdr.s216 AS tgt
+--		USING [WA_StageHurtownia].pdr.s216 AS src
+--		ON (tgt.s216_id=src.s216_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s216_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s216_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's217' BEGIN
+--		MERGE INTO pdr.s217 AS tgt
+--		USING [WA_StageHurtownia].pdr.s217 AS src
+--		ON (tgt.s217_id=src.s217_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s217_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s217_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's219' BEGIN
+--		MERGE INTO pdr.s219 AS tgt
+--		USING [WA_StageHurtownia].pdr.s219 AS src
+--		ON (tgt.s219_id=src.s219_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s219_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s219_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's220' BEGIN
+--		MERGE INTO pdr.s220 AS tgt
+--		USING [WA_StageHurtownia].pdr.s220 AS src
+--		ON (tgt.s220_id=src.s220_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s220_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s220_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's221' BEGIN
+--		MERGE INTO pdr.s221 AS tgt
+--		USING [WA_StageHurtownia].pdr.s221 AS src
+--		ON (tgt.s221_id=src.s221_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s221_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s221_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's222' BEGIN
+--		MERGE INTO pdr.s222 AS tgt
+--		USING [WA_StageHurtownia].pdr.s222 AS src
+--		ON (tgt.s222_id=src.s222_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s222_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s222_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's223' BEGIN
+--		MERGE INTO pdr.s223 AS tgt
+--		USING [WA_StageHurtownia].pdr.s223 AS src
+--		ON (tgt.s223_id=src.s223_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s223_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s223_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's224' BEGIN
+--		MERGE INTO pdr.s224 AS tgt
+--		USING [WA_StageHurtownia].pdr.s224 AS src
+--		ON (tgt.s224_id=src.s224_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s224_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s224_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's225' BEGIN
+--		MERGE INTO pdr.s225 AS tgt
+--		USING [WA_StageHurtownia].pdr.s225 AS src
+--		ON (tgt.s225_id=src.s225_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s225_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s225_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's233' BEGIN
+--		MERGE INTO pdr.s233 AS tgt
+--		USING [WA_StageHurtownia].pdr.s233 AS src
+--		ON (tgt.s233_id=src.s233_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s233_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s233_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's235' BEGIN
+--		MERGE INTO pdr.s235 AS tgt
+--		USING [WA_StageHurtownia].pdr.s235 AS src
+--		ON (tgt.s235_id=src.s235_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s235_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s235_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's237' BEGIN
+--		MERGE INTO pdr.s237 AS tgt
+--		USING [WA_StageHurtownia].pdr.s237 AS src
+--		ON (tgt.s237_id=src.s237_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s237_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s237_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's300' BEGIN
+--		MERGE INTO pdr.s300 AS tgt
+--		USING [WA_StageHurtownia].pdr.s300 AS src
+--		ON (tgt.s300_id=src.s300_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s300_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s300_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's302' BEGIN
+--		MERGE INTO pdr.s302 AS tgt
+--		USING [WA_StageHurtownia].pdr.s302 AS src
+--		ON (tgt.s302_id=src.s302_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s302_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s302_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's303' BEGIN
+--		MERGE INTO pdr.s303 AS tgt
+--		USING [WA_StageHurtownia].pdr.s303 AS src
+--		ON (tgt.s303_id=src.s303_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s303_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s303_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's304' BEGIN
+--		MERGE INTO pdr.s304 AS tgt
+--		USING [WA_StageHurtownia].pdr.s304 AS src
+--		ON (tgt.s304_id=src.s304_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s304_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s304_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's305' BEGIN
+--		MERGE INTO pdr.s305 AS tgt
+--		USING [WA_StageHurtownia].pdr.s305 AS src
+--		ON (tgt.s305_id=src.s305_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s305_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s305_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's306' BEGIN
+--		MERGE INTO pdr.s306 AS tgt
+--		USING [WA_StageHurtownia].pdr.s306 AS src
+--		ON (tgt.s306_id=src.s306_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s306_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s306_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's307' BEGIN
+--		MERGE INTO pdr.s307 AS tgt
+--		USING [WA_StageHurtownia].pdr.s307 AS src
+--		ON (tgt.s307_id=src.s307_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s307_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s307_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's308' BEGIN
+--		MERGE INTO pdr.s308 AS tgt
+--		USING [WA_StageHurtownia].pdr.s308 AS src
+--		ON (tgt.s308_id=src.s308_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s308_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s308_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's311' BEGIN
+--		MERGE INTO pdr.s311 AS tgt
+--		USING [WA_StageHurtownia].pdr.s311 AS src
+--		ON (tgt.s311_id=src.s311_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s311_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s311_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's312' BEGIN
+--		MERGE INTO pdr.s312 AS tgt
+--		USING [WA_StageHurtownia].pdr.s312 AS src
+--		ON (tgt.s312_id=src.s312_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s312_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s312_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's313' BEGIN
+--		MERGE INTO pdr.s313 AS tgt
+--		USING [WA_StageHurtownia].pdr.s313 AS src
+--		ON (tgt.s313_id=src.s313_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s313_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s313_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's314' BEGIN
+--		MERGE INTO pdr.s314 AS tgt
+--		USING [WA_StageHurtownia].pdr.s314 AS src
+--		ON (tgt.s314_id=src.s314_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s314_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s314_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's315' BEGIN
+--		MERGE INTO pdr.s315 AS tgt
+--		USING [WA_StageHurtownia].pdr.s315 AS src
+--		ON (tgt.s315_id=src.s315_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s315_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s315_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's319' BEGIN
+--		MERGE INTO pdr.s319 AS tgt
+--		USING [WA_StageHurtownia].pdr.s319 AS src
+--		ON (tgt.s319_id=src.s319_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s319_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s319_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's320' BEGIN
+--		MERGE INTO pdr.s320 AS tgt
+--		USING [WA_StageHurtownia].pdr.s320 AS src
+--		ON (tgt.s320_id=src.s320_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s320_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s320_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's321' BEGIN
+--		MERGE INTO pdr.s321 AS tgt
+--		USING [WA_StageHurtownia].pdr.s321 AS src
+--		ON (tgt.s321_id=src.s321_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s321_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s321_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's406' BEGIN
+--		MERGE INTO pdr.s406 AS tgt
+--		USING [WA_StageHurtownia].pdr.s406 AS src
+--		ON (tgt.s406_id=src.s406_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s406_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s406_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's407' BEGIN
+--		MERGE INTO pdr.s407 AS tgt
+--		USING [WA_StageHurtownia].pdr.s407 AS src
+--		ON (tgt.s407_id=src.s407_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s407_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s407_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's408' BEGIN
+--		MERGE INTO pdr.s408 AS tgt
+--		USING [WA_StageHurtownia].pdr.s408 AS src
+--		ON (tgt.s408_id=src.s408_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s408_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s408_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's504' BEGIN
+--		MERGE INTO pdr.s504 AS tgt
+--		USING [WA_StageHurtownia].pdr.s504 AS src
+--		ON (tgt.s504_id=src.s504_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s504_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s504_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END	
+--	IF @TableName = 's551' BEGIN
+--		MERGE INTO pdr.s551 AS tgt
+--		USING [WA_StageHurtownia].pdr.s551 AS src
+--		ON (tgt.s551_id=src.s551_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s551_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s551_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's552' BEGIN
+--		MERGE INTO pdr.s552 AS tgt
+--		USING [WA_StageHurtownia].pdr.s552 AS src
+--		ON (tgt.s552_id=src.s552_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s552_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s552_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's553' BEGIN
+--		MERGE INTO pdr.s553 AS tgt
+--		USING [WA_StageHurtownia].pdr.s553 AS src
+--		ON (tgt.s553_id=src.s553_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s553_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s553_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--        SET @Merged = 1;
+--	END
+
+--	IF @TableName = 's002' BEGIN
+--		MERGE INTO pdr.s002 AS tgt
+--		USING [WA_StageHurtownia].pdr.s002 AS src
+--		ON (tgt.s002_id=src.s002_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s002_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s002_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's003' BEGIN
+--		MERGE INTO pdr.s003 AS tgt
+--		USING [WA_StageHurtownia].pdr.s003 AS src
+--		ON (tgt.s003_id=src.s003_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s003_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s003_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's004' BEGIN
+--		MERGE INTO pdr.s004 AS tgt
+--		USING [WA_StageHurtownia].pdr.s004 AS src
+--		ON (tgt.s004_id=src.s004_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s004_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s004_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's005' BEGIN
+--		MERGE INTO pdr.s005 AS tgt
+--		USING [WA_StageHurtownia].pdr.s005 AS src
+--		ON (tgt.s005_id=src.s005_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s005_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s005_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's006' BEGIN
+--		MERGE INTO pdr.s006 AS tgt
+--		USING [WA_StageHurtownia].pdr.s006 AS src
+--		ON (tgt.s006_id=src.s006_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s006_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s006_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's007' BEGIN
+--		MERGE INTO pdr.s007 AS tgt
+--		USING [WA_StageHurtownia].pdr.s007 AS src
+--		ON (tgt.s007_id=src.s007_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s007_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s007_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's008' BEGIN
+--		MERGE INTO pdr.s008 AS tgt
+--		USING [WA_StageHurtownia].pdr.s008 AS src
+--		ON (tgt.s008_id=src.s008_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s008_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s008_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's013' BEGIN
+--		MERGE INTO pdr.s013 AS tgt
+--		USING [WA_StageHurtownia].pdr.s013 AS src
+--		ON (tgt.s013_id=src.s013_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s013_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s013_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's014' BEGIN
+--		MERGE INTO pdr.s014 AS tgt
+--		USING [WA_StageHurtownia].pdr.s014 AS src
+--		ON (tgt.s014_id=src.s014_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s014_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s014_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's015' BEGIN
+--		MERGE INTO pdr.s015 AS tgt
+--		USING [WA_StageHurtownia].pdr.s015 AS src
+--		ON (tgt.s015_id=src.s015_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s015_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s015_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's016' BEGIN
+--		MERGE INTO pdr.s016 AS tgt
+--		USING [WA_StageHurtownia].pdr.s016 AS src
+--		ON (tgt.s016_id=src.s016_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s016_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s016_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's017' BEGIN
+--		MERGE INTO pdr.s017 AS tgt
+--		USING [WA_StageHurtownia].pdr.s017 AS src
+--		ON (tgt.s017_id=src.s017_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s017_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s017_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's018' BEGIN
+--		MERGE INTO pdr.s018 AS tgt
+--		USING [WA_StageHurtownia].pdr.s018 AS src
+--		ON (tgt.s018_id=src.s018_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s018_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s018_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's025' BEGIN
+--		MERGE INTO pdr.s025 AS tgt
+--		USING [WA_StageHurtownia].pdr.s025 AS src
+--		ON (tgt.s025_id=src.s025_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s025_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s025_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's026' BEGIN
+--		MERGE INTO pdr.s026 AS tgt
+--		USING [WA_StageHurtownia].pdr.s026 AS src
+--		ON (tgt.s026_id=src.s026_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s026_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s026_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's028' BEGIN
+--		MERGE INTO pdr.s028 AS tgt
+--		USING [WA_StageHurtownia].pdr.s028 AS src
+--		ON (tgt.s028_id=src.s028_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s028_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s028_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 's028b' BEGIN
+--		MERGE INTO pdr.s028b AS tgt
+--		USING WA_StageHurtownia.pdr.s028b AS src
+--		ON (tgt.s028b_id=src.s028b_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s028b_id, code, creation_tm, last_modification_tm, valid_from, valid_to, description, description_eng, version_)
+--		VALUES (src.s028b_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.description, src.description_eng, src.version_);
+--	SET @Merged = 1;
+--	END
+--	IF @TableName = 's029' BEGIN
+--		MERGE INTO pdr.s029 AS tgt
+--		USING [WA_StageHurtownia].pdr.s029 AS src
+--		ON (tgt.s029_id=src.s029_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s029_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s029_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's030' BEGIN
+--		MERGE INTO pdr.s030 AS tgt
+--		USING [WA_StageHurtownia].pdr.s030 AS src
+--		ON (tgt.s030_id=src.s030_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s030_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s030_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's031' BEGIN
+--		MERGE INTO pdr.s031 AS tgt
+--		USING [WA_StageHurtownia].pdr.s031 AS src
+--		ON (tgt.s031_id=src.s031_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s031_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s031_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's033' BEGIN
+--		MERGE INTO pdr.s033 AS tgt
+--		USING [WA_StageHurtownia].pdr.s033 AS src
+--		ON (tgt.s033_id=src.s033_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s033_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s033_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's034' BEGIN
+--		MERGE INTO pdr.s034 AS tgt
+--		USING [WA_StageHurtownia].pdr.s034 AS src
+--		ON (tgt.s034_id=src.s034_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s034_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s034_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's035' BEGIN
+--		MERGE INTO pdr.s035 AS tgt
+--		USING [WA_StageHurtownia].pdr.s035 AS src
+--		ON (tgt.s035_id=src.s035_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s035_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s035_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's036' BEGIN
+--		MERGE INTO pdr.s036 AS tgt
+--		USING [WA_StageHurtownia].pdr.s036 AS src
+--		ON (tgt.s036_id=src.s036_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s036_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s036_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's037' BEGIN
+--		MERGE INTO pdr.s037 AS tgt
+--		USING [WA_StageHurtownia].pdr.s037 AS src
+--		ON (tgt.s037_id=src.s037_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s037_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s037_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's047' BEGIN
+--		MERGE INTO pdr.s047 AS tgt
+--		USING [WA_StageHurtownia].pdr.s047 AS src
+--		ON (tgt.s047_id=src.s047_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s047_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s047_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's048' BEGIN
+--		MERGE INTO pdr.s048 AS tgt
+--		USING [WA_StageHurtownia].pdr.s048 AS src
+--		ON (tgt.s048_id=src.s048_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s048_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s048_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's049' BEGIN
+--		MERGE INTO pdr.s049 AS tgt
+--		USING [WA_StageHurtownia].pdr.s049 AS src
+--		ON (tgt.s049_id=src.s049_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s049_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s049_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's050' BEGIN
+--		MERGE INTO pdr.s050 AS tgt
+--		USING [WA_StageHurtownia].pdr.s050 AS src
+--		ON (tgt.s050_id=src.s050_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s050_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s050_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's051' BEGIN
+--		MERGE INTO pdr.s051 AS tgt
+--		USING [WA_StageHurtownia].pdr.s051 AS src
+--		ON (tgt.s051_id=src.s051_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s051_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s051_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's053' BEGIN
+--		MERGE INTO pdr.s053 AS tgt
+--		USING [WA_StageHurtownia].pdr.s053 AS src
+--		ON (tgt.s053_id=src.s053_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s053_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s053_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's054' BEGIN
+--		MERGE INTO pdr.s054 AS tgt
+--		USING [WA_StageHurtownia].pdr.s054 AS src
+--		ON (tgt.s054_id=src.s054_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s054_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s054_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's060' BEGIN
+--		MERGE INTO pdr.s060 AS tgt
+--		USING [WA_StageHurtownia].pdr.s060 AS src
+--		ON (tgt.s060_id=src.s060_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s060_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s060_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's061' BEGIN
+--		MERGE INTO pdr.s061 AS tgt
+--		USING [WA_StageHurtownia].pdr.s061 AS src
+--		ON (tgt.s061_id=src.s061_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s061_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s061_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's063' BEGIN
+--		MERGE INTO pdr.s063 AS tgt
+--		USING [WA_StageHurtownia].pdr.s063 AS src
+--		ON (tgt.s063_id=src.s063_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s063_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s063_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's067' BEGIN
+--		MERGE INTO pdr.s067 AS tgt
+--		USING [WA_StageHurtownia].pdr.s067 AS src
+--		ON (tgt.s067_id=src.s067_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s067_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s067_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's068' BEGIN
+--		MERGE INTO pdr.s068 AS tgt
+--		USING [WA_StageHurtownia].pdr.s068 AS src
+--		ON (tgt.s068_id=src.s068_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s068_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s068_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's069' BEGIN
+--		MERGE INTO pdr.s069 AS tgt
+--		USING [WA_StageHurtownia].pdr.s069 AS src
+--		ON (tgt.s069_id=src.s069_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s069_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s069_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's070' BEGIN
+--		MERGE INTO pdr.s070 AS tgt
+--		USING [WA_StageHurtownia].pdr.s070 AS src
+--		ON (tgt.s070_id=src.s070_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s070_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s070_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's075' BEGIN
+--		MERGE INTO pdr.s075 AS tgt
+--		USING [WA_StageHurtownia].pdr.s075 AS src
+--		ON (tgt.s075_id=src.s075_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s075_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s075_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's076' BEGIN
+--		MERGE INTO pdr.s076 AS tgt
+--		USING [WA_StageHurtownia].pdr.s076 AS src
+--		ON (tgt.s076_id=src.s076_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s076_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s076_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's077' BEGIN
+--		MERGE INTO pdr.s077 AS tgt
+--		USING [WA_StageHurtownia].pdr.s077 AS src
+--		ON (tgt.s077_id=src.s077_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s077_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s077_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's078' BEGIN
+--		MERGE INTO pdr.s078 AS tgt
+--		USING [WA_StageHurtownia].pdr.s078 AS src
+--		ON (tgt.s078_id=src.s078_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s078_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s078_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's079' BEGIN
+--		MERGE INTO pdr.s079 AS tgt
+--		USING [WA_StageHurtownia].pdr.s079 AS src
+--		ON (tgt.s079_id=src.s079_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s079_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s079_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's080' BEGIN
+--		MERGE INTO pdr.s080 AS tgt
+--		USING [WA_StageHurtownia].pdr.s080 AS src
+--		ON (tgt.s080_id=src.s080_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s080_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s080_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's081' BEGIN
+--		MERGE INTO pdr.s081 AS tgt
+--		USING [WA_StageHurtownia].pdr.s081 AS src
+--		ON (tgt.s081_id=src.s081_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s081_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s081_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's082' BEGIN
+--		MERGE INTO pdr.s082 AS tgt
+--		USING [WA_StageHurtownia].pdr.s082 AS src
+--		ON (tgt.s082_id=src.s082_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s082_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s082_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's083' BEGIN
+--		MERGE INTO pdr.s083 AS tgt
+--		USING [WA_StageHurtownia].pdr.s083 AS src
+--		ON (tgt.s083_id=src.s083_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s083_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s083_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's085' BEGIN
+--		MERGE INTO pdr.s085 AS tgt
+--		USING [WA_StageHurtownia].pdr.s085 AS src
+--		ON (tgt.s085_id=src.s085_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s085_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s085_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's086' BEGIN
+--		MERGE INTO pdr.s086 AS tgt
+--		USING [WA_StageHurtownia].pdr.s086 AS src
+--		ON (tgt.s086_id=src.s086_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s086_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s086_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's087' BEGIN
+--		MERGE INTO pdr.s087 AS tgt
+--		USING [WA_StageHurtownia].pdr.s087 AS src
+--		ON (tgt.s087_id=src.s087_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s087_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s087_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's088' BEGIN
+--		MERGE INTO pdr.s088 AS tgt
+--		USING [WA_StageHurtownia].pdr.s088 AS src
+--		ON (tgt.s088_id=src.s088_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s088_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s088_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's090' BEGIN
+--		MERGE INTO pdr.s090 AS tgt
+--		USING [WA_StageHurtownia].pdr.s090 AS src
+--		ON (tgt.s090_id=src.s090_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s090_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s090_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's091' BEGIN
+--		MERGE INTO pdr.s091 AS tgt
+--		USING [WA_StageHurtownia].pdr.s091 AS src
+--		ON (tgt.s091_id=src.s091_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s091_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s091_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's100' BEGIN
+--		MERGE INTO pdr.s100 AS tgt
+--		USING [WA_StageHurtownia].pdr.s100 AS src
+--		ON (tgt.s100_id=src.s100_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s100_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s100_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's101' BEGIN
+--		MERGE INTO pdr.s101 AS tgt
+--		USING [WA_StageHurtownia].pdr.s101 AS src
+--		ON (tgt.s101_id=src.s101_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s101_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s101_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's103' BEGIN
+--		MERGE INTO pdr.s103 AS tgt
+--		USING [WA_StageHurtownia].pdr.s103 AS src
+--		ON (tgt.s103_id=src.s103_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s103_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s103_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's108' BEGIN
+--		MERGE INTO pdr.s108 AS tgt
+--		USING [WA_StageHurtownia].pdr.s108 AS src
+--		ON (tgt.s108_id=src.s108_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s108_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s108_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's109' BEGIN
+--		MERGE INTO pdr.s109 AS tgt
+--		USING [WA_StageHurtownia].pdr.s109 AS src
+--		ON (tgt.s109_id=src.s109_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s109_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s109_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END	
+--	IF @TableName = 's110' BEGIN
+--		MERGE INTO pdr.s110 AS tgt
+--		USING [WA_StageHurtownia].pdr.s110 AS src
+--		ON (tgt.s110_id=src.s110_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s110_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s110_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's111' BEGIN
+--		MERGE INTO pdr.s111 AS tgt
+--		USING [WA_StageHurtownia].pdr.s111 AS src
+--		ON (tgt.s111_id=src.s111_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s111_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s111_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's112' BEGIN
+--		MERGE INTO pdr.s112 AS tgt
+--		USING [WA_StageHurtownia].pdr.s112 AS src
+--		ON (tgt.s112_id=src.s112_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s112_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s112_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's113' BEGIN
+--		MERGE INTO pdr.s113 AS tgt
+--		USING [WA_StageHurtownia].pdr.s113 AS src
+--		ON (tgt.s113_id=src.s113_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s113_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s113_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's120' BEGIN
+--		MERGE INTO pdr.s120 AS tgt
+--		USING [WA_StageHurtownia].pdr.s120 AS src
+--		ON (tgt.s120_id=src.s120_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s120_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s120_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's123' BEGIN
+--		MERGE INTO pdr.s123 AS tgt
+--		USING [WA_StageHurtownia].pdr.s123 AS src
+--		ON (tgt.s123_id=src.s123_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s123_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s123_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's124' BEGIN
+--		MERGE INTO pdr.s124 AS tgt
+--		USING [WA_StageHurtownia].pdr.s124 AS src
+--		ON (tgt.s124_id=src.s124_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s124_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s124_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's125' BEGIN
+--		MERGE INTO pdr.s125 AS tgt
+--		USING [WA_StageHurtownia].pdr.s125 AS src
+--		ON (tgt.s125_id=src.s125_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s125_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s125_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's133' BEGIN
+--		MERGE INTO pdr.s133 AS tgt
+--		USING [WA_StageHurtownia].pdr.s133 AS src
+--		ON (tgt.s133_id=src.s133_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s133_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s133_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's137' BEGIN
+--		MERGE INTO pdr.s137 AS tgt
+--		USING [WA_StageHurtownia].pdr.s137 AS src
+--		ON (tgt.s137_id=src.s137_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s137_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s137_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's138' BEGIN
+--		MERGE INTO pdr.s138 AS tgt
+--		USING [WA_StageHurtownia].pdr.s138 AS src
+--		ON (tgt.s138_id=src.s138_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s138_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s138_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 's147' BEGIN
+--		MERGE INTO pdr.s147 AS tgt
+--		USING [WA_StageHurtownia].pdr.s147 AS src
+--		ON (tgt.s147_id=src.s147_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s147_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s147_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--        SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4000' BEGIN
+--		MERGE INTO pdr.c4000 AS tgt
+--		USING [WA_StageHurtownia].pdr.c4000 AS src
+--		ON (tgt.c4000_id=src.c4000_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.idsisc_rof=src.idsisc_rof, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4000_id, creation_tm, idsisc_rof, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.c4000_id, src.creation_tm, src.idsisc_rof, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4000_daneadresowe' BEGIN
+--		MERGE INTO pdr.c4000_daneadresowe AS tgt
+--		USING [WA_StageHurtownia].pdr.c4000_daneadresowe AS src
+--		ON (tgt.c4000_daneadresowe_id=src.c4000_daneadresowe_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.email=src.email, tgt.faks=src.faks, tgt.gmina=src.gmina, tgt.kodpocztowy=src.kodpocztowy, tgt.kraj=src.kraj, tgt.miejscowosc=src.miejscowosc, tgt.numerdomu=src.numerdomu, tgt.numerlokalu=src.numerlokalu, tgt.poczta=src.poczta, tgt.powiat=src.powiat, tgt.rodzajadresu=src.rodzajadresu, tgt.skrytkapocztowa=src.skrytkapocztowa, tgt.telefon=src.telefon, tgt.ulica=src.ulica, tgt.wojewodztwo=src.wojewodztwo, tgt.c4000_id=src.c4000_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4000_daneadresowe_id, email, faks, gmina, kodpocztowy, kraj, miejscowosc, numerdomu, numerlokalu, poczta, powiat, rodzajadresu, skrytkapocztowa, telefon, ulica, wojewodztwo, c4000_id)
+--		VALUES (src.c4000_daneadresowe_id, src.email, src.faks, src.gmina, src.kodpocztowy, src.kraj, src.miejscowosc, src.numerdomu, src.numerlokalu, src.poczta, src.powiat, src.rodzajadresu, src.skrytkapocztowa, src.telefon, src.ulica, src.wojewodztwo, src.c4000_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4000_daneidentyfikacyjne' BEGIN
+--		MERGE INTO pdr.c4000_daneidentyfikacyjne AS tgt
+--		USING [WA_StageHurtownia].pdr.c4000_daneidentyfikacyjne AS src
+--		ON (tgt.c4000_daneidentyfikacyjne_id=src.c4000_daneidentyfikacyjne_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.dataurodzenia=src.dataurodzenia, tgt.haslo=src.haslo, tgt.id1=src.id1, tgt.id2=src.id2, tgt.imie=src.imie, tgt.login=src.login, tgt.nazwisko=src.nazwisko, tgt.obywatelstwo=src.obywatelstwo, tgt.pesel=src.pesel, tgt.c4000_id=src.c4000_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4000_daneidentyfikacyjne_id, dataurodzenia, haslo, id1, id2, imie, login, nazwisko, obywatelstwo, pesel, c4000_id)
+--		VALUES (src.c4000_daneidentyfikacyjne_id, src.dataurodzenia, src.haslo, src.id1, src.id2, src.imie, src.login, src.nazwisko, src.obywatelstwo, src.pesel, src.c4000_id);
+--		SET @Merged = 1;	
+--	END
+--	IF @TableName = 'c4000_oswiadczenia' BEGIN
+--		MERGE INTO pdr.c4000_oswiadczenia AS tgt
+--		USING [WA_StageHurtownia].pdr.c4000_oswiadczenia AS src
+--		ON (tgt.c4000_oswiadczenia_id=src.c4000_oswiadczenia_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.komunikacjaelektroniczna=src.komunikacjaelektroniczna, tgt.prawdziwoscdanych=src.prawdziwoscdanych, tgt.zapoznaniezinstrukcja=src.zapoznaniezinstrukcja, tgt.c4000_id=src.c4000_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4000_oswiadczenia_id, komunikacjaelektroniczna, prawdziwoscdanych, zapoznaniezinstrukcja, c4000_id)
+--		VALUES (src.c4000_oswiadczenia_id, src.komunikacjaelektroniczna, src.prawdziwoscdanych, src.zapoznaniezinstrukcja, src.c4000_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4000_statusosoby' BEGIN
+--		MERGE INTO pdr.c4000_statusosoby AS tgt
+--		USING [WA_StageHurtownia].pdr.c4000_statusosoby AS src
+--		ON (tgt.c4000_statusosoby_id=src.c4000_statusosoby_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.datado=src.datado, tgt.dataod=src.dataod, tgt.rejestracjauproszczona=src.rejestracjauproszczona, tgt.status=src.status, tgt.c4000_id=src.c4000_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4000_statusosoby_id, datado, dataod, rejestracjauproszczona, status, c4000_id)
+--		VALUES (src.c4000_statusosoby_id, src.datado, src.dataod, src.rejestracjauproszczona, src.status, src.c4000_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4000_epuap' BEGIN
+--		MERGE INTO pdr.c4000_epuap AS tgt
+--		USING [WA_StageHurtownia].pdr.c4000_epuap AS src
+--		ON (tgt.c4000_epuap_id=src.c4000_epuap_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.adresepuap=src.adresepuap, tgt.datado=src.datado, tgt.dataod=src.dataod, tgt.nazwaepuap=src.nazwaepuap, tgt.c4000_daneadresowe_id=src.c4000_daneadresowe_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4000_epuap_id, adresepuap, datado, dataod, nazwaepuap, c4000_daneadresowe_id)
+--		VALUES (src.c4000_epuap_id, src.adresepuap, src.datado, src.dataod, src.nazwaepuap, src.c4000_daneadresowe_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4000_certyfikaty' BEGIN
+--		MERGE INTO pdr.c4000_certyfikaty AS tgt
+--		USING [WA_StageHurtownia].pdr.c4000_certyfikaty AS src
+--		ON (tgt.c4000_certyfikaty_id=src.c4000_certyfikaty_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.datado=src.datado, tgt.dataod=src.dataod, tgt.numercertyfikatu=src.numercertyfikatu, tgt.odciskpalcacertyfikatu=src.odciskpalcacertyfikatu, tgt.c4000_daneidentyfikacyjne_id=src.c4000_daneidentyfikacyjne_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4000_certyfikaty_id, datado, dataod, numercertyfikatu, odciskpalcacertyfikatu, c4000_daneidentyfikacyjne_id)
+--		VALUES (src.c4000_certyfikaty_id, src.datado, src.dataod, src.numercertyfikatu, src.odciskpalcacertyfikatu, src.c4000_daneidentyfikacyjne_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4000_listywpisow' BEGIN
+--		MERGE INTO pdr.c4000_listywpisow AS tgt
+--		USING [WA_StageHurtownia].pdr.c4000_listywpisow AS src
+--		ON (tgt.c4000_listywpisow_id=src.c4000_listywpisow_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.numerwpisu=src.numerwpisu, tgt.rodzajlisty=src.rodzajlisty, tgt.c4000_daneidentyfikacyjne_id=src.c4000_daneidentyfikacyjne_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4000_listywpisow_id, numerwpisu, rodzajlisty, c4000_daneidentyfikacyjne_id)
+--		VALUES (src.c4000_listywpisow_id, src.numerwpisu, src.rodzajlisty, src.c4000_daneidentyfikacyjne_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4000_dokumenttozsamosci' BEGIN
+--		MERGE INTO pdr.c4000_dokumenttozsamosci AS tgt
+--		USING [WA_StageHurtownia].pdr.c4000_dokumenttozsamosci AS src
+--		ON (tgt.c4000_dokumenttozsamosci_id=src.c4000_dokumenttozsamosci_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.rodzajdokumentutozsamosci=src.rodzajdokumentutozsamosci, tgt.seriainumer=src.seriainumer, tgt.c4000_daneidentyfikacyjne_id=src.c4000_daneidentyfikacyjne_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4000_dokumenttozsamosci_id, rodzajdokumentutozsamosci, seriainumer, c4000_daneidentyfikacyjne_id)
+--		VALUES (src.c4000_dokumenttozsamosci_id, src.rodzajdokumentutozsamosci, src.seriainumer, src.c4000_daneidentyfikacyjne_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4001' BEGIN
+--		MERGE INTO pdr.c4001 AS tgt
+--		USING [WA_StageHurtownia].pdr.c4001 AS src
+--		ON (tgt.c4001_id=src.c4001_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.idsiscp=src.idsiscp, tgt.idsiscrof=src.idsiscrof, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.idsiscs=src.idsiscs
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4001_id, creation_tm, idsiscp, idsiscrof, last_modification_tm, valid_from, valid_to, version_, idsiscs)
+--		VALUES (src.c4001_id, src.creation_tm, src.idsiscp, src.idsiscrof, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.idsiscs);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4001_reprezentacje' BEGIN
+--		MERGE INTO pdr.c4001_reprezentacje AS tgt
+--		USING [WA_StageHurtownia].pdr.c4001_reprezentacje AS src
+--		ON (tgt.c4001_reprezentacje_id=src.c4001_reprezentacje_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.datado=src.datado, tgt.dataod=src.dataod, tgt.formareprezentacji=src.formareprezentacji, tgt.c4001_id=src.c4001_id, tgt.czyterminowe=src.czyterminowe
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4001_reprezentacje_id, datado, dataod, formareprezentacji, c4001_id, czyterminowe)
+--		VALUES (src.c4001_reprezentacje_id, src.datado, src.dataod, src.formareprezentacji, src.c4001_id, src.czyterminowe);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4001_postepowanie' BEGIN
+--		MERGE INTO pdr.c4001_postepowanie AS tgt
+--		USING WA_StageHurtownia.pdr.c4001_postepowanie AS src
+--		ON (tgt.c4001_postepowanie_id=src.c4001_postepowanie_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.pelnomocnictwoogolne=src.pelnomocnictwoogolne, tgt.c4001_reprezentacje_id=src.c4001_reprezentacje_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4001_postepowanie_id, pelnomocnictwoogolne, c4001_reprezentacje_id)
+--		VALUES (src.c4001_postepowanie_id, src.pelnomocnictwoogolne, src.c4001_reprezentacje_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4001_uprawnienia' BEGIN
+--		MERGE INTO pdr.c4001_uprawnienia AS tgt
+--		USING [WA_StageHurtownia].pdr.c4001_uprawnienia AS src
+--		ON (tgt.c4001_uprawnienia_id=src.c4001_uprawnienia_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.rodzajuprawnienia=src.rodzajuprawnienia, tgt.uprawnienie=src.uprawnienie, tgt.c4001_reprezentacje_id=src.c4001_reprezentacje_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4001_uprawnienia_id, rodzajuprawnienia, uprawnienie, c4001_reprezentacje_id)
+--		VALUES (src.c4001_uprawnienia_id, src.rodzajuprawnienia, src.uprawnienie, src.c4001_reprezentacje_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4001_pelnomocnictwoszczegolne' BEGIN
+--		MERGE INTO pdr.c4001_pelnomocnictwoszczegolne AS tgt
+--		USING WA_StageHurtownia.pdr.c4001_pelnomocnictwoszczegolne AS src
+--		ON (tgt.c4001_pelnomocnictwoszczegolne_id=src.c4001_pelnomocnictwoszczegolne_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.organ=src.organ, tgt.wlasciwoscmiejscowa=src.wlasciwoscmiejscowa, tgt.zakresrzeczowy=src.zakresrzeczowy, tgt.c4001_postepowanie_id=src.c4001_postepowanie_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4001_pelnomocnictwoszczegolne_id, organ, wlasciwoscmiejscowa, zakresrzeczowy, c4001_postepowanie_id)
+--		VALUES (src.c4001_pelnomocnictwoszczegolne_id, src.organ, src.wlasciwoscmiejscowa, src.zakresrzeczowy, src.c4001_postepowanie_id);
+--	    SET @Merged = 1;	
+--	END
+--	IF @TableName = 'c4001_pelnomocnictwoinne' BEGIN
+--		MERGE INTO pdr.c4001_pelnomocnictwoinne AS tgt
+--		USING [WA_StageHurtownia].pdr.c4001_pelnomocnictwoinne AS src
+--		ON (tgt.c4001_pelnomocnictwoinne_id=src.c4001_pelnomocnictwoinne_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.opis=src.opis, tgt.pelnomocnictwoszczegolneinne=src.pelnomocnictwoszczegolneinne, tgt.c4001_postepowanie_id=src.c4001_postepowanie_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4001_pelnomocnictwoinne_id, opis, pelnomocnictwoszczegolneinne, c4001_postepowanie_id)
+--		VALUES (src.c4001_pelnomocnictwoinne_id, src.opis, src.pelnomocnictwoszczegolneinne, src.c4001_postepowanie_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4001_rodzajprzedstawicielstwa' BEGIN
+--		MERGE INTO pdr.c4001_rodzajprzedstawicielstwa AS tgt
+--		USING [WA_StageHurtownia].pdr.c4001_rodzajprzedstawicielstwa AS src
+--		ON (tgt.c4001_rodzajprzedstawicielstwa_id=src.c4001_rodzajprzedstawicielstwa_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.rodzaj=src.rodzaj, tgt.c4001_uprawnienia_id=src.c4001_uprawnienia_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4001_rodzajprzedstawicielstwa_id, rodzaj, c4001_uprawnienia_id)
+--		VALUES (src.c4001_rodzajprzedstawicielstwa_id, src.rodzaj, src.c4001_uprawnienia_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4002' BEGIN
+--		MERGE INTO pdr.c4002 AS tgt
+--		USING [WA_StageHurtownia].pdr.c4002 AS src
+--		ON (tgt.c4002_id=src.c4002_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.idsiscp=src.idsiscp, tgt.idsiscrop=src.idsiscrop, tgt.idsiscs=src.idsiscs, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4002_id, creation_tm, idsiscp, idsiscrop, idsiscs, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.c4002_id, src.creation_tm, src.idsiscp, src.idsiscrop, src.idsiscs, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4002_reprezentacje' BEGIN
+--		MERGE INTO pdr.c4002_reprezentacje AS tgt
+--		USING [WA_StageHurtownia].pdr.c4002_reprezentacje AS src
+--		ON (tgt.c4002_reprezentacje_id=src.c4002_reprezentacje_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.datado=src.datado, tgt.dataod=src.dataod, tgt.formareprezentacji=src.formareprezentacji, tgt.c4002_id=src.c4002_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4002_reprezentacje_id, datado, dataod, formareprezentacji, c4002_id)
+--		VALUES (src.c4002_reprezentacje_id, src.datado, src.dataod, src.formareprezentacji, src.c4002_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4002_uprawnienia' BEGIN
+--		MERGE INTO pdr.c4002_uprawnienia AS tgt
+--		USING [WA_StageHurtownia].pdr.c4002_uprawnienia AS src
+--		ON (tgt.c4002_uprawnienia_id=src.c4002_uprawnienia_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.rodzajuprawnienia=src.rodzajuprawnienia, tgt.uprawnienie=src.uprawnienie, tgt.c4002_reprezentacje_id=src.c4002_reprezentacje_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4002_uprawnienia_id, rodzajuprawnienia, uprawnienie, c4002_reprezentacje_id)
+--		VALUES (src.c4002_uprawnienia_id, src.rodzajuprawnienia, src.uprawnienie, src.c4002_reprezentacje_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4002_rodzajprzedstawicielstwa' BEGIN
+--		MERGE INTO pdr.c4002_rodzajprzedstawicielstwa AS tgt
+--		USING [WA_StageHurtownia].pdr.c4002_rodzajprzedstawicielstwa AS src
+--		ON (tgt.c4002_rodzajprzedstawicielstwa_id=src.c4002_rodzajprzedstawicielstwa_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.rodzaj=src.rodzaj, tgt.c4002_uprawnienia_id=src.c4002_uprawnienia_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4002_rodzajprzedstawicielstwa_id, rodzaj, c4002_uprawnienia_id)
+--		VALUES (src.c4002_rodzajprzedstawicielstwa_id, src.rodzaj, src.c4002_uprawnienia_id);
+--	    SET @Merged = 1;
+--	END
+
+--	IF @TableName = 'c4003' BEGIN
+--		MERGE INTO pdr.c4003 AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003 AS src
+--		ON (tgt.c4003_id=src.c4003_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.idsiscprp=src.idsiscprp, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_id, creation_tm, idsiscprp, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.c4003_id, src.creation_tm, src.idsiscprp, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_kontabankowe' BEGIN
+--		MERGE INTO pdr.c4003_kontabankowe AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_kontabankowe AS src
+--		ON (tgt.c4003_kontabankowe_id=src.c4003_kontabankowe_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.iban=src.iban, tgt.nazwabanku=src.nazwabanku, tgt.numerkontabankowego=src.numerkontabankowego, tgt.oddzialbanku=src.oddzialbanku, tgt.rodzajkonta=src.rodzajkonta, tgt.swiftbanku=src.swiftbanku, tgt.typkonta=src.typkonta, tgt.c4003_id=src.c4003_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_kontabankowe_id, iban, nazwabanku, numerkontabankowego, oddzialbanku, rodzajkonta, swiftbanku, typkonta, c4003_id)
+--		VALUES (src.c4003_kontabankowe_id, src.iban, src.nazwabanku, src.numerkontabankowego, src.oddzialbanku, src.rodzajkonta, src.swiftbanku, src.typkonta, src.c4003_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_statuspodmiotu' BEGIN
+--		MERGE INTO pdr.c4003_statuspodmiotu AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_statuspodmiotu AS src
+--		ON (tgt.c4003_statuspodmiotu_id=src.c4003_statuspodmiotu_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.datado=src.datado, tgt.dataod=src.dataod, tgt.status=src.status, tgt.c4003_id=src.c4003_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_statuspodmiotu_id, datado, dataod, status, c4003_id)
+--		VALUES (src.c4003_statuspodmiotu_id, src.datado, src.dataod, src.status, src.c4003_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_stanaktywnosciprawnoekon' BEGIN
+--		MERGE INTO pdr.c4003_stanaktywnosciprawnoekon AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_stanaktywnosciprawnoekon AS src
+--		ON (tgt.c4003_stanaktywnosciprawnoekon_id=src.c4003_stanaktywnosciprawnoekon_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.ape=src.ape, tgt.datado=src.datado, tgt.dataod=src.dataod, tgt.c4003_id=src.c4003_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_stanaktywnosciprawnoekon_id, ape, datado, dataod, c4003_id)
+--		VALUES (src.c4003_stanaktywnosciprawnoekon_id, src.ape, src.datado, src.dataod, src.c4003_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_kanalykomunikacji' BEGIN
+--		MERGE INTO pdr.c4003_kanalykomunikacji AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_kanalykomunikacji AS src
+--		ON (tgt.c4003_kanalykomunikacji_id=src.c4003_kanalykomunikacji_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.adreskanalu=src.adreskanalu, tgt.datado=src.datado, tgt.dataod=src.dataod, tgt.haslokanalu=src.haslokanalu, tgt.loginkanalu=src.loginkanalu, tgt.nazwaepuap=src.nazwaepuap, tgt.odciskpalcakanalu=src.odciskpalcakanalu, tgt.system=src.system, tgt.typkanalu=src.typkanalu, tgt.c4003_id=src.c4003_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_kanalykomunikacji_id, adreskanalu, datado, dataod, haslokanalu, loginkanalu, nazwaepuap, odciskpalcakanalu, system, typkanalu, c4003_id)
+--		VALUES (src.c4003_kanalykomunikacji_id, src.adreskanalu, src.datado, src.dataod, src.haslokanalu, src.loginkanalu, src.nazwaepuap, src.odciskpalcakanalu, src.system, src.typkanalu, src.c4003_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_akcyza' BEGIN
+--		MERGE INTO pdr.c4003_akcyza AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_akcyza AS src
+--		ON (tgt.c4003_akcyza_id=src.c4003_akcyza_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.c4003_id=src.c4003_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_akcyza_id, c4003_id)
+--		VALUES (src.c4003_akcyza_id, src.c4003_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_daneadresowe' BEGIN
+--		MERGE INTO pdr.c4003_daneadresowe AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_daneadresowe AS src
+--		ON (tgt.c4003_daneadresowe_id=src.c4003_daneadresowe_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.email=src.email, tgt.faks=src.faks, tgt.gmina=src.gmina, tgt.kodpocztowy=src.kodpocztowy, tgt.kraj=src.kraj, tgt.miejscowosc=src.miejscowosc, tgt.numerdomu=src.numerdomu, tgt.numerlokalu=src.numerlokalu, tgt.poczta=src.poczta, tgt.powiat=src.powiat, tgt.rodzajadresu=src.rodzajadresu, tgt.skrytkapocztowa=src.skrytkapocztowa, tgt.telefon=src.telefon, tgt.ulica=src.ulica, tgt.wojewodztwo=src.wojewodztwo, tgt.c4003_id=src.c4003_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_daneadresowe_id, email, faks, gmina, kodpocztowy, kraj, miejscowosc, numerdomu, numerlokalu, poczta, powiat, rodzajadresu, skrytkapocztowa, telefon, ulica, wojewodztwo, c4003_id)
+--		VALUES (src.c4003_daneadresowe_id, src.email, src.faks, src.gmina, src.kodpocztowy, src.kraj, src.miejscowosc, src.numerdomu, src.numerlokalu, src.poczta, src.powiat, src.rodzajadresu, src.skrytkapocztowa, src.telefon, src.ulica, src.wojewodztwo, src.c4003_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_obszarydzialalnosci' BEGIN
+--		MERGE INTO pdr.c4003_obszarydzialalnosci AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_obszarydzialalnosci AS src
+--		ON (tgt.c4003_obszarydzialalnosci_id=src.c4003_obszarydzialalnosci_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.obszardzialalnosci=src.obszardzialalnosci, tgt.c4003_id=src.c4003_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_obszarydzialalnosci_id, obszardzialalnosci, c4003_id)
+--		VALUES (src.c4003_obszarydzialalnosci_id, src.obszardzialalnosci, src.c4003_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_oswiadczenia' BEGIN
+--		MERGE INTO pdr.c4003_oswiadczenia AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_oswiadczenia AS src
+--		ON (tgt.c4003_oswiadczenia_id=src.c4003_oswiadczenia_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.komunikacjaelektroniczna=src.komunikacjaelektroniczna, tgt.prawdziwoscdanych=src.prawdziwoscdanych, tgt.publikacjake=src.publikacjake, tgt.c4003_id=src.c4003_id, tgt.instrukcjeezgloszencelnych=src.instrukcjeezgloszencelnych
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_oswiadczenia_id, komunikacjaelektroniczna, prawdziwoscdanych, publikacjake, c4003_id, instrukcjeezgloszencelnych)
+--		VALUES (src.c4003_oswiadczenia_id, src.komunikacjaelektroniczna, src.prawdziwoscdanych, src.publikacjake, src.c4003_id, src.instrukcjeezgloszencelnych);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_oddzialy' BEGIN
+--		MERGE INTO pdr.c4003_oddzialy AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_oddzialy AS src
+--		ON (tgt.c4003_oddzialy_id=src.c4003_oddzialy_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.nazwaoddzialu=src.nazwaoddzialu, tgt.regonoddzialu=src.regonoddzialu, tgt.c4003_id=src.c4003_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_oddzialy_id, nazwaoddzialu, regonoddzialu, c4003_id)
+--		VALUES (src.c4003_oddzialy_id, src.nazwaoddzialu, src.regonoddzialu, src.c4003_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_daneidentyfikacyjne' BEGIN
+--		MERGE INTO pdr.c4003_daneidentyfikacyjne AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_daneidentyfikacyjne AS src
+--		ON (tgt.c4003_daneidentyfikacyjne_id=src.c4003_daneidentyfikacyjne_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.datarejestracji=src.datarejestracji, tgt.datarozpoczeciadzialalnosci=src.datarozpoczeciadzialalnosci, tgt.datawznowieniadzialalnosci=src.datawznowieniadzialalnosci, tgt.datazawieszeniadzialalnosci=src.datazawieszeniadzialalnosci, tgt.eori=src.eori, tgt.formaprawna=src.formaprawna, tgt.formaprawnatc=src.formaprawnatc, tgt.imie=src.imie, tgt.krs=src.krs, tgt.nazwapelna=src.nazwapelna, tgt.nazwaskrocona=src.nazwaskrocona, tgt.nazwisko=src.nazwisko, tgt.nip=src.nip, tgt.nrtc=src.nrtc, tgt.regon=src.regon, tgt.rodzajpodmiotu=src.rodzajpodmiotu, tgt.szczegolyformyprawnej=src.szczegolyformyprawnej, tgt.c4003_id=src.c4003_id, tgt.kodjezyka=src.kodjezyka
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_daneidentyfikacyjne_id, datarejestracji, datarozpoczeciadzialalnosci, datawznowieniadzialalnosci, datazawieszeniadzialalnosci, eori, formaprawna, formaprawnatc, imie, krs, nazwapelna, nazwaskrocona, nazwisko, nip, nrtc, regon, rodzajpodmiotu, szczegolyformyprawnej, c4003_id, kodjezyka)
+--		VALUES (src.c4003_daneidentyfikacyjne_id, src.datarejestracji, src.datarozpoczeciadzialalnosci, src.datawznowieniadzialalnosci, src.datazawieszeniadzialalnosci, src.eori, src.formaprawna, src.formaprawnatc, src.imie, src.krs, src.nazwapelna, src.nazwaskrocona, src.nazwisko, src.nip, src.nrtc, src.regon, src.rodzajpodmiotu, src.szczegolyformyprawnej, src.c4003_id, src.kodjezyka);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_zakresdzialalnosci' BEGIN
+--		MERGE INTO pdr.c4003_zakresdzialalnosci AS tgt
+--		USING WA_StageHurtownia.pdr.c4003_zakresdzialalnosci AS src
+--		ON (tgt.c4003_zakresdzialalnosci_id=src.c4003_zakresdzialalnosci_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.niepodlegazwolnieniuodakcyzy=src.niepodlegazwolnieniuodakcyzy, tgt.podlegazwolnieniuodakcyzy=src.podlegazwolnieniuodakcyzy, tgt.c4003_akcyza_id=src.c4003_akcyza_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_zakresdzialalnosci_id, niepodlegazwolnieniuodakcyzy, podlegazwolnieniuodakcyzy, c4003_akcyza_id)
+--		VALUES (src.c4003_zakresdzialalnosci_id, src.niepodlegazwolnieniuodakcyzy, src.podlegazwolnieniuodakcyzy, src.c4003_akcyza_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_szczegolydzialalnosci' BEGIN
+--		MERGE INTO pdr.c4003_szczegolydzialalnosci AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_szczegolydzialalnosci AS src
+--		ON (tgt.c4003_szczegolydzialalnosci_id=src.c4003_szczegolydzialalnosci_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.rodzajwyrobu=src.rodzajwyrobu, tgt.sredniailosc=src.sredniailosc, tgt.c4003_akcyza_id=src.c4003_akcyza_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_szczegolydzialalnosci_id, rodzajwyrobu, sredniailosc, c4003_akcyza_id)
+--		VALUES (src.c4003_szczegolydzialalnosci_id, src.rodzajwyrobu, src.sredniailosc, src.c4003_akcyza_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_epuap' BEGIN
+--		MERGE INTO pdr.c4003_epuap AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_epuap AS src
+--		ON (tgt.c4003_epuap_id=src.c4003_epuap_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.adresepuap=src.adresepuap, tgt.datado=src.datado, tgt.dataod=src.dataod, tgt.nazwaepuap=src.nazwaepuap, tgt.c4003_daneadresowe_id=src.c4003_daneadresowe_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_epuap_id, adresepuap, datado, dataod, nazwaepuap, c4003_daneadresowe_id)
+--		VALUES (src.c4003_epuap_id, src.adresepuap, src.datado, src.dataod, src.nazwaepuap, src.c4003_daneadresowe_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_daneadresoweoddzialu' BEGIN
+--		MERGE INTO pdr.c4003_daneadresoweoddzialu AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_daneadresoweoddzialu AS src
+--		ON (tgt.c4003_daneadresoweoddzialu_id=src.c4003_daneadresoweoddzialu_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.email=src.email, tgt.faks=src.faks, tgt.gmina=src.gmina, tgt.kodpocztowy=src.kodpocztowy, tgt.kraj=src.kraj, tgt.miejscowosc=src.miejscowosc, tgt.numerdomu=src.numerdomu, tgt.numerlokalu=src.numerlokalu, tgt.poczta=src.poczta, tgt.powiat=src.powiat, tgt.rodzajadresu=src.rodzajadresu, tgt.skrytkapocztowa=src.skrytkapocztowa, tgt.telefon=src.telefon, tgt.ulica=src.ulica, tgt.waznydo=src.waznydo, tgt.waznyod=src.waznyod, tgt.wojewodztwo=src.wojewodztwo, tgt.c4003_oddzialy_id=src.c4003_oddzialy_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_daneadresoweoddzialu_id, email, faks, gmina, kodpocztowy, kraj, miejscowosc, numerdomu, numerlokalu, poczta, powiat, rodzajadresu, skrytkapocztowa, telefon, ulica, waznydo, waznyod, wojewodztwo, c4003_oddzialy_id)
+--		VALUES (src.c4003_daneadresoweoddzialu_id, src.email, src.faks, src.gmina, src.kodpocztowy, src.kraj, src.miejscowosc, src.numerdomu, src.numerlokalu, src.poczta, src.powiat, src.rodzajadresu, src.skrytkapocztowa, src.telefon, src.ulica, src.waznydo, src.waznyod, src.wojewodztwo, src.c4003_oddzialy_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_numeryvatue' BEGIN
+--		MERGE INTO pdr.c4003_numeryvatue AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_numeryvatue AS src
+--		ON (tgt.c4003_numeryvatue_id=src.c4003_numeryvatue_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.numervatue=src.numervatue, tgt.c4003_daneidentyfikacyjne_id=src.c4003_daneidentyfikacyjne_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_numeryvatue_id, numervatue, c4003_daneidentyfikacyjne_id)
+--		VALUES (src.c4003_numeryvatue_id, src.numervatue, src.c4003_daneidentyfikacyjne_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_kodynace' BEGIN
+--		MERGE INTO pdr.c4003_kodynace AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_kodynace AS src
+--		ON (tgt.c4003_kodynace_id=src.c4003_kodynace_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.nace=src.nace, tgt.c4003_daneidentyfikacyjne_id=src.c4003_daneidentyfikacyjne_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_kodynace_id, nace, c4003_daneidentyfikacyjne_id)
+--		VALUES (src.c4003_kodynace_id, src.nace, src.c4003_daneidentyfikacyjne_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_kodypkd' BEGIN
+--		MERGE INTO pdr.c4003_kodypkd AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_kodypkd AS src
+--		ON (tgt.c4003_kodypkd_id=src.c4003_kodypkd_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.pkd=src.pkd, tgt.c4003_daneidentyfikacyjne_id=src.c4003_daneidentyfikacyjne_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_kodypkd_id, pkd, c4003_daneidentyfikacyjne_id)
+--		VALUES (src.c4003_kodypkd_id, src.pkd, src.c4003_daneidentyfikacyjne_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_daneadresowepodmiotuzagr' BEGIN
+--		MERGE INTO pdr.c4003_daneadresowepodmiotuzagr AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_daneadresowepodmiotuzagr AS src
+--		ON (tgt.c4003_daneadresowepodmiotuzagr_id=src.c4003_daneadresowepodmiotuzagr_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.imie=src.imie, tgt.kodpocztowy=src.kodpocztowy, tgt.kraj=src.kraj, tgt.miejscowosc=src.miejscowosc, tgt.nazwapelna=src.nazwapelna, tgt.nazwisko=src.nazwisko, tgt.numerdomu=src.numerdomu, tgt.numerlokalu=src.numerlokalu, tgt.poczta=src.poczta, tgt.skrytkapocztowa=src.skrytkapocztowa, tgt.ulica=src.ulica, tgt.c4003_zakresdzialalnosci_id=src.c4003_zakresdzialalnosci_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_daneadresowepodmiotuzagr_id, imie, kodpocztowy, kraj, miejscowosc, nazwapelna, nazwisko, numerdomu, numerlokalu, poczta, skrytkapocztowa, ulica, c4003_zakresdzialalnosci_id)
+--		VALUES (src.c4003_daneadresowepodmiotuzagr_id, src.imie, src.kodpocztowy, src.kraj, src.miejscowosc, src.nazwapelna, src.nazwisko, src.numerdomu, src.numerlokalu, src.poczta, src.skrytkapocztowa, src.ulica, src.c4003_zakresdzialalnosci_id);
+--	    SET @Merged = 1;
+--	END
+--	IF @TableName = 'c4003_miejscawykonywaniadziala' BEGIN
+--		MERGE INTO pdr.c4003_miejscawykonywaniadziala AS tgt
+--		USING [WA_StageHurtownia].pdr.c4003_miejscawykonywaniadziala AS src
+--		ON (tgt.c4003_miejscawykonywaniadziala_id=src.c4003_miejscawykonywaniadziala_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.gmina=src.gmina, tgt.kodpocztowy=src.kodpocztowy, tgt.kraj=src.kraj, tgt.miejscowosc=src.miejscowosc, tgt.numerdomu=src.numerdomu, tgt.numerlokalu=src.numerlokalu, tgt.poczta=src.poczta, tgt.powiat=src.powiat, tgt.ulica=src.ulica, tgt.wojewodztwo=src.wojewodztwo, tgt.c4003_szczegolydzialalnosci_id=src.c4003_szczegolydzialalnosci_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c4003_miejscawykonywaniadziala_id, gmina, kodpocztowy, kraj, miejscowosc, numerdomu, numerlokalu, poczta, powiat, ulica, wojewodztwo, c4003_szczegolydzialalnosci_id)
+--		VALUES (src.c4003_miejscawykonywaniadziala_id, src.gmina, src.kodpocztowy, src.kraj, src.miejscowosc, src.numerdomu, src.numerlokalu, src.poczta, src.powiat, src.ulica, src.wojewodztwo, src.c4003_szczegolydzialalnosci_id);
+--	    SET @Merged = 1;
+--	END
+
+--	--2018-02
+--	IF @TableName = 'c152' BEGIN
+--		MERGE INTO pdr.c152 AS tgt
+--		USING [WA_StageHurtownia].pdr.c152 AS src
+--		ON (tgt.c152_id=src.c152_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.certyfikat_aeo=src.certyfikat_aeo, tgt.creation_tm=src.creation_tm, tgt.edi=src.edi, tgt.email=src.email, tgt.eori=src.eori, tgt.fax=src.fax, tgt.forma_gosp=src.forma_gosp, tgt.id_old_pdr=src.id_old_pdr, tgt.id_pod=src.id_pod, tgt.kod_pocztowy=src.kod_pocztowy, tgt.kraj=src.kraj, tgt.last_modification_tm=src.last_modification_tm, tgt.miejscowosc=src.miejscowosc, tgt.nazwa_krotka=src.nazwa_krotka, tgt.nazwa_pelna=src.nazwa_pelna, tgt.pesel=src.pesel, tgt.placowka_edycji=src.placowka_edycji, tgt.poczta=src.poczta, tgt.podmiot_gosp=src.podmiot_gosp, tgt.regon=src.regon, tgt.telefon=src.telefon, tgt.tin=src.tin, tgt.ulica=src.ulica, tgt.urzad_rejestrowy=src.urzad_rejestrowy, tgt.uwagi=src.uwagi, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c152_id, certyfikat_aeo, creation_tm, edi, email, eori, fax, forma_gosp, id_old_pdr, id_pod, kod_pocztowy, kraj, last_modification_tm, miejscowosc, nazwa_krotka, nazwa_pelna, pesel, placowka_edycji, poczta, podmiot_gosp, regon, telefon, tin, ulica, urzad_rejestrowy, uwagi, valid_from, valid_to, version_)
+--		VALUES (src.c152_id, src.certyfikat_aeo, src.creation_tm, src.edi, src.email, src.eori, src.fax, src.forma_gosp, src.id_old_pdr, src.id_pod, src.kod_pocztowy, src.kraj, src.last_modification_tm, src.miejscowosc, src.nazwa_krotka, src.nazwa_pelna, src.pesel, src.placowka_edycji, src.poczta, src.podmiot_gosp, src.regon, src.telefon, src.tin, src.ulica, src.urzad_rejestrowy, src.uwagi, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c152_emailedi' BEGIN
+--		MERGE INTO pdr.c152_emailedi AS tgt
+--		USING [WA_StageHurtownia].pdr.c152_emailedi AS src
+--		ON (tgt.c152_emailedi_id=src.c152_emailedi_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.email=src.email, tgt.c152_id=src.c152_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c152_emailedi_id, email, c152_id)
+--		VALUES (src.c152_emailedi_id, src.email, src.c152_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c152_grupa' BEGIN
+--		MERGE INTO pdr.c152_grupa AS tgt
+--		USING [WA_StageHurtownia].pdr.c152_grupa AS src
+--		ON (tgt.c152_grupa_id=src.c152_grupa_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.grupa=src.grupa, tgt.c152_id=src.c152_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c152_grupa_id, grupa, c152_id)
+--		VALUES (src.c152_grupa_id, src.grupa, src.c152_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c152_reprezentantosobafizyczna' BEGIN
+--		MERGE INTO pdr.c152_reprezentantosobafizyczna AS tgt
+--		USING [WA_StageHurtownia].pdr.c152_reprezentantosobafizyczna AS src
+--		ON (tgt.c152_reprezentantosobafizyczna_id=src.c152_reprezentantosobafizyczna_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.rin=src.rin, tgt.zakres=src.zakres, tgt.c152_id=src.c152_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c152_reprezentantosobafizyczna_id, rin, zakres, c152_id)
+--		VALUES (src.c152_reprezentantosobafizyczna_id, src.rin, src.zakres, src.c152_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c152_reprezentantpodmiotgospod' BEGIN
+--		MERGE INTO pdr.c152_reprezentantpodmiotgospod AS tgt
+--		USING [WA_StageHurtownia].pdr.c152_reprezentantpodmiotgospod AS src
+--		ON (tgt.c152_reprezentantpodmiotgospod_id=src.c152_reprezentantpodmiotgospod_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.id_old_pdr=src.id_old_pdr, tgt.zakres=src.zakres, tgt.c152_id=src.c152_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c152_reprezentantpodmiotgospod_id, id_old_pdr, zakres, c152_id)
+--		VALUES (src.c152_reprezentantpodmiotgospod_id, src.id_old_pdr, src.zakres, src.c152_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c152_zakres' BEGIN
+--		MERGE INTO pdr.c152_zakres AS tgt
+--		USING [WA_StageHurtownia].pdr.c152_zakres AS src
+--		ON (tgt.c152_zakres_id=src.c152_zakres_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.zakres=src.zakres, tgt.c152_id=src.c152_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c152_zakres_id, zakres, c152_id)
+--		VALUES (src.c152_zakres_id, src.zakres, src.c152_id);
+--		SET @Merged = 1;
+--	END
+
+--	IF @TableName = 'c153' BEGIN
+--		MERGE INTO pdr.c153 AS tgt
+--		USING [WA_StageHurtownia].pdr.c153 AS src
+--		ON (tgt.c153_id=src.c153_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.aktywne=src.aktywne, tgt.creation_tm=src.creation_tm, tgt.czas_na_dt=src.czas_na_dt, tgt.data_wydania=src.data_wydania, tgt.froma=src.froma, tgt.last_modification_tm=src.last_modification_tm, tgt.nr=src.nr, tgt.odroczenie_platnosci=src.odroczenie_platnosci, tgt.powiadomienie_zbiorcze=src.powiadomienie_zbiorcze, tgt.termin_rozliczenia=src.termin_rozliczenia, tgt.tin=src.tin, tgt.typ_rozliczenia=src.typ_rozliczenia, tgt.urzad_wydania=src.urzad_wydania, tgt.uwagi=src.uwagi, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.wpgp=src.wpgp, tgt.id_old_pdr=src.id_old_pdr
+--		WHEN NOT MATCHED
+--		THEN INSERT (c153_id, aktywne, creation_tm, czas_na_dt, data_wydania, froma, last_modification_tm, nr, odroczenie_platnosci, powiadomienie_zbiorcze, termin_rozliczenia, tin, typ_rozliczenia, urzad_wydania, uwagi, valid_from, valid_to, version_, wpgp, id_old_pdr)
+--		VALUES (src.c153_id, src.aktywne, src.creation_tm, src.czas_na_dt, src.data_wydania, src.froma, src.last_modification_tm, src.nr, src.odroczenie_platnosci, src.powiadomienie_zbiorcze, src.termin_rozliczenia, src.tin, src.typ_rozliczenia, src.urzad_wydania, src.uwagi, src.valid_from, src.valid_to, src.version_, src.wpgp, src.id_old_pdr);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c153_miejsceobjecia' BEGIN
+--		MERGE INTO pdr.c153_miejsceobjecia AS tgt
+--		USING [WA_StageHurtownia].pdr.c153_miejsceobjecia AS src
+--		ON (tgt.c153_miejsceobjecia_id=src.c153_miejsceobjecia_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.kod_miejsca=src.kod_miejsca, tgt.c153_id=src.c153_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c153_miejsceobjecia_id, kod_miejsca, c153_id)
+--		VALUES (src.c153_miejsceobjecia_id, src.kod_miejsca, src.c153_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c153_procedura' BEGIN
+--		MERGE INTO pdr.c153_procedura AS tgt
+--		USING [WA_StageHurtownia].pdr.c153_procedura AS src
+--		ON (tgt.c153_procedura_id=src.c153_procedura_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.kod_procedury=src.kod_procedury, tgt.c153_id=src.c153_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c153_procedura_id, kod_procedury, c153_id)
+--		VALUES (src.c153_procedura_id, src.kod_procedury, src.c153_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c153_towar_wykluczony' BEGIN
+--		MERGE INTO pdr.c153_towar_wykluczony AS tgt
+--		USING [WA_StageHurtownia].pdr.c153_towar_wykluczony AS src
+--		ON (tgt.c153_towar_wykluczony_id=src.c153_towar_wykluczony_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.kod_towaru=src.kod_towaru, tgt.c153_id=src.c153_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c153_towar_wykluczony_id, kod_towaru, c153_id)
+--		VALUES (src.c153_towar_wykluczony_id, src.kod_towaru, src.c153_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c153_tranzyt' BEGIN
+--		MERGE INTO pdr.c153_tranzyt AS tgt
+--		USING [WA_StageHurtownia].pdr.c153_tranzyt AS src
+--		ON (tgt.c153_tranzyt_id=src.c153_tranzyt_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.kod_tranzytu=src.kod_tranzytu, tgt.c153_id=src.c153_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c153_tranzyt_id, kod_tranzytu, c153_id)
+--		VALUES (src.c153_tranzyt_id, src.kod_tranzytu, src.c153_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c153_urzad_objecia' BEGIN
+--		MERGE INTO pdr.c153_urzad_objecia AS tgt
+--		USING [WA_StageHurtownia].pdr.c153_urzad_objecia AS src
+--		ON (tgt.c153_urzad_objecia_id=src.c153_urzad_objecia_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.czas_na_decyzje=src.czas_na_decyzje, tgt.czas_na_powiadomienie=src.czas_na_powiadomienie, tgt.kod_urzedu=src.kod_urzedu, tgt.c153_id=src.c153_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c153_urzad_objecia_id, czas_na_decyzje, czas_na_powiadomienie, kod_urzedu, c153_id)
+--		VALUES (src.c153_urzad_objecia_id, src.czas_na_decyzje, src.czas_na_powiadomienie, src.kod_urzedu, src.c153_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c153_zamknieciecelne' BEGIN
+--		MERGE INTO pdr.c153_zamknieciecelne AS tgt
+--		USING [WA_StageHurtownia].pdr.c153_zamknieciecelne AS src
+--		ON (tgt.c153_zamknieciecelne_id=src.c153_zamknieciecelne_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.nr=src.nr, tgt.c153_id=src.c153_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c153_zamknieciecelne_id, nr, c153_id)
+--		VALUES (src.c153_zamknieciecelne_id, src.nr, src.c153_id);
+--		SET @Merged = 1;
+--	END
+
+--	--ADD
+--	IF @TableName = 'c160' BEGIN
+--		MERGE INTO pdr.c160 AS tgt
+--		USING WA_StageHurtownia.pdr.c160 AS src
+--		ON (tgt.c160_id=src.c160_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.email=src.email, tgt.fax=src.fax, tgt.kod=src.kod, tgt.kod_pocztowy=src.kod_pocztowy, tgt.kraj=src.kraj, tgt.last_modification_tm=src.last_modification_tm, tgt.miejscowosc=src.miejscowosc, tgt.nazwa_krotka=src.nazwa_krotka, tgt.nazwa_pelna=src.nazwa_pelna, tgt.poczta=src.poczta, tgt.telefon=src.telefon, tgt.ulica=src.ulica, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c160_id, creation_tm, email, fax, kod, kod_pocztowy, kraj, last_modification_tm, miejscowosc, nazwa_krotka, nazwa_pelna, poczta, telefon, ulica, valid_from, valid_to, version_)
+--		VALUES (src.c160_id, src.creation_tm, src.email, src.fax, src.kod, src.kod_pocztowy, src.kraj, src.last_modification_tm, src.miejscowosc, src.nazwa_krotka, src.nazwa_pelna, src.poczta, src.telefon, src.ulica, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c169' BEGIN
+--		MERGE INTO pdr.c169 AS tgt
+--		USING WA_StageHurtownia.pdr.c169 AS src
+--		ON (tgt.c169_id=src.c169_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.dzien=src.dzien, tgt.last_modification_tm=src.last_modification_tm, tgt.miesiac=src.miesiac, tgt.nazwa=src.nazwa, tgt.nazwa_en=src.nazwa_en, tgt.rok=src.rok, tgt.ruchome=src.ruchome, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.nazwa_eng=src.nazwa_eng, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c169_id, creation_tm, dzien, last_modification_tm, miesiac, nazwa, nazwa_en, rok, ruchome, valid_from, valid_to, nazwa_eng, version_)
+--		VALUES (src.c169_id, src.creation_tm, src.dzien, src.last_modification_tm, src.miesiac, src.nazwa, src.nazwa_en, src.rok, src.ruchome, src.valid_from, src.valid_to, src.nazwa_eng, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c170' BEGIN
+--		MERGE INTO pdr.c170 AS tgt
+--		USING WA_StageHurtownia.pdr.c170 AS src
+--		ON (tgt.c170_id=src.c170_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.data=src.data, tgt.do_dnia=src.do_dnia, tgt.kod_urzedu=src.kod_urzedu, tgt.last_modification_tm=src.last_modification_tm, tgt.od_dnia=src.od_dnia, tgt.przyczyna=src.przyczyna, tgt.przyczyna_en=src.przyczyna_en, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.do_godziny=src.do_godziny, tgt.od_godziny=src.od_godziny, tgt.przyczyna_eng=src.przyczyna_eng, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c170_id, creation_tm, data, do_dnia, kod_urzedu, last_modification_tm, od_dnia, przyczyna, przyczyna_en, valid_from, valid_to, do_godziny, od_godziny, przyczyna_eng, version_)
+--		VALUES (src.c170_id, src.creation_tm, src.data, src.do_dnia, src.kod_urzedu, src.last_modification_tm, src.od_dnia, src.przyczyna, src.przyczyna_en, src.valid_from, src.valid_to, src.do_godziny, src.od_godziny, src.przyczyna_eng, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c211' BEGIN
+--		MERGE INTO pdr.c211 AS tgt
+--		USING WA_StageHurtownia.pdr.c211 AS src
+--		ON (tgt.c211_id=src.c211_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.bledne_logowania=src.bledne_logowania, tgt.creation_tm=src.creation_tm, tgt.hasla_senc=src.hasla_senc, tgt.haslo_awaryjne=src.haslo_awaryjne, tgt.haslo_senc=src.haslo_senc, tgt.kraj=src.kraj, tgt.last_modification_tm=src.last_modification_tm, tgt.login=src.login, tgt.loginaktywny=src.loginaktywny, tgt.nazwisko_imie=src.nazwisko_imie, tgt.placowka_edycji=src.placowka_edycji, tgt.rin=src.rin, tgt.urzad_rejestrowy=src.urzad_rejestrowy, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.zmiana_hasla=src.zmiana_hasla, tgt.hasla=src.hasla, tgt.haslo=src.haslo, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c211_id, bledne_logowania, creation_tm, hasla_senc, haslo_awaryjne, haslo_senc, kraj, last_modification_tm, login, loginaktywny, nazwisko_imie, placowka_edycji, rin, urzad_rejestrowy, valid_from, valid_to, zmiana_hasla, hasla, haslo, version_)
+--		VALUES (src.c211_id, src.bledne_logowania, src.creation_tm, src.hasla_senc, src.haslo_awaryjne, src.haslo_senc, src.kraj, src.last_modification_tm, src.login, src.loginaktywny, src.nazwisko_imie, src.placowka_edycji, src.rin, src.urzad_rejestrowy, src.valid_from, src.valid_to, src.zmiana_hasla, src.hasla, src.haslo, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c211_zakresreprezentacji' BEGIN
+--		MERGE INTO pdr.c211_zakresreprezentacji AS tgt
+--		USING WA_StageHurtownia.pdr.c211_zakresreprezentacji AS src
+--		ON (tgt.c211_zakresreprezentacji_id=src.c211_zakresreprezentacji_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.zakres=src.zakres, tgt.c211_id=src.c211_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c211_zakresreprezentacji_id, zakres, c211_id)
+--		VALUES (src.c211_zakresreprezentacji_id, src.zakres, src.c211_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c226' BEGIN
+--		MERGE INTO pdr.c226 AS tgt
+--		USING WA_StageHurtownia.pdr.c226 AS src
+--		ON (tgt.c226_id=src.c226_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.aktywny=src.aktywny, tgt.certyfikat=src.certyfikat, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.rin=src.rin, tgt.thumbprint=src.thumbprint, tgt.uc_oswiadczenia=src.uc_oswiadczenia, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.wlasciciel=src.wlasciciel, tgt.wystawca=src.wystawca, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c226_id, aktywny, certyfikat, creation_tm, last_modification_tm, rin, thumbprint, uc_oswiadczenia, valid_from, valid_to, wlasciciel, wystawca, version_)
+--		VALUES (src.c226_id, src.aktywny, src.certyfikat, src.creation_tm, src.last_modification_tm, src.rin, src.thumbprint, src.uc_oswiadczenia, src.valid_from, src.valid_to, src.wlasciciel, src.wystawca, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c227' BEGIN
+--		MERGE INTO pdr.c227 AS tgt
+--		USING WA_StageHurtownia.pdr.c227 AS src
+--		ON (tgt.c227_id=src.c227_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.aktywny=src.aktywny, tgt.certyfikat=src.certyfikat, tgt.creation_tm=src.creation_tm, tgt.id_old_pdr=src.id_old_pdr, tgt.last_modification_tm=src.last_modification_tm, tgt.thumbprint=src.thumbprint, tgt.uc_oswiadczenia=src.uc_oswiadczenia, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.wlasciciel=src.wlasciciel, tgt.wystawca=src.wystawca
+--		WHEN NOT MATCHED
+--		THEN INSERT (c227_id, aktywny, certyfikat, creation_tm, id_old_pdr, last_modification_tm, thumbprint, uc_oswiadczenia, valid_from, valid_to, version_, wlasciciel, wystawca)
+--		VALUES (src.c227_id, src.aktywny, src.certyfikat, src.creation_tm, src.id_old_pdr, src.last_modification_tm, src.thumbprint, src.uc_oswiadczenia, src.valid_from, src.valid_to, src.version_, src.wlasciciel, src.wystawca);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c228' BEGIN
+--		MERGE INTO pdr.c228 AS tgt
+--		USING WA_StageHurtownia.pdr.c228 AS src
+--		ON (tgt.c228_id=src.c228_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.aktywne=src.aktywne, tgt.creation_tm=src.creation_tm, tgt.data_wydania=src.data_wydania, tgt.id_old_pdr=src.id_old_pdr, tgt.last_modification_tm=src.last_modification_tm, tgt.nr=src.nr, tgt.typ=src.typ, tgt.urzad_wydania=src.urzad_wydania, tgt.uwagi=src.uwagi, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c228_id, aktywne, creation_tm, data_wydania, id_old_pdr, last_modification_tm, nr, typ, urzad_wydania, uwagi, valid_from, valid_to, version_)
+--		VALUES (src.c228_id, src.aktywne, src.creation_tm, src.data_wydania, src.id_old_pdr, src.last_modification_tm, src.nr, src.typ, src.urzad_wydania, src.uwagi, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c228_okres_zakonczenia' BEGIN
+--		MERGE INTO pdr.c228_okres_zakonczenia AS tgt
+--		USING WA_StageHurtownia.pdr.c228_okres_zakonczenia AS src
+--		ON (tgt.c228_okres_zakonczenia_id=src.c228_okres_zakonczenia_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.kod_towaru=src.kod_towaru, tgt.liczba_miesiecy=src.liczba_miesiecy, tgt.c228_id=src.c228_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c228_okres_zakonczenia_id, kod_towaru, liczba_miesiecy, c228_id)
+--		VALUES (src.c228_okres_zakonczenia_id, src.kod_towaru, src.liczba_miesiecy, src.c228_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c228_procedura' BEGIN
+--		MERGE INTO pdr.c228_procedura AS tgt
+--		USING WA_StageHurtownia.pdr.c228_procedura AS src
+--		ON (tgt.c228_procedura_id=src.c228_procedura_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.kod_procedury=src.kod_procedury, tgt.c228_id=src.c228_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c228_procedura_id, kod_procedury, c228_id)
+--		VALUES (src.c228_procedura_id, src.kod_procedury, src.c228_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c228_produkt' BEGIN
+--		MERGE INTO pdr.c228_produkt AS tgt
+--		USING WA_StageHurtownia.pdr.c228_produkt AS src
+--		ON (tgt.c228_produkt_id=src.c228_produkt_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.kod_towaru=src.kod_towaru, tgt.c228_id=src.c228_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c228_produkt_id, kod_towaru, c228_id)
+--		VALUES (src.c228_produkt_id, src.kod_towaru, src.c228_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c228_towar' BEGIN
+--		MERGE INTO pdr.c228_towar AS tgt
+--		USING WA_StageHurtownia.pdr.c228_towar AS src
+--		ON (tgt.c228_towar_id=src.c228_towar_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.ilosc=src.ilosc, tgt.jm=src.jm, tgt.kod_dodatkowy=src.kod_dodatkowy, tgt.kod_towaru=src.kod_towaru, tgt.waluta=src.waluta, tgt.wartosc=src.wartosc, tgt.c228_id=src.c228_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c228_towar_id, ilosc, jm, kod_dodatkowy, kod_towaru, waluta, wartosc, c228_id)
+--		VALUES (src.c228_towar_id, src.ilosc, src.jm, src.kod_dodatkowy, src.kod_towaru, src.waluta, src.wartosc, src.c228_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c228_urzad_nadzoru' BEGIN
+--		MERGE INTO pdr.c228_urzad_nadzoru AS tgt
+--		USING WA_StageHurtownia.pdr.c228_urzad_nadzoru AS src
+--		ON (tgt.c228_urzad_nadzoru_id=src.c228_urzad_nadzoru_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.kod_urzedu=src.kod_urzedu, tgt.c228_id=src.c228_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c228_urzad_nadzoru_id, kod_urzedu, c228_id)
+--		VALUES (src.c228_urzad_nadzoru_id, src.kod_urzedu, src.c228_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c228_urzad_objecia' BEGIN
+--		MERGE INTO pdr.c228_urzad_objecia AS tgt
+--		USING WA_StageHurtownia.pdr.c228_urzad_objecia AS src
+--		ON (tgt.c228_urzad_objecia_id=src.c228_urzad_objecia_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.kod_urzedu=src.kod_urzedu, tgt.c228_id=src.c228_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c228_urzad_objecia_id, kod_urzedu, c228_id)
+--		VALUES (src.c228_urzad_objecia_id, src.kod_urzedu, src.c228_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c228_urzad_zakonczenia' BEGIN
+--		MERGE INTO pdr.c228_urzad_zakonczenia AS tgt
+--		USING WA_StageHurtownia.pdr.c228_urzad_zakonczenia AS src
+--		ON (tgt.c228_urzad_zakonczenia_id=src.c228_urzad_zakonczenia_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.kod_urzedu=src.kod_urzedu, tgt.c228_id=src.c228_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c228_urzad_zakonczenia_id, kod_urzedu, c228_id)
+--		VALUES (src.c228_urzad_zakonczenia_id, src.kod_urzedu, src.c228_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c229' BEGIN
+--		MERGE INTO pdr.c229 AS tgt
+--		USING WA_StageHurtownia.pdr.c229 AS src
+--		ON (tgt.c229_id=src.c229_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.aktywne=src.aktywne, tgt.creation_tm=src.creation_tm, tgt.data_wydania=src.data_wydania, tgt.id_old_pdr=src.id_old_pdr, tgt.last_modification_tm=src.last_modification_tm, tgt.nr=src.nr, tgt.urzad_wydania=src.urzad_wydania, tgt.uwagi=src.uwagi, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c229_id, aktywne, creation_tm, data_wydania, id_old_pdr, last_modification_tm, nr, urzad_wydania, uwagi, valid_from, valid_to, version_)
+--		VALUES (src.c229_id, src.aktywne, src.creation_tm, src.data_wydania, src.id_old_pdr, src.last_modification_tm, src.nr, src.urzad_wydania, src.uwagi, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c229_izba_objecia' BEGIN
+--		MERGE INTO pdr.c229_izba_objecia AS tgt
+--		USING WA_StageHurtownia.pdr.c229_izba_objecia AS src
+--		ON (tgt.c229_izba_objecia_id=src.c229_izba_objecia_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.kod_izby=src.kod_izby, tgt.c229_id=src.c229_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c229_izba_objecia_id, kod_izby, c229_id)
+--		VALUES (src.c229_izba_objecia_id, src.kod_izby, src.c229_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c229_izba_procedura' BEGIN
+--		MERGE INTO pdr.c229_izba_procedura AS tgt
+--		USING WA_StageHurtownia.pdr.c229_izba_procedura AS src
+--		ON (tgt.c229_izba_procedura_id=src.c229_izba_procedura_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.kod_procedury=src.kod_procedury, tgt.c229_izba_objecia_id=src.c229_izba_objecia_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c229_izba_procedura_id, kod_procedury, c229_izba_objecia_id)
+--		VALUES (src.c229_izba_procedura_id, src.kod_procedury, src.c229_izba_objecia_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c229_procedura' BEGIN
+--		MERGE INTO pdr.c229_procedura AS tgt
+--		USING WA_StageHurtownia.pdr.c229_procedura AS src
+--		ON (tgt.c229_procedura_id=src.c229_procedura_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.kod_procedury=src.kod_procedury, tgt.c229_id=src.c229_id
+--		WHEN NOT MATCHED
+--		THEN INSERT (c229_procedura_id, kod_procedury, c229_id)
+--		VALUES (src.c229_procedura_id, src.kod_procedury, src.c229_id);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c3003' BEGIN
+--		MERGE INTO pdr.c3003 AS tgt
+--		USING WA_StageHurtownia.pdr.c3003 AS src
+--		ON (tgt.c3003_id=src.c3003_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwakodgrupyzatrudnienia=src.nazwakodgrupyzatrudnienia, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.zablokowane=src.zablokowane
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3003_id, code, creation_tm, last_modification_tm, nazwakodgrupyzatrudnienia, valid_from, valid_to, version_, zablokowane)
+--		VALUES (src.c3003_id, src.code, src.creation_tm, src.last_modification_tm, src.nazwakodgrupyzatrudnienia, src.valid_from, src.valid_to, src.version_, src.zablokowane);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3004' BEGIN
+--		MERGE INTO pdr.c3004 AS tgt
+--		USING WA_StageHurtownia.pdr.c3004 AS src
+--		ON (tgt.c3004_id=src.c3004_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kodklasyfikacji=src.kodklasyfikacji, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.czescbudzetowa=src.czescbudzetowa, tgt.kodgrupaekonomiczna=src.kodgrupaekonomiczna, tgt.kodgrupazatrudnienia=src.kodgrupazatrudnienia, tgt.kodrodzajbudzetu=src.kodrodzajbudzetu, tgt.kodsymbolu=src.kodsymbolu, tgt.koddzialania=src.koddzialania, tgt.koddzialu=src.koddzialu, tgt.kodparagrafu=src.kodparagrafu, tgt.kodprogramu=src.kodprogramu, tgt.kodprojektu=src.kodprojektu, tgt.kodrozdzialu=src.kodrozdzialu, tgt.rodzajprzeplywu=src.rodzajprzeplywu
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3004_id, creation_tm, kodklasyfikacji, last_modification_tm, valid_to, version_, czescbudzetowa, kodgrupaekonomiczna, kodgrupazatrudnienia, kodrodzajbudzetu, kodsymbolu, koddzialania, koddzialu, kodparagrafu, kodprogramu, kodprojektu, kodrozdzialu, rodzajprzeplywu)
+--		VALUES (src.c3004_id, src.creation_tm, src.kodklasyfikacji, src.last_modification_tm, src.valid_to, src.version_, src.czescbudzetowa, src.kodgrupaekonomiczna, src.kodgrupazatrudnienia, src.kodrodzajbudzetu, src.kodsymbolu, src.koddzialania, src.koddzialu, src.kodparagrafu, src.kodprogramu, src.kodprojektu, src.kodrozdzialu, src.rodzajprzeplywu);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3005' BEGIN
+--		MERGE INTO pdr.c3005 AS tgt
+--		USING WA_StageHurtownia.pdr.c3005 AS src
+--		ON (tgt.c3005_id=src.c3005_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kodprogramu=src.kodprogramu, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.opis=src.opis, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.zablokowane=src.zablokowane
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3005_id, creation_tm, kodprogramu, last_modification_tm, nazwa, opis, valid_from, valid_to, version_, zablokowane)
+--		VALUES (src.c3005_id, src.creation_tm, src.kodprogramu, src.last_modification_tm, src.nazwa, src.opis, src.valid_from, src.valid_to, src.version_, src.zablokowane);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3006' BEGIN
+--		MERGE INTO pdr.c3006 AS tgt
+--		USING WA_StageHurtownia.pdr.c3006 AS src
+--		ON (tgt.c3006_id=src.c3006_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kodparagrafu=src.kodparagrafu, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.nazwa=src.nazwa, tgt.zablokowane=src.zablokowane
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3006_id, creation_tm, kodparagrafu, last_modification_tm, valid_from, valid_to, version_, nazwa, zablokowane)
+--		VALUES (src.c3006_id, src.creation_tm, src.kodparagrafu, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.nazwa, src.zablokowane);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3007' BEGIN
+--		MERGE INTO pdr.c3007 AS tgt
+--		USING WA_StageHurtownia.pdr.c3007 AS src
+--		ON (tgt.c3007_id=src.c3007_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kodprogramu=src.kodprogramu, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.opis=src.opis, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.zablokowane=src.zablokowane
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3007_id, creation_tm, kodprogramu, last_modification_tm, nazwa, opis, valid_from, valid_to, version_, zablokowane)
+--		VALUES (src.c3007_id, src.creation_tm, src.kodprogramu, src.last_modification_tm, src.nazwa, src.opis, src.valid_from, src.valid_to, src.version_, src.zablokowane);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3008' BEGIN
+--		MERGE INTO pdr.c3008 AS tgt
+--		USING WA_StageHurtownia.pdr.c3008 AS src
+--		ON (tgt.c3008_id=src.c3008_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.koddzialu=src.koddzialu, tgt.kodrozdzialu=src.kodrozdzialu, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.zablokowane=src.zablokowane
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3008_id, creation_tm, koddzialu, kodrozdzialu, last_modification_tm, nazwa, valid_from, valid_to, version_, zablokowane)
+--		VALUES (src.c3008_id, src.creation_tm, src.koddzialu, src.kodrozdzialu, src.last_modification_tm, src.nazwa, src.valid_from, src.valid_to, src.version_, src.zablokowane);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3009' BEGIN
+--		MERGE INTO pdr.c3009 AS tgt
+--		USING WA_StageHurtownia.pdr.c3009 AS src
+--		ON (tgt.c3009_id=src.c3009_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kodzrodla=src.kodzrodla, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.zablokowane=src.zablokowane
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3009_id, creation_tm, kodzrodla, last_modification_tm, nazwa, valid_from, valid_to, version_, zablokowane)
+--		VALUES (src.c3009_id, src.creation_tm, src.kodzrodla, src.last_modification_tm, src.nazwa, src.valid_from, src.valid_to, src.version_, src.zablokowane);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3010' BEGIN
+--		MERGE INTO pdr.c3010 AS tgt
+--		USING WA_StageHurtownia.pdr.c3010 AS src
+--		ON (tgt.c3010_id=src.c3010_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.dysponentiiistopnia=src.dysponentiiistopnia, tgt.dysponentiistopnia=src.dysponentiistopnia, tgt.dysponentistopnia=src.dysponentistopnia, tgt.dysponentivstopnia=src.dysponentivstopnia, tgt.dysponentvstopnia=src.dysponentvstopnia, tgt.jednostkanadrzedna=src.jednostkanadrzedna, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.organegzekucyjny=src.organegzekucyjny, tgt.pionmf=src.pionmf, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.zablokowane=src.zablokowane
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3010_id, code, creation_tm, dysponentiiistopnia, dysponentiistopnia, dysponentistopnia, dysponentivstopnia, dysponentvstopnia, jednostkanadrzedna, last_modification_tm, nazwa, organegzekucyjny, pionmf, valid_from, valid_to, version_, zablokowane)
+--		VALUES (src.c3010_id, src.code, src.creation_tm, src.dysponentiiistopnia, src.dysponentiistopnia, src.dysponentistopnia, src.dysponentivstopnia, src.dysponentvstopnia, src.jednostkanadrzedna, src.last_modification_tm, src.nazwa, src.organegzekucyjny, src.pionmf, src.valid_from, src.valid_to, src.version_, src.zablokowane);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3011' BEGIN
+--		MERGE INTO pdr.c3011 AS tgt
+--		USING WA_StageHurtownia.pdr.c3011 AS src
+--		ON (tgt.c3011_id=src.c3011_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kodjednostki=src.kodjednostki, tgt.kodkomorki=src.kodkomorki, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.nazwa=src.nazwa, tgt.zablokowane=src.zablokowane
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3011_id, creation_tm, kodjednostki, kodkomorki, last_modification_tm, valid_from, valid_to, version_, nazwa, zablokowane)
+--		VALUES (src.c3011_id, src.creation_tm, src.kodjednostki, src.kodkomorki, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.nazwa, src.zablokowane);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3014' BEGIN
+--		MERGE INTO pdr.c3014 AS tgt
+--		USING WA_StageHurtownia.pdr.c3014 AS src
+--		ON (tgt.c3014_id=src.c3014_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kod=src.kod, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.zablokowane=src.zablokowane
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3014_id, creation_tm, kod, last_modification_tm, nazwa, valid_from, valid_to, version_, zablokowane)
+--		VALUES (src.c3014_id, src.creation_tm, src.kod, src.last_modification_tm, src.nazwa, src.valid_from, src.valid_to, src.version_, src.zablokowane);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3015' BEGIN
+--		MERGE INTO pdr.c3015 AS tgt
+--		USING WA_StageHurtownia.pdr.c3015 AS src
+--		ON (tgt.c3015_id=src.c3015_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.dzialanie=src.dzialanie, tgt.last_modification_tm=src.last_modification_tm, tgt.nazwa=src.nazwa, tgt.podzadanie=src.podzadanie, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.zablokowane=src.zablokowane
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3015_id, creation_tm, dzialanie, last_modification_tm, nazwa, podzadanie, valid_from, valid_to, version_, zablokowane)
+--		VALUES (src.c3015_id, src.creation_tm, src.dzialanie, src.last_modification_tm, src.nazwa, src.podzadanie, src.valid_from, src.valid_to, src.version_, src.zablokowane);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3020' BEGIN
+--		MERGE INTO pdr.c3020 AS tgt
+--		USING WA_StageHurtownia.pdr.c3020 AS src
+--		ON (tgt.c3020_id=src.c3020_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.idkosztu=src.idkosztu, tgt.kodtytplatikoszwytworzenia=src.kodtytplatikoszwytworzenia, tgt.kodbanderoli=src.kodbanderoli, tgt.kodtytuluplatnosci=src.kodtytuluplatnosci, tgt.kosztwytworzenia=src.kosztwytworzenia, tgt.last_modification_tm=src.last_modification_tm, tgt.nanoszone=src.nanoszone, tgt.rodzaj=src.rodzaj, tgt.typbanderoli=src.typbanderoli, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.wartosc=src.wartosc, tgt.wyroby=src.wyroby
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3020_id, creation_tm, idkosztu, kodtytplatikoszwytworzenia, kodbanderoli, kodtytuluplatnosci, kosztwytworzenia, last_modification_tm, nanoszone, rodzaj, typbanderoli, valid_from, valid_to, version_, wartosc, wyroby)
+--		VALUES (src.c3020_id, src.creation_tm, src.idkosztu, src.kodtytplatikoszwytworzenia, src.kodbanderoli, src.kodtytuluplatnosci, src.kosztwytworzenia, src.last_modification_tm, src.nanoszone, src.rodzaj, src.typbanderoli, src.valid_from, src.valid_to, src.version_, src.wartosc, src.wyroby);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3040' BEGIN
+--		MERGE INTO pdr.c3040 AS tgt
+--		USING WA_StageHurtownia.pdr.c3040 AS src
+--		ON (tgt.c3040_id=src.c3040_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kodcn=src.kodcn, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.nazwa=src.nazwa, tgt.stawka=src.stawka
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3040_id, creation_tm, kodcn, last_modification_tm, valid_from, valid_to, version_, nazwa, stawka)
+--		VALUES (src.c3040_id, src.creation_tm, src.kodcn, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.nazwa, src.stawka);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3041' BEGIN
+--		MERGE INTO pdr.c3041 AS tgt
+--		USING WA_StageHurtownia.pdr.c3041 AS src
+--		ON (tgt.c3041_id=src.c3041_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.idmodelu=src.idmodelu, tgt.last_modification_tm=src.last_modification_tm, tgt.marka=src.marka, tgt.model=src.model, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3041_id, creation_tm, idmodelu, last_modification_tm, marka, model, valid_from, valid_to, version_)
+--		VALUES (src.c3041_id, src.creation_tm, src.idmodelu, src.last_modification_tm, src.marka, src.model, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3042' BEGIN
+--		MERGE INTO pdr.c3042 AS tgt
+--		USING WA_StageHurtownia.pdr.c3042 AS src
+--		ON (tgt.c3042_id=src.c3042_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.a=src.a, tgt.c=src.c, tgt.creation_tm=src.creation_tm, tgt.d=src.d, tgt.idgry=src.idgry, tgt.last_modification_tm=src.last_modification_tm, tgt.opis=src.opis, tgt.stawka=src.stawka, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3042_id, a, c, creation_tm, d, idgry, last_modification_tm, opis, stawka, valid_from, valid_to, version_)
+--		VALUES (src.c3042_id, src.a, src.c, src.creation_tm, src.d, src.idgry, src.last_modification_tm, src.opis, src.stawka, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3062' BEGIN
+--		MERGE INTO pdr.c3062 AS tgt
+--		USING WA_StageHurtownia.pdr.c3062 AS src
+--		ON (tgt.c3062_id=src.c3062_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.sekcja=src.sekcja, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.dzial=src.dzial, tgt.grupa=src.grupa, tgt.klasa=src.klasa, tgt.nazwa=src.nazwa, tgt.podklasa=src.podklasa
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3062_id, creation_tm, last_modification_tm, sekcja, valid_from, valid_to, version_, dzial, grupa, klasa, nazwa, podklasa)
+--		VALUES (src.c3062_id, src.creation_tm, src.last_modification_tm, src.sekcja, src.valid_from, src.valid_to, src.version_, src.dzial, src.grupa, src.klasa, src.nazwa, src.podklasa);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3063' BEGIN
+--		MERGE INTO pdr.c3063 AS tgt
+--		USING WA_StageHurtownia.pdr.c3063 AS src
+--		ON (tgt.c3063_id=src.c3063_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.przelicznik=src.przelicznik, tgt.ustalanyprzez=src.ustalanyprzez, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.waluta=src.waluta
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3063_id, creation_tm, last_modification_tm, przelicznik, ustalanyprzez, valid_from, valid_to, version_, waluta)
+--		VALUES (src.c3063_id, src.creation_tm, src.last_modification_tm, src.przelicznik, src.ustalanyprzez, src.valid_from, src.valid_to, src.version_, src.waluta);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3081' BEGIN
+--		MERGE INTO pdr.c3081 AS tgt
+--		USING WA_StageHurtownia.pdr.c3081 AS src
+--		ON (tgt.c3081_id=src.c3081_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.idodroczeniaplatnosci=src.idodroczeniaplatnosci, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.formaodroczeniaplatnosci=src.formaodroczeniaplatnosci
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3081_id, creation_tm, idodroczeniaplatnosci, last_modification_tm, valid_from, valid_to, version_, formaodroczeniaplatnosci)
+--		VALUES (src.c3081_id, src.creation_tm, src.idodroczeniaplatnosci, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.formaodroczeniaplatnosci);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3083' BEGIN
+--		MERGE INTO pdr.c3083 AS tgt
+--		USING WA_StageHurtownia.pdr.c3083 AS src
+--		ON (tgt.c3083_id=src.c3083_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.idprzyczynazadluzenia=src.idprzyczynazadluzenia, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.przyczynazadluzenia=src.przyczynazadluzenia, tgt.opis=src.opis
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3083_id, creation_tm, idprzyczynazadluzenia, last_modification_tm, valid_from, valid_to, version_, przyczynazadluzenia, opis)
+--		VALUES (src.c3083_id, src.creation_tm, src.idprzyczynazadluzenia, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.przyczynazadluzenia, src.opis);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c3102' BEGIN
+--		MERGE INTO pdr.c3102 AS tgt
+--		USING WA_StageHurtownia.pdr.c3102 AS src
+--		ON (tgt.c3102_id=src.c3102_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.kod=src.kod, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.nazwa=src.nazwa, tgt.nieaktywny=src.nieaktywny
+--		WHEN NOT MATCHED
+--		THEN INSERT (c3102_id, creation_tm, kod, last_modification_tm, valid_from, valid_to, version_, nazwa, nieaktywny)
+--		VALUES (src.c3102_id, src.creation_tm, src.kod, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.nazwa, src.nieaktywny);
+--		SET @Merged = 1;
+--	END
+-- 	IF @TableName = 'c401' BEGIN
+--		MERGE INTO pdr.c401 AS tgt
+--		USING WA_StageHurtownia.pdr.c401 AS src
+--		ON (tgt.c401_id=src.c401_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.currency_code=src.currency_code, tgt.currency_name=src.currency_name, tgt.exchange_rate=src.exchange_rate, tgt.last_modification_tm=src.last_modification_tm, tgt.multiplier=src.multiplier, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c401_id, creation_tm, currency_code, currency_name, exchange_rate, last_modification_tm, multiplier, valid_from, valid_to, version_)
+--		VALUES (src.c401_id, src.creation_tm, src.currency_code, src.currency_name, src.exchange_rate, src.last_modification_tm, src.multiplier, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'c402' BEGIN
+--		MERGE INTO pdr.c402 AS tgt
+--		USING WA_StageHurtownia.pdr.c402 AS src
+--		ON (tgt.c402_id=src.c402_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.creation_tm=src.creation_tm, tgt.currency_code=src.currency_code, tgt.currency_name=src.currency_name, tgt.exchange_rate=src.exchange_rate, tgt.last_modification_tm=src.last_modification_tm, tgt.multiplier=src.multiplier, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (c402_id, creation_tm, currency_code, currency_name, exchange_rate, last_modification_tm, multiplier, valid_from, valid_to, version_)
+--		VALUES (src.c402_id, src.creation_tm, src.currency_code, src.currency_name, src.exchange_rate, src.last_modification_tm, src.multiplier, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's045' BEGIN
+--		MERGE INTO pdr.s045 AS tgt
+--		USING WA_StageHurtownia.pdr.s045 AS src
+--		ON (tgt.s045_id=src.s045_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s045_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s045_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's057' BEGIN
+--		MERGE INTO pdr.s057 AS tgt
+--		USING WA_StageHurtownia.pdr.s057 AS src
+--		ON (tgt.s057_id=src.s057_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s057_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s057_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's058' BEGIN
+--		MERGE INTO pdr.s058 AS tgt
+--		USING WA_StageHurtownia.pdr.s058 AS src
+--		ON (tgt.s058_id=src.s058_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s058_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s058_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's095' BEGIN
+--		MERGE INTO pdr.s095 AS tgt
+--		USING WA_StageHurtownia.pdr.s095 AS src
+--		ON (tgt.s095_id=src.s095_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s095_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s095_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's097' BEGIN
+--		MERGE INTO pdr.s097 AS tgt
+--		USING WA_StageHurtownia.pdr.s097 AS src
+--		ON (tgt.s097_id=src.s097_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s097_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s097_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's106' BEGIN
+--		MERGE INTO pdr.s106 AS tgt
+--		USING WA_StageHurtownia.pdr.s106 AS src
+--		ON (tgt.s106_id=src.s106_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s106_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s106_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's109' BEGIN
+--		MERGE INTO pdr.s109 AS tgt
+--		USING WA_StageHurtownia.pdr.s109 AS src
+--		ON (tgt.s109_id=src.s109_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s109_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s109_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's208' BEGIN
+--		MERGE INTO pdr.s208 AS tgt
+--		USING WA_StageHurtownia.pdr.s208 AS src
+--		ON (tgt.s208_id=src.s208_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s208_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s208_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's600' BEGIN
+--		MERGE INTO pdr.s600 AS tgt
+--		USING WA_StageHurtownia.pdr.s600 AS src
+--		ON (tgt.s600_id=src.s600_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s600_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s600_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's601' BEGIN
+--		MERGE INTO pdr.s601 AS tgt
+--		USING WA_StageHurtownia.pdr.s601 AS src
+--		ON (tgt.s601_id=src.s601_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s601_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s601_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 'st001' BEGIN
+--		MERGE INTO pdr.st001 AS tgt
+--		USING WA_StageHurtownia.pdr.st001 AS src
+--		ON (tgt.st001_id=src.st001_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to
+--		WHEN NOT MATCHED
+--		THEN INSERT (st001_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to)
+--		VALUES (src.st001_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's250' BEGIN
+--		MERGE INTO pdr.s250 AS tgt
+--		USING WA_StageHurtownia.pdr.s250 AS src
+--		ON (tgt.s250_id=src.s250_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s250_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s250_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's330' BEGIN
+--		MERGE INTO pdr.s330 AS tgt
+--		USING WA_StageHurtownia.pdr.s330 AS src
+--		ON (tgt.s330_id=src.s330_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s330_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s330_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's370' BEGIN
+--		MERGE INTO pdr.s370 AS tgt
+--		USING WA_StageHurtownia.pdr.s370 AS src
+--		ON (tgt.s370_id=src.s370_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.description=src.description, tgt.description_eng=src.description_eng, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_
+--		WHEN NOT MATCHED
+--		THEN INSERT (s370_id, code, creation_tm, description, description_eng, last_modification_tm, valid_from, valid_to, version_)
+--		VALUES (src.s370_id, src.code, src.creation_tm, src.description, src.description_eng, src.last_modification_tm, src.valid_from, src.valid_to, src.version_);
+--		SET @Merged = 1;
+--	END
+--	IF @TableName = 's380' BEGIN
+--		MERGE INTO pdr.s380 AS tgt
+--		USING WA_StageHurtownia.pdr.s380 AS src
+--		ON (tgt.s380_id=src.s380_id)
+--		WHEN MATCHED
+--		THEN UPDATE SET
+--		tgt.code=src.code, tgt.creation_tm=src.creation_tm, tgt.last_modification_tm=src.last_modification_tm, tgt.valid_from=src.valid_from, tgt.valid_to=src.valid_to, tgt.version_=src.version_, tgt.description=src.description, tgt.description_eng=src.description_eng
+--		WHEN NOT MATCHED
+--		THEN INSERT (s380_id, code, creation_tm, last_modification_tm, valid_from, valid_to, version_, description, description_eng)
+--		VALUES (src.s380_id, src.code, src.creation_tm, src.last_modification_tm, src.valid_from, src.valid_to, src.version_, src.description, src.description_eng);
+--		SET @Merged = 1;
+--	END
+
+
+
+
+--	IF (@Merged = 0)
+--	BEGIN
+--		DECLARE @Info VARCHAR(500) = 'W procedurze nie znaleziono bloku odpowiadającego tabeli [' + @TableName + '] z parametru @TableName.';
+--		THROW 51002, @Info, 0;
+--	END
+
+
+--END

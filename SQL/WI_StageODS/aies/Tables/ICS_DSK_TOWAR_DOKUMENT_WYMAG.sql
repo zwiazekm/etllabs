@@ -1,0 +1,9 @@
+﻿CREATE TABLE [aies].[ICS_DSK_TOWAR_DOKUMENT_WYMAG] (
+    [ID]               NUMERIC (19) NOT NULL,
+    [ICS_DSK_TOWAR_ID] NUMERIC (19) NULL,
+    [KOD]              CHAR (4)     NULL,
+    [NUMER]            VARCHAR (35) NULL,
+    [UWAGI]            VARCHAR (35) NULL,
+    CONSTRAINT [pk_ICS_DSK_TOWAR_DOKUMENT_WYMAG] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

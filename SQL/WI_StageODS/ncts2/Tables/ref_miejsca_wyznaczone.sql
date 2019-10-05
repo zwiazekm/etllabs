@@ -1,0 +1,28 @@
+﻿CREATE TABLE [ncts2].[ref_miejsca_wyznaczone] (
+    [id]                    BIGINT         NOT NULL,
+    [numer_rozstrzygniecia] NVARCHAR (25)  NULL,
+    [nazwa_rozstrzygniecia] NVARCHAR (110) NULL,
+    [idsisc]                NVARCHAR (17)  NULL,
+    [numer_miejsca]         NVARCHAR (17)  NULL,
+    [data_wydania]          DATETIME       NULL,
+    [organ_wydania]         NVARCHAR (8)   NULL,
+    [organ_nadzoru]         NVARCHAR (8)   NULL,
+    [gmina]                 NVARCHAR (50)  NULL,
+    [wojewodztwo]           NVARCHAR (30)  NULL,
+    [kod_pocztowy]          NVARCHAR (10)  NULL,
+    [miejscowosc]           NVARCHAR (52)  NULL,
+    [powiat]                NVARCHAR (50)  NULL,
+    [ulica]                 NVARCHAR (80)  NULL,
+    [numer_domu]            NVARCHAR (10)  NULL,
+    [numer_lokalu]          NVARCHAR (10)  NULL,
+    [poczta]                NVARCHAR (52)  NULL,
+    [kraj]                  NVARCHAR (2)   NULL,
+    [wazne_od]              DATETIME       NULL,
+    [wazne_do]              DATETIME       NULL,
+    [status]                NVARCHAR (2)   NULL,
+    [data_cofniecia]        DATETIME       NULL,
+    [valid_from]            DATETIME       NULL,
+    [valid_to]              DATETIME       NULL,
+    CONSTRAINT [ref_miejsca_wyznaczone_pk] PRIMARY KEY CLUSTERED ([id] ASC)
+);
+

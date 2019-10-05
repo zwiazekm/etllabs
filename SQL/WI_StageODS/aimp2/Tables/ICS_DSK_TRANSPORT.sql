@@ -1,0 +1,9 @@
+﻿CREATE TABLE [aimp2].[ICS_DSK_TRANSPORT] (
+    [ID]                           NUMERIC (19)  NOT NULL,
+    [ICS_DSK_ID]                   NUMERIC (19)  NOT NULL,
+    [ZNAKI_SRODKA_TRANSPORTU]      NVARCHAR (35) NULL,
+    [OZNACZENIE_SRODKA_TRANSPORTU] NCHAR (2)     NULL,
+    [version]                      INT           NOT NULL,
+    CONSTRAINT [ICS_DSK_TRANSPORT$PK_ICS_DSK_TRANSPORT] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

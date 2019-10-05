@@ -1,0 +1,26 @@
+﻿CREATE TABLE [zef2DW].[POWK_Dokument] (
+    [IdentyfikatorDokumentu] BIGINT          NOT NULL,
+    [DataDoreczenia]         DATE            NULL,
+    [DataWplywu]             DATE            NULL,
+    [DataWystawienia]        DATE            NULL,
+    [ParametryWniosku]       NVARCHAR (50)   NULL,
+    [NumerWniosku]           NVARCHAR (255)  NULL,
+    [OrganWydajacy]          NVARCHAR (255)  NULL,
+    [RodzajPodatku]          NVARCHAR (64)   NULL,
+    [KontrolaPowod]          NVARCHAR (25)   NULL,
+    [NumerPostanowienia]     NVARCHAR (255)  NULL,
+    [TypDochodu]             NVARCHAR (32)   NULL,
+    [PoKontroli]             NVARCHAR (5)    NULL,
+    [NrUpowaznienia]         NVARCHAR (255)  NULL,
+    [ZakresPostepowania]     NVARCHAR (4000) NULL,
+    [AdnotacjeIUwagi]        NVARCHAR (512)  NULL,
+    [RaportWyslaniaSK]       NVARCHAR (MAX)  NULL,
+    [DataArch]               DATE            NULL,
+    [ID_Pismo_xml]           BIGINT          NULL,
+    [operacja]               NVARCHAR (1)    NULL,
+    [IdentyfikatorPodatnika] BIGINT          NULL,
+    [UnikanieOpodatkowania]  NVARCHAR (255)  NULL,
+    [DataDoreczeniaArt200]   DATE            NULL,
+    CONSTRAINT [POWK_Dokument_PK] PRIMARY KEY CLUSTERED ([IdentyfikatorDokumentu] ASC)
+);
+

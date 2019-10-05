@@ -1,0 +1,15 @@
+﻿
+
+
+
+
+CREATE PROCEDURE [intr2].[TruncateAllStageIntr2]
+AS
+BEGIN
+	SET NOCOUNT ON;
+		TRUNCATE TABLE intr2.INTRASTAT_DeklaracjaWynikowa;
+		TRUNCATE TABLE intr2.INTRASTAT_DokumentZrodlowy;
+		TRUNCATE TABLE intr2.INTRASTAT_Podmiot;
+		TRUNCATE TABLE intr2.INTRASTAT_Towar;
+
+	END

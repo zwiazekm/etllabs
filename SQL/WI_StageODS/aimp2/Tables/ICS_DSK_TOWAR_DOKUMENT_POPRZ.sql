@@ -1,0 +1,11 @@
+﻿CREATE TABLE [aimp2].[ICS_DSK_TOWAR_DOKUMENT_POPRZ] (
+    [ID]               NUMERIC (19)  NOT NULL,
+    [ICS_DSK_TOWAR_ID] NUMERIC (19)  NULL,
+    [KATEGORIA]        NCHAR (1)     NULL,
+    [KOD]              NCHAR (3)     NULL,
+    [NR_POZYCJI]       NUMERIC (5)   NULL,
+    [NUMER]            NVARCHAR (35) NULL,
+    [version]          INT           NOT NULL,
+    CONSTRAINT [ICS_DSK_TOWAR_DOKUMENT_POPRZ$PK_ICS_DSK_TOWAR_DOKUMENT_POPRZ] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

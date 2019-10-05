@@ -1,0 +1,25 @@
+﻿CREATE TABLE [ncts2].[ref_urzedy_celne] (
+    [id]                           BIGINT         NOT NULL,
+    [kod_uc]                       NVARCHAR (8)   NULL,
+    [kod_uc_glowne_biuro]          NVARCHAR (8)   NULL,
+    [kod_uc_wyzszy_organ]          NVARCHAR (8)   NULL,
+    [kod_uc_przejecia]             NVARCHAR (8)   NULL,
+    [kod_uc_poszukiwania]          NVARCHAR (8)   NULL,
+    [kod_uc_poboru]                NVARCHAR (8)   NULL,
+    [kod_kraju]                    NVARCHAR (2)   NULL,
+    [kod_miasta]                   NVARCHAR (3)   NULL,
+    [kod_regionu]                  NVARCHAR (3)   NULL,
+    [data_wejscia_ncts]            DATETIME       NULL,
+    [najblizszy_urzad]             NVARCHAR (175) NULL,
+    [kod_pocztowy]                 NVARCHAR (9)   NULL,
+    [fax]                          NVARCHAR (35)  NULL,
+    [telefon]                      NVARCHAR (35)  NULL,
+    [telex]                        NVARCHAR (35)  NULL,
+    [adres_email]                  NVARCHAR (70)  NULL,
+    [kod_polozenia_geograficznego] NVARCHAR (6)   NULL,
+    [podmiot_przeznaczenia]        BIT            NULL,
+    [wazny_od]                     DATETIME       NULL,
+    [wazny_do]                     DATETIME       NULL,
+    CONSTRAINT [ref_urzedy_celne_pk] PRIMARY KEY CLUSTERED ([id] ASC)
+);
+

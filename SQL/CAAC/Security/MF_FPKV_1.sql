@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [MF\FPKV]
+    AUTHORIZATION [dbo]--[MF\FPKV];
+

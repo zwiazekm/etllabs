@@ -1,0 +1,9 @@
+﻿CREATE TABLE [ncts].[ARE_ACT] (
+    [SID]     INT         NOT NULL,
+    [ARE_ID]  CHAR (2)    NOT NULL,
+    [DAT_VAL] DATETIME    NOT NULL,
+    [MOD_TYP] DECIMAL (1) NULL,
+    [OPER]    CHAR (1)    NULL,
+    CONSTRAINT [PK_ARE_ACT] PRIMARY KEY CLUSTERED ([SID] ASC)
+);
+

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [MF\BZPN]
+    AUTHORIZATION [dbo]--[MF\BZPN];
+

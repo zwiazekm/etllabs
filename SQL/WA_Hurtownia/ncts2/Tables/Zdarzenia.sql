@@ -1,0 +1,26 @@
+﻿CREATE TABLE [ncts2].[Zdarzenia] (
+    [Id]                              BIGINT         NOT NULL,
+    [Typ]                             NVARCHAR (1)   NULL,
+    [IdPozycji]                       INT            NULL,
+    [IdOperacjiTranzytowej]           BIGINT         NULL,
+    [Miejsce]                         NVARCHAR (35)  NULL,
+    [Kraj]                            NVARCHAR (2)   NULL,
+    [CzyInneZdarzenie]                BIT            NULL,
+    [CzyWSystemie]                    BIT            NULL,
+    [ZdarzenieOpis]                   NVARCHAR (350) NULL,
+    [ZdarzenieDataAdnotacji]          DATETIME       NULL,
+    [ZdarzenieKrajAdnotacji]          NVARCHAR (2)   NULL,
+    [ZdarzenieWladzeAdnotacji]        NVARCHAR (35)  NULL,
+    [ZdarzenieMiejsceAdnotacji]       NVARCHAR (35)  NULL,
+    [PrzeladunekZnaki]                NVARCHAR (27)  NULL,
+    [PrzeladunekKrajSrodkaTransportu] NVARCHAR (2)   NULL,
+    [PrzeladunekDataAdnotacji]        DATETIME       NULL,
+    [PrzeladunekKrajAdnotacji]        NVARCHAR (2)   NULL,
+    [PrzeladunekWladzeAdnotacji]      NVARCHAR (35)  NULL,
+    [PrzeladunekMiejsceAdnotacji]     NVARCHAR (35)  NULL,
+    [IloscZamkniec]                   SMALLINT       NULL,
+    [KodUC]                           NVARCHAR (8)   NULL,
+    CONSTRAINT [Zdarzenia_pk] PRIMARY KEY CLUSTERED ([Id] ASC) ON [FG_NCTS2],
+    CONSTRAINT [Zdarzenia_IdOperacjiTranzytowej_OperacjeTranzytowe_fk] FOREIGN KEY ([IdOperacjiTranzytowej]) REFERENCES [ncts2].[OperacjeTranzytowe] ([Id])
+);
+

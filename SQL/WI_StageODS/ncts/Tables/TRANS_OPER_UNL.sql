@@ -1,0 +1,13 @@
+﻿CREATE TABLE [ncts].[TRANS_OPER_UNL] (
+    [MRN]           VARCHAR (21)    NOT NULL,
+    [SEALS_OK]      CHAR (1)        NOT NULL,
+    [DAT_UNL]       DATETIME        NOT NULL,
+    [CONF]          CHAR (1)        NOT NULL,
+    [UNL_COMPL]     CHAR (1)        NULL,
+    [UNL_REM]       NVARCHAR (1050) NULL,
+    [NUMB_OF_SEALS] DECIMAL (4)     NULL,
+    [UNL_REM_LNG]   CHAR (2)        NULL,
+    [UNL_VERS_NUMB] DECIMAL (8)     NOT NULL,
+    CONSTRAINT [PK_TRANS_OPER_UNL] PRIMARY KEY CLUSTERED ([MRN] ASC, [UNL_VERS_NUMB] ASC)
+);
+

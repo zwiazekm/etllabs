@@ -1,0 +1,27 @@
+﻿CREATE TABLE [gust].[tbl_wynikowe_2007] (
+    [ID_numer]                    INT           NULL,
+    [Przeplyw]                    CHAR (12)     NULL,
+    [zn_kategorii_progowej]       NVARCHAR (50) NULL,
+    [Typ]                         VARCHAR (50)  NULL,
+    [Izba]                        VARCHAR (2)   NULL,
+    [REGON]                       VARCHAR (14)  NULL,
+    [NIP]                         VARCHAR (10)  NULL,
+    [Procedura]                   VARCHAR (4)   NULL,
+    [Rodzaj_transportu]           VARCHAR (1)   NULL,
+    [Rodzaj_transakcji]           VARCHAR (2)   NULL,
+    [warunki_dostawy]             VARCHAR (3)   NULL,
+    [miesiac_rok]                 VARCHAR (4)   NULL,
+    [CN]                          VARCHAR (8)   NULL,
+    [masa]                        VARCHAR (15)  NULL,
+    [ilosc]                       VARCHAR (15)  NULL,
+    [wartosc_zl]                  VARCHAR (15)  NULL,
+    [kraj_przeznaczenia]          VARCHAR (2)   NULL,
+    [kraj_pochodzenia]            VARCHAR (2)   NULL,
+    [kod_kraju_srodka_transportu] VARCHAR (2)   NULL,
+    [kraj_wysylki]                VARCHAR (2)   NULL,
+    [extractdate]                 DATETIME      NULL,
+    [flaga]                       CHAR (1)      NULL,
+    [okres_od]                    VARCHAR (6)   NOT NULL,
+    [okres_do]                    VARCHAR (6)   NOT NULL
+);
+

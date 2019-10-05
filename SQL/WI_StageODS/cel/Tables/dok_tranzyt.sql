@@ -1,0 +1,25 @@
+﻿CREATE TABLE [cel].[dok_tranzyt] (
+    [id_dok]        VARCHAR (30) NOT NULL,
+    [id_kntr]       VARCHAR (30) NULL,
+    [TypDok]        VARCHAR (4)  NULL,
+    [SymDokZ]       VARCHAR (40) NULL,
+    [DataRej]       DATETIME     NULL,
+    [DataPrzyjEwid] DATETIME     NULL,
+    [TermDostTow]   DATETIME     NULL,
+    [EtapTranz]     VARCHAR (1)  NULL,
+    [Status]        VARCHAR (1)  NULL,
+    [KrajWysylki]   VARCHAR (2)  NULL,
+    [KrajDocelowy]  VARCHAR (2)  NULL,
+    [IdJednPrzezn]  VARCHAR (9)  NULL,
+    [NrAkt]         VARCHAR (40) NULL,
+    [RodzDokZrd]    VARCHAR (6)  NULL,
+    [SymDokZrd]     VARCHAR (40) NULL,
+    [MasaBrutto]    NUMERIC (14) NULL,
+    [LiczbaOpak]    NUMERIC (14) NULL,
+    [EtapBilans]    VARCHAR (1)  NULL,
+    [CharaktTow]    VARCHAR (10) NULL,
+    [DataOtwTranz]  DATETIME     NULL,
+    [DataZamk]      DATETIME     NULL,
+    CONSTRAINT [PK_DOK_TRANZYT] PRIMARY KEY CLUSTERED ([id_dok] ASC) WITH (FILLFACTOR = 90)
+);
+

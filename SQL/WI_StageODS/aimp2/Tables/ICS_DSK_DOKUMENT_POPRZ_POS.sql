@@ -1,0 +1,8 @@
+﻿CREATE TABLE [aimp2].[ICS_DSK_DOKUMENT_POPRZ_POS] (
+    [ID]                     NUMERIC (19) NOT NULL,
+    [ICS_DSK_DOKUMENT_POPRZ] NUMERIC (19) NOT NULL,
+    [NUMER_POZYCJI]          NUMERIC (5)  NULL,
+    [version]                INT          NOT NULL,
+    CONSTRAINT [PK_ICS_DSK_DOKUMENT_POPRZ_POS] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

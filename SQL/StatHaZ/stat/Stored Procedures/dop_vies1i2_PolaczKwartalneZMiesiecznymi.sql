@@ -1,0 +1,316 @@
+﻿---- =============================================
+---- Autor:		    Krzysztof Nagły
+---- Data utworzenia: 04.06.2014
+---- Opis: Krok 1, obsłużenie deklaracji kwartalnych (podział wartości na miesięczne), 
+----		 Krok 2, połączenie danych deklaracji VIES miesięcznych z kwartalnymi
+---- =============================================
+
+--CREATE PROCEDURE [stat].[dop_vies1i2_PolaczKwartalneZMiesiecznymi] 
+--@p_rok int 
+--as
+
+--begin
+--    declare @v_tekst varchar(1024);
+--	declare @v_ilosc int;
+
+--	declare @id bigint; exec @id = stat.DziennikWpisInfo 'Start', @@PROCID;
+
+
+--    if @p_rok is null 
+--	begin
+--	    select @v_tekst = 'Nie ustawiono roku na wejściu procedury: dop_vies_polacz_kwartalne_z_miesiecznymi.';
+--		exec stat.DziennikWpisError @v_tekst, @@PROCID;
+--		raiserror(@v_tekst,16,1);
+--		return -1;
+--	end;
+
+--	exec stat.DziennikWpisInfo 'Wyciąganie danych kwartalnych z VIES do tabeli: #vies_nabycia_kwartalne - nabycia', @@PROCID, 1;
+--	--dla nabyć z VIES
+--	select vn.NIPNabywcy, 
+--	       vn.NrOkresu, 
+--		   vn.KodKraju, 
+--		   sum(convert(float,vn.NabycieBezp)) nabycie_bezposrednie
+--	  into #vies_nabycia_kwartalne
+--	  from stat.dgt_kopia_VIES_nabycia AS vn
+--	 where vn.Rok = @p_rok
+--	   and (vn.RodzajOkresu = 'k'
+--	       or vn.RodzajOkresu = 'K')
+--	 group by vn.NIPNabywcy, vn.NrOkresu, vn.KodKraju;
+
+--	exec stat.DziennikRowCount;
+
+--	 select *
+--		 into #dot_vies_nabycia_miesieczne
+--		 from #vies_nabycia_kwartalne vnk
+--		where 1=0;
+
+--	 exec stat.DziennikWpisInfo 'Konwersja danych kwartalnych na miesięczne i zapis do tabeli: #dot_vies_nabycia_miesieczne', @@PROCID, 1;
+--	 --konwersja kwartalne na miesięczne - w deklaracjach VIES
+--	 select @v_ilosc = COUNT(*) from #vies_nabycia_kwartalne;
+--	 if @v_ilosc > 0
+--	 begin
+--	    insert into #dot_vies_nabycia_miesieczne
+--		select vnk.NIPNabywcy nip,
+--			   '1' numer_okresu,
+--			   vnk.KodKraju kod_kraju,
+--			   vnk.nabycie_bezposrednie/3 nabycie_bezposrednie
+--		  from #vies_nabycia_kwartalne vnk
+--		  where vnk.NrOkresu = '1'
+--		union all
+--		select vnk.NIPNabywcy nip,
+--		  	   '2' numer_okresu,
+--			   vnk.KodKraju kod_kraju,
+--			   vnk.nabycie_bezposrednie/3 nabycie_bezposrednie
+--		  from #vies_nabycia_kwartalne vnk
+--		 where vnk.NrOkresu = '1'
+--		union all
+--		select vnk.NIPNabywcy nip,
+--			   '3' numer_okresu,
+--			   vnk.KodKraju kod_kraju,
+--			   vnk.nabycie_bezposrednie/3 nabycie_bezposrednie
+--		  from #vies_nabycia_kwartalne vnk
+--		 where vnk.NrOkresu = '1'
+--		union all
+--		select vnk.NIPNabywcy nip,
+--			   '4' numer_okresu,
+--			   vnk.KodKraju kod_kraju,
+--			   vnk.nabycie_bezposrednie/3 nabycie_bezposrednie
+--		  from #vies_nabycia_kwartalne vnk
+--		 where vnk.NrOkresu = '2'
+--		union all
+--		select vnk.NIPNabywcy nip,
+--			   '5' numer_okresu,
+--			   vnk.KodKraju kod_kraju,
+--			   vnk.nabycie_bezposrednie/3 nabycie_bezposrednie
+--		  from #vies_nabycia_kwartalne vnk
+--		 where vnk.NrOkresu = '2'
+--		union all
+--		select vnk.NIPNabywcy nip,
+--			   '6' numer_okresu,
+--			   vnk.KodKraju kod_kraju,
+--			   vnk.nabycie_bezposrednie/3 nabycie_bezposrednie
+--		  from #vies_nabycia_kwartalne vnk
+--		 where vnk.NrOkresu = '2'
+--		union all
+--		select vnk.NIPNabywcy nip,
+--			   '7' numer_okresu,
+--			   vnk.KodKraju kod_kraju,
+--			   vnk.nabycie_bezposrednie/3 nabycie_bezposrednie
+--		  from #vies_nabycia_kwartalne vnk
+--		 where vnk.NrOkresu = '3'
+--		union all
+--		select vnk.NIPNabywcy nip,
+--			   '8' numer_okresu,
+--			   vnk.KodKraju kod_kraju,
+--			   vnk.nabycie_bezposrednie/3 nabycie_bezposrednie
+--		  from #vies_nabycia_kwartalne vnk
+--		 where vnk.NrOkresu = '3'
+--		union all
+--		select vnk.NIPNabywcy nip,
+--			   '9' numer_okresu,
+--			   vnk.KodKraju kod_kraju,
+--			   vnk.nabycie_bezposrednie/3 nabycie_bezposrednie
+--		  from #vies_nabycia_kwartalne vnk
+--		 where vnk.NrOkresu = '3'
+--		union all
+--		select vnk.NIPNabywcy nip,
+--			   '10' numer_okresu,
+--			   vnk.KodKraju kod_kraju,
+--			   vnk.nabycie_bezposrednie/3 nabycie_bezposrednie
+--		  from #vies_nabycia_kwartalne vnk
+--		 where vnk.NrOkresu = '4'
+--		union all
+--		select vnk.NIPNabywcy nip,
+--			   '11' numer_okresu,
+--			   vnk.KodKraju kod_kraju,
+--			   vnk.nabycie_bezposrednie/3 nabycie_bezposrednie
+--		  from #vies_nabycia_kwartalne vnk
+--		 where vnk.NrOkresu = '4'
+--		union all
+--		select vnk.NIPNabywcy nip,
+--			   '12' numer_okresu,
+--			   vnk.KodKraju kod_kraju,
+--			   vnk.nabycie_bezposrednie/3 nabycie_bezposrednie
+--		  from #vies_nabycia_kwartalne vnk
+--		 where vnk.NrOkresu = '4';
+--	  end; --if
+
+--	  --if OBJECT_ID('stat.dot_vies_nabycia_kwartalne_i_miesieczne') is null
+--	  --  begin
+--		 -- 	select *
+--			--  into stat.dot_vies_nabycia_kwartalne_i_miesieczne
+--			--  from #dot_vies_nabycia_kwartalne_i_miesieczne
+--			-- where 1=0;
+--	  --  end;
+	  
+--	  truncate table stat.dot_viesNabyciaKM;
+		
+--		exec stat.DziennikWpisInfo 'Zapis danych z deklaracji miesięcznych wraz z wcześniej przekonwertowanymi danymi kwartalnymi na miesięczne: stat.dot_viesNabyciaKM', @@PROCID, 1;
+--	  --zapis danych z deklaracji miesięcznych do tejże tabeli
+--	  insert into stat.dot_viesNabyciaKM ([NIPNabywcy], [RokMc], [KodKraju], [nabycie_bezposrednie])
+--		select nkim.NIPNabywcy, 
+--	           nkim.NrOkresu + @p_rok * 100, 
+--		       nkim.KodKraju, 
+--		       nkim.nabycie_bezposrednie
+--		  from #dot_vies_nabycia_miesieczne nkim
+
+--	  insert into stat.dot_viesNabyciaKM ([NIPNabywcy], [RokMc], [KodKraju], [nabycie_bezposrednie])
+--	    select vn.NIPNabywcy,
+--	           vn.NrOkresu + @p_rok * 100, 
+--			   vn.KodKraju,
+--			   sum(convert(float,vn.NabycieBezp)) nabycie_bezposrednie
+--		  from stat.dgt_kopia_VIES_nabycia vn
+--		 where vn.Rok = @p_rok
+--		   and (vn.RodzajOkresu = 'M')
+--		 group by vn.NIPNabywcy, vn.NrOkresu, vn.KodKraju;
+--	--koniec nabyć
+
+
+--		exec stat.DziennikWpisInfo 'Wyciąganie danych kwartalnych z VIES do tabeli: #vies_dostawy_kwartalne - dostawy', @@PROCID, 1;;
+--	--dla dostaw z VIES
+--		select vd.NIPDostawcy, 
+--			   vd.NrOkresu, 
+--			   vd.KodKraju, 
+--			   sum(convert(float,vd.DostawaBezp)) dostawa_bezposrednia
+--		  into #vies_dostawy_kwartalne
+--		  from stat.dgt_kopia_VIES_dostawy vd
+--		 where vd.Rok = @p_rok
+--		   and (vd.RodzajOkresu = 'K')
+--		 group by vd.NIPDostawcy, vd.NrOkresu, vd.KodKraju;
+
+--		exec stat.DziennikRowCount;
+
+--	  select *
+--		into #dot_vies_dostawy_miesieczne
+--		from #vies_dostawy_kwartalne vnk
+--	   where 1=0;
+
+--	 exec stat.DziennikWpisInfo 'Konwersja danych kwartalnych na miesięczne i zapis do tabeli: #dot_vies_dostawy_miesieczne - dostawy', @@PROCID, 1;
+--	 select @v_ilosc = COUNT(*) from #vies_dostawy_kwartalne;
+--	 if @v_ilosc > 0
+--	 begin
+--	    insert into #dot_vies_dostawy_miesieczne
+--		select vdk.NIPDostawcy nip,
+--			   '1' numer_okresu,
+--			   vdk.KodKraju kod_kraju,
+--			   vdk.dostawa_bezposrednia/3 dostawa_bezposrednia
+--		  from #vies_dostawy_kwartalne vdk
+--		  where vdk.NrOkresu = '1'
+--		union all
+--		select vdk.NIPDostawcy nip,
+--			   '2' numer_okresu,
+--			   vdk.KodKraju kod_kraju,
+--			   vdk.dostawa_bezposrednia/3 dostawa_bezposrednia
+--		  from #vies_dostawy_kwartalne vdk
+--		 where vdk.NrOkresu = '1'
+--		union all
+--		select vdk.NIPDostawcy nip,
+--			   '3' numer_okresu,
+--			   vdk.KodKraju kod_kraju,
+--			   vdk.dostawa_bezposrednia/3 dostawa_bezposrednia
+--		  from #vies_dostawy_kwartalne vdk
+--		 where vdk.NrOkresu = '1'
+--		union all
+--		select vdk.NIPDostawcy nip,
+--			   '4' numer_okresu,
+--			   vdk.KodKraju kod_kraju,
+--			   vdk.dostawa_bezposrednia/3 dostawa_bezposrednia
+--		  from #vies_dostawy_kwartalne vdk
+--		 where vdk.NrOkresu = '2'
+--		union all
+--		select vdk.NIPDostawcy nip,
+--			   '5' numer_okresu,
+--			   vdk.KodKraju kod_kraju,
+--			   vdk.dostawa_bezposrednia/3 dostawa_bezposrednia
+--		  from #vies_dostawy_kwartalne vdk
+--		 where vdk.NrOkresu = '2'
+--		union all
+--		select vdk.NIPDostawcy nip,
+--			   '6' numer_okresu,
+--			   vdk.KodKraju kod_kraju,
+--			   vdk.dostawa_bezposrednia/3 dostawa_bezposrednia
+--		  from #vies_dostawy_kwartalne vdk
+--		 where vdk.NrOkresu = '2'
+--		union all
+--		select vdk.NIPDostawcy nip,
+--			   '7' numer_okresu,
+--			   vdk.KodKraju kod_kraju,
+--			   vdk.dostawa_bezposrednia/3 dostawa_bezposrednia
+--		  from #vies_dostawy_kwartalne vdk
+--		 where vdk.NrOkresu = '3'
+--		union all
+--		select vdk.NIPDostawcy nip,
+--			   '8' numer_okresu,
+--			   vdk.KodKraju kod_kraju,
+--			   vdk.dostawa_bezposrednia/3 dostawa_bezposrednia
+--		  from #vies_dostawy_kwartalne vdk
+--		 where vdk.NrOkresu = '3'
+--		union all
+--		select vdk.NIPDostawcy nip,
+--			   '9' numer_okresu,
+--			   vdk.KodKraju kod_kraju,
+--			   vdk.dostawa_bezposrednia/3 dostawa_bezposrednia
+--		  from #vies_dostawy_kwartalne vdk
+--		 where vdk.NrOkresu = '3'
+--		union all
+--		select vdk.NIPDostawcy nip,
+--			   '10' numer_okresu,
+--			   vdk.KodKraju kod_kraju,
+--			   vdk.dostawa_bezposrednia/3 dostawa_bezposrednia
+--		  from #vies_dostawy_kwartalne vdk
+--		 where vdk.NrOkresu = '4'
+--		union all
+--		select vdk.NIPDostawcy nip,
+--			   '11' numer_okresu,
+--			   vdk.KodKraju kod_kraju,
+--			   vdk.dostawa_bezposrednia/3 dostawa_bezposrednia
+--		  from #vies_dostawy_kwartalne vdk
+--		 where vdk.NrOkresu = '4'
+--		union all
+--		select vdk.NIPDostawcy nip,
+--			   '12' numer_okresu,
+--			   vdk.KodKraju kod_kraju,
+--			   vdk.dostawa_bezposrednia/3 dostawa_bezposrednia
+--		  from #vies_dostawy_kwartalne vdk
+--		 where vdk.NrOkresu = '4';
+--	  end; --if
+
+--	 --if OBJECT_ID('stat.dot_vies_dostawy_kwartalne_i_miesieczne') is null
+--	 --   begin
+--		--  	select *
+--		--	  into [stat].[dot_vies_dostawy_kwartalne_i_miesieczne]
+--		--	  from #dot_vies_dostawy_kwartalne_i_miesieczne
+--		--	 where 1=0;
+--	 --   end;
+
+--	 truncate table stat.[dot_viesDostawyKM];
+
+--	  exec stat.DziennikWpisInfo 'Zapis danych z deklaracji miesięcznych wraz z wcześniej przekonwertowanymi danymi kwartalnymi na miesięczne: stat.[dot_viesDostawyKM] - dostawy', @@PROCID, 1;
+--	  insert into stat.[dot_viesDostawyKM] ([NIPDostawcy] , [RokMc], [KodKraju], [dostawa_bezposrednia])
+--		select dkim.NIPDostawcy, 
+--	           dkim.NrOkresu + @p_rok * 100, 
+--		       dkim.KodKraju, 
+--		       dkim.dostawa_bezposrednia
+--		  from #dot_vies_dostawy_miesieczne dkim
+
+--	  insert into stat.[dot_viesDostawyKM] ([NIPDostawcy] , [RokMc], [KodKraju], [dostawa_bezposrednia])
+--	    select vd.NIPDostawcy,
+--	           vd.NrOkresu + @p_rok * 100, 
+--			   vd.KodKraju,
+--			   sum(convert(float,vd.DostawaBezp)) dostawa_bezposrednia
+--		  from stat.dgt_kopia_VIES_dostawy vd
+--		 where vd.Rok = @p_rok
+--		   and (vd.RodzajOkresu = 'M')
+--		 group by vd.NIPDostawcy, vd.NrOkresu, vd.KodKraju;
+--	--koniec dostaw
+
+--	drop table #vies_nabycia_kwartalne;
+--	drop table #vies_dostawy_kwartalne;
+--	drop table #dot_vies_nabycia_miesieczne;
+--	drop table #dot_vies_dostawy_miesieczne;
+
+
+--	exec stat.DziennikWpisInfo 'Stop', @@PROCID, 1;
+--	exec stat.DziennikCzas @id;
+
+--end;

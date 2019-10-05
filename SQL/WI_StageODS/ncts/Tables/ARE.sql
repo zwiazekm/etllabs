@@ -1,0 +1,6 @@
+﻿CREATE TABLE [ncts].[ARE] (
+    [SID] INT      NOT NULL,
+    [ID]  CHAR (2) NOT NULL,
+    CONSTRAINT [PK_ARE] PRIMARY KEY CLUSTERED ([SID] ASC)
+);
+

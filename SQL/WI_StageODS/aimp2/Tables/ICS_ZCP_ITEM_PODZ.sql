@@ -1,0 +1,25 @@
+﻿CREATE TABLE [aimp2].[ICS_ZCP_ITEM_PODZ] (
+    [ID]                   NUMERIC (19)    NOT NULL,
+    [ZCP_ITEM_ID]          NUMERIC (19)    NULL,
+    [MRN]                  NVARCHAR (18)   NULL,
+    [PODZ_NO]              NUMERIC (5)     NULL,
+    [PROPRIETARY_PODZ_NO]  NVARCHAR (35)   NULL,
+    [STATUS]               NVARCHAR (4)    NULL,
+    [AMOUNT]               NUMERIC (16, 2) NOT NULL,
+    [COMMENTS]             NVARCHAR (1024) NULL,
+    [GRN]                  NVARCHAR (50)   NULL,
+    [G_OTHER_TYPE_CODE]    NVARCHAR (35)   NULL,
+    [TIN]                  NVARCHAR (17)   NULL,
+    [G_ACCESS_CODE]        NVARCHAR (4)    NULL,
+    [SENT_TO_OSOZ_STATUS]  NVARCHAR (20)   NOT NULL,
+    [SENT_TO_ZEFIR_STATUS] NVARCHAR (20)   NOT NULL,
+    [QUOTA_ID]             NUMERIC (19)    NULL,
+    [SENT_ZC272]           BIT             NOT NULL,
+    [AMOUNT_USED]          NUMERIC (16, 2) NULL,
+    [DATE_USED]            DATETIME2 (3)   NULL,
+    [SEND_TO_ZEFIR]        BIT             NOT NULL,
+    [NEXT_PODZ_NO]         NUMERIC (5)     NULL,
+    [version]              INT             NOT NULL,
+    CONSTRAINT [ICS_ZCP_ITEM_PODZ$PK_ICS_ZCP_ITEM_PODZ] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

@@ -1,0 +1,10 @@
+﻿CREATE TABLE [aies].[ICS_GAN_ITEMS] (
+    [ID]             NUMERIC (19) NOT NULL,
+    [NUMB]           INT          NULL,
+    [TRAN_DOCU_CODE] VARCHAR (4)  NULL,
+    [TRAN_DOCU_NUMB] VARCHAR (35) NULL,
+    [GAN_ID]         NUMERIC (19) NULL,
+    [INTRO]          INT          NULL,
+    CONSTRAINT [ICS_GAN_IT_10233396791] PRIMARY KEY CLUSTERED ([ID] ASC) ON [FG_AIES]
+);
+

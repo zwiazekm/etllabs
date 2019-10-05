@@ -1,0 +1,27 @@
+﻿CREATE TABLE [emcs2].[EMCS_EXCISE_RATES] (
+    [ID]                          NUMERIC (38)    NOT NULL,
+    [VALID_FROM]                  DATETIME2 (0)   NOT NULL,
+    [VALID_TO]                    DATETIME2 (0)   NULL,
+    [EXCISE_NUMBER_CODE]          VARCHAR (4)     NOT NULL,
+    [FISCAL_MARK]                 CHAR (1)        NULL,
+    [CN_CODE_FROM]                VARCHAR (8)     NULL,
+    [CN_CODE_TO]                  VARCHAR (8)     NULL,
+    [SIZE_OF_PRODUCER_FROM]       NUMERIC (15)    NULL,
+    [SIZE_OF_PRODUCER_TO]         NUMERIC (15)    NULL,
+    [DENSITY_FROM]                NUMERIC (15, 5) NULL,
+    [DENSITY_TO]                  NUMERIC (15, 5) NULL,
+    [NOT_COLORED_AND_MARKED_OILS] CHAR (1)        NULL,
+    [FUEL_TYPE]                   VARCHAR (1)     NULL,
+    [EXEMPTION_AMOUNT]            NUMERIC (15, 5) NULL,
+    [AMOUNT_RATE]                 NUMERIC (15, 5) NOT NULL,
+    [PERCENT_RATE]                NUMERIC (10, 5) NULL,
+    [MINIMAL_RATE]                NUMERIC (15, 5) NULL,
+    [ALGORITHM_TYPE]              CHAR (1)        NOT NULL,
+    [ADDITIONAL_UNIT]             CHAR (1)        NOT NULL,
+    [BIO_COMPONENT_RATE]          NUMERIC (15, 5) NULL,
+    [BIOFUEL_CONTENT_QUALITY]     CHAR (1)        NULL,
+    [ALC_STRENGTH_FROM]           NUMERIC (15, 5) NULL,
+    [ALC_STRENGTH_TO]             NUMERIC (15, 5) NULL,
+    CONSTRAINT [EER_PK] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

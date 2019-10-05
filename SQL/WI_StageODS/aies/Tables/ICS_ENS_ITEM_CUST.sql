@@ -1,0 +1,14 @@
+﻿CREATE TABLE [aies].[ICS_ENS_ITEM_CUST] (
+    [ID]          NUMERIC (19)  NOT NULL,
+    [CITY]        VARCHAR (50)  NULL,
+    [COUNTRY]     VARCHAR (2)   NULL,
+    [POST_CODE]   VARCHAR (9)   NULL,
+    [STREET]      VARCHAR (35)  NULL,
+    [EMAIL]       VARCHAR (255) NULL,
+    [NAME]        VARCHAR (35)  NULL,
+    [TIN]         VARCHAR (17)  NULL,
+    [CUST_TYPE]   INT           NULL,
+    [ENS_ITEM_ID] NUMERIC (19)  NULL,
+    CONSTRAINT [ICS_ENS_IT_6393383111] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

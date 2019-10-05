@@ -1,0 +1,26 @@
+﻿CREATE TABLE [kont].[KONTYNGENTY_Odprawa] (
+    [NrZgloszenia]        VARCHAR (40)    NOT NULL,
+    [NrPozycji]           SMALLINT        NOT NULL,
+    [TypZgloszenia]       CHAR (1)        NULL,
+    [NrWniosku]           VARCHAR (35)    NULL,
+    [UCZgloszenia]        VARCHAR (8)     NULL,
+    [LoginFunk]           VARCHAR (16)    NULL,
+    [NrSrodka]            SMALLINT        NULL,
+    [TypSrodka]           CHAR (3)        NULL,
+    [NrPorzadkowy]        VARCHAR (6)     NULL,
+    [NrPorzadkowyRodzaj]  VARCHAR (20)    NULL,
+    [TINPodmiotu]         VARCHAR (12)    NULL,
+    [KodTowarowy]         VARCHAR (8)     NULL,
+    [KrajPochodzenia]     CHAR (2)        NULL,
+    [DataOdprawy]         DATETIME        NULL,
+    [IloscWnioskowana]    DECIMAL (15, 3) NULL,
+    [IloscPrzyznana]      DECIMAL (15, 3) NULL,
+    [IloscWykorzystana]   DECIMAL (15, 3) NULL,
+    [Wykorzystanie]       CHAR (1)        NULL,
+    [StatusTQS]           CHAR (1)        NULL,
+    [PrzyczynaOdrzucenia] VARCHAR (10)    NULL,
+    [IloscRaportowana]    DECIMAL (21, 5) NULL,
+    [IdPozycjiKontyngent] SMALLINT        NULL,
+    [PowodOdrzucenia]     VARCHAR (20)    NULL
+) ON [FG_KONT];
+

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [aes2]
+    AUTHORIZATION [dbo];
+
