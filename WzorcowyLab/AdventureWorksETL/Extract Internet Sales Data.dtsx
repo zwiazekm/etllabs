@@ -1,0 +1,2656 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/17/2011 3:04:25 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MIA-SQLBI"
+  DTS:CreatorName="ADVENTUREWORKS\Student"
+  DTS:DTSID="{FE4543F2-2548-46A1-A0CF-327DAC7DDFE8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2299.1"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Extract Internet Sales Data"
+  DTS:PackageType="5"
+  DTS:VersionBuild="54"
+  DTS:VersionGUID="{36DAB5CB-4338-47D8-A829-95973AD02ACA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Local SMTP Server]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{7C8E5EC2-0E16-4018-9D53-E4AD9D70E428}"
+      DTS:ObjectName="Local SMTP Server">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=localhost;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Orphaned Internet Sales]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{CFC61C2A-8CB8-4479-94F6-5ADFA88F5D90}"
+      DTS:ObjectName="Orphaned Internet Sales">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ETLFolderPath] + "Orphaned Internet Sales.csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\ETL\Orphaned Internet Sales.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ProductKey"
+              DTS:DTSID="{363B342C-E0B5-43D7-8BEE-B7B4E3074B52}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CustomerKey"
+              DTS:DTSID="{F762453D-F8AB-4B78-B1D3-B88EBD7F6D09}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SalesOrderNumber"
+              DTS:DTSID="{E038F90E-2FC6-49DA-B558-20DDC2BB552C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="17"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SalesOrderLineNumber"
+              DTS:DTSID="{6DE7FC0E-87CA-4B91-9F6C-6FA608A8892B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="OrderQuantity"
+              DTS:DTSID="{3A48C89B-2652-49E6-93E2-5AB5CABED867}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="UnitPrice"
+              DTS:DTSID="{977DC039-8036-48A7-A2A5-B85BC789EB30}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="OrderDate"
+              DTS:DTSID="{A34E33A2-24B2-4F28-B8B3-A041143C3BDC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ShipDate"
+              DTS:DTSID="{465B77E4-704A-4C36-9FAC-FB57282B9ACA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="15"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PaymentType"
+              DTS:DTSID="{65EA21F7-3A7A-4779-B923-F7D284C300A0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="131"
+              DTS:DataPrecision="25"
+              DTS:DataScale="4"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SalesAmount"
+              DTS:DTSID="{3013E779-2A53-478C-9FD2-E1461EE1C7B4}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C1F6FF1C-91D7-4F83-887D-63B79593904D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentTime">
+      <DTS:VariableValue
+        DTS:DataType="7">8/19/2011 2:57:41 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{672D2DD5-EC6D-4E6F-904A-02C881B2A422}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="InternetSalesLastExtract">
+      <DTS:VariableValue
+        DTS:DataType="7">8/19/2011 3:01:44 AM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract Internet Sales Data"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{54076230-6757-4D5C-920F-E09C91D13941}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract Internet Sales Data"
+      DTS:TransactionOption="2">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Extract Internet Sales Data\Extract Customers"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{ef9ae506-5d76-4d4a-8917-6202158fe863}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:FailParentOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Extract Customers"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Extract Internet Sales Data\Extract Customers\Customers"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Customers"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Customers]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC GetChangedCustomers ?, ?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"@StartDate:Input",{672D2DD5-EC6D-4E6F-904A-02C881B2A422};"@EndDate:Input",{C1F6FF1C-91D7-4F83-887D-63B79593904D};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Connections[OleDbConnection]"
+                      connectionManagerID="{ADBDA206-1C25-42CC-8ECE-AC21DC510041}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.InternetSales]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[CustomerKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[CustomerKey]"
+                          name="CustomerKey"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Title]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[Title]"
+                          length="8"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Title]"
+                          name="Title"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[FirstName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[FirstName]"
+                          name="FirstName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[MiddleName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[MiddleName]"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[MiddleName]"
+                          name="MiddleName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[LastName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[LastName]"
+                          name="LastName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[BirthDate]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[BirthDate]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[BirthDate]"
+                          name="BirthDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[MaritalStatus]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[MaritalStatus]"
+                          length="1"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[MaritalStatus]"
+                          name="MaritalStatus"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Suffix]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[Suffix]"
+                          length="10"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Suffix]"
+                          name="Suffix"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Gender]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                          length="1"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Gender]"
+                          name="Gender"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[EmailAddress]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[EmailAddress]"
+                          name="EmailAddress"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Occupation]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[Occupation]"
+                          length="100"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Occupation]"
+                          name="Occupation"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[HouseOwnerFlag]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[HouseOwnerFlag]"
+                          length="1"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[HouseOwnerFlag]"
+                          name="HouseOwnerFlag"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[NumberCarsOwned]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[NumberCarsOwned]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[NumberCarsOwned]"
+                          name="NumberCarsOwned"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[AddressLine1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[AddressLine1]"
+                          length="120"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[AddressLine1]"
+                          name="AddressLine1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[AddressLine2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[AddressLine2]"
+                          length="120"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[AddressLine2]"
+                          name="AddressLine2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[City]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                          length="30"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[City]"
+                          name="City"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[StateProvinceName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[StateProvinceName]"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[StateProvinceName]"
+                          name="StateProvinceName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[CountryRegionCode]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[CountryRegionCode]"
+                          length="3"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[CountryRegionCode]"
+                          name="CountryRegionCode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[CountryRegionName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[CountryRegionName]"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[CountryRegionName]"
+                          name="CountryRegionName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[PostalCode]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
+                          length="15"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[PostalCode]"
+                          name="PostalCode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Phone]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                          length="20"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Phone]"
+                          name="Phone"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[CommuteDistance]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[CommuteDistance]"
+                          length="15"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[CommuteDistance]"
+                          name="CommuteDistance"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
+                          dataType="i4"
+                          name="CustomerKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[Title]"
+                          dataType="wstr"
+                          length="8"
+                          name="Title" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                          dataType="wstr"
+                          length="50"
+                          name="FirstName" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[MiddleName]"
+                          dataType="wstr"
+                          length="50"
+                          name="MiddleName" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                          dataType="wstr"
+                          length="50"
+                          name="LastName" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[BirthDate]"
+                          dataType="dbDate"
+                          name="BirthDate" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[MaritalStatus]"
+                          dataType="wstr"
+                          length="1"
+                          name="MaritalStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[Suffix]"
+                          dataType="wstr"
+                          length="10"
+                          name="Suffix" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                          dataType="wstr"
+                          length="1"
+                          name="Gender" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
+                          dataType="wstr"
+                          length="50"
+                          name="EmailAddress" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[Occupation]"
+                          dataType="wstr"
+                          length="100"
+                          name="Occupation" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[HouseOwnerFlag]"
+                          dataType="wstr"
+                          length="1"
+                          name="HouseOwnerFlag" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[NumberCarsOwned]"
+                          dataType="ui1"
+                          name="NumberCarsOwned" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[AddressLine1]"
+                          dataType="wstr"
+                          length="120"
+                          name="AddressLine1" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[AddressLine2]"
+                          dataType="wstr"
+                          length="120"
+                          name="AddressLine2" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                          dataType="wstr"
+                          length="30"
+                          name="City" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[StateProvinceName]"
+                          dataType="wstr"
+                          length="50"
+                          name="StateProvinceName" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[CountryRegionCode]"
+                          dataType="wstr"
+                          length="3"
+                          name="CountryRegionCode" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[CountryRegionName]"
+                          dataType="wstr"
+                          length="50"
+                          name="CountryRegionName" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
+                          dataType="wstr"
+                          length="15"
+                          name="PostalCode" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                          dataType="wstr"
+                          length="20"
+                          name="Phone" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].ExternalColumns[CommuteDistance]"
+                          dataType="wstr"
+                          length="15"
+                          name="CommuteDistance" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
+                          name="CustomerKey" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[Title]"
+                          dataType="wstr"
+                          length="8"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[Title]"
+                          name="Title" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                          name="FirstName" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[MiddleName]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[MiddleName]"
+                          name="MiddleName" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                          name="LastName" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[BirthDate]"
+                          dataType="dbDate"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[BirthDate]"
+                          name="BirthDate" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[MaritalStatus]"
+                          dataType="wstr"
+                          length="1"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[MaritalStatus]"
+                          name="MaritalStatus" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[Suffix]"
+                          dataType="wstr"
+                          length="10"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[Suffix]"
+                          name="Suffix" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                          dataType="wstr"
+                          length="1"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                          name="Gender" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
+                          name="EmailAddress" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[Occupation]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[Occupation]"
+                          name="Occupation" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[HouseOwnerFlag]"
+                          dataType="wstr"
+                          length="1"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[HouseOwnerFlag]"
+                          name="HouseOwnerFlag" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[NumberCarsOwned]"
+                          dataType="ui1"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[NumberCarsOwned]"
+                          name="NumberCarsOwned" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
+                          dataType="wstr"
+                          length="120"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
+                          name="AddressLine1" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[AddressLine2]"
+                          dataType="wstr"
+                          length="120"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[AddressLine2]"
+                          name="AddressLine2" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[City]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[City]"
+                          name="City" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[StateProvinceName]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[StateProvinceName]"
+                          name="StateProvinceName" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[CountryRegionCode]"
+                          dataType="wstr"
+                          length="3"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[CountryRegionCode]"
+                          name="CountryRegionCode" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[CountryRegionName]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[CountryRegionName]"
+                          name="CountryRegionName" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
+                          dataType="wstr"
+                          length="15"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
+                          name="PostalCode" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                          dataType="wstr"
+                          length="20"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                          name="Phone" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[CommuteDistance]"
+                          dataType="wstr"
+                          length="15"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[CommuteDistance]"
+                          name="CommuteDistance" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Staging DB"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Customers]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Connections[OleDbConnection]"
+                      connectionManagerID="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[Title]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="Title"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Title]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[FirstName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="FirstName"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[MiddleName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="MiddleName"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[MiddleName]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[LastName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="LastName"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[LastName]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[BirthDate]"
+                          cachedDataType="dbDate"
+                          cachedName="BirthDate"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[BirthDate]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[BirthDate]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[MaritalStatus]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="MaritalStatus"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[MaritalStatus]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[Suffix]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="Suffix"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Suffix]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Suffix]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[EmailAddress]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="EmailAddress"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[Occupation]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="Occupation"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Occupation]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Occupation]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[HouseOwnerFlag]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="HouseOwnerFlag"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[HouseOwnerFlag]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[HouseOwnerFlag]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[NumberCarsOwned]"
+                          cachedDataType="ui1"
+                          cachedName="NumberCarsOwned"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[NumberCarsOwned]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[NumberCarsOwned]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[AddressLine1]"
+                          cachedDataType="wstr"
+                          cachedLength="120"
+                          cachedName="AddressLine1"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[AddressLine1]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[AddressLine2]"
+                          cachedDataType="wstr"
+                          cachedLength="120"
+                          cachedName="AddressLine2"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[AddressLine2]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[City]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="City"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[City]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[PostalCode]"
+                          cachedDataType="wstr"
+                          cachedLength="15"
+                          cachedName="PostalCode"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[PostalCode]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[Phone]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="Phone"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Phone]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[CommuteDistance]"
+                          cachedDataType="wstr"
+                          cachedLength="15"
+                          cachedName="CommuteDistance"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CommuteDistance]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[CommuteDistance]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[CustomerKey]"
+                          cachedDataType="i4"
+                          cachedName="CustomerKey"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CustomerBusinessKey]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[CustomerKey]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[StateProvinceName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="StateProvinceName"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[StateProvinceName]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[StateProvinceName]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[CountryRegionCode]"
+                          cachedDataType="wstr"
+                          cachedLength="3"
+                          cachedName="CountryRegionCode"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegionCode]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[CountryRegionCode]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[CountryRegionName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="CountryRegionName"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegionName]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[CountryRegionName]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].Columns[Gender]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="Gender"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output].Columns[Gender]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CustomerBusinessKey]"
+                          dataType="wstr"
+                          length="15"
+                          name="CustomerBusinessKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          dataType="wstr"
+                          length="8"
+                          name="Title" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                          dataType="wstr"
+                          length="50"
+                          name="FirstName" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
+                          dataType="wstr"
+                          length="50"
+                          name="MiddleName" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          dataType="wstr"
+                          length="50"
+                          name="LastName" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[BirthDate]"
+                          dataType="dbDate"
+                          name="BirthDate" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
+                          dataType="wstr"
+                          length="1"
+                          name="MaritalStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Suffix]"
+                          dataType="wstr"
+                          length="10"
+                          name="Suffix" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          dataType="wstr"
+                          length="1"
+                          name="Gender" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                          dataType="wstr"
+                          length="50"
+                          name="EmailAddress" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Occupation]"
+                          dataType="wstr"
+                          length="100"
+                          name="Occupation" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[HouseOwnerFlag]"
+                          dataType="wstr"
+                          length="1"
+                          name="HouseOwnerFlag" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[NumberCarsOwned]"
+                          dataType="ui1"
+                          name="NumberCarsOwned" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1]"
+                          dataType="wstr"
+                          length="120"
+                          name="AddressLine1" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                          dataType="wstr"
+                          length="120"
+                          name="AddressLine2" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                          dataType="wstr"
+                          length="30"
+                          name="City" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[StateProvinceName]"
+                          dataType="wstr"
+                          length="50"
+                          name="StateProvinceName" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegionCode]"
+                          dataType="wstr"
+                          length="3"
+                          name="CountryRegionCode" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegionName]"
+                          dataType="wstr"
+                          length="50"
+                          name="CountryRegionName" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                          dataType="wstr"
+                          length="15"
+                          name="PostalCode" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                          dataType="wstr"
+                          length="20"
+                          name="Phone" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CommuteDistance]"
+                          dataType="wstr"
+                          length="15"
+                          name="CommuteDistance" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Extract Internet Sales Data\Extract Customers.Paths[OLE DB Source Output]"
+                  endId="Package\Extract Internet Sales Data\Extract Customers\Staging DB.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Extract Internet Sales Data\Extract Customers\Customers.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract Internet Sales Data\Extract Internet Sales"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{3594c4f2-ba45-440c-a54c-084f04b8d02f}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:FailParentOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Extract Internet Sales"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Calculate Sales Amount"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Inputs[Derived Column Input].Columns[OrderQuantity]"
+                          cachedDataType="i2"
+                          cachedName="OrderQuantity"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[OrderQuantity]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Inputs[Derived Column Input].Columns[UnitPrice]"
+                          cachedDataType="cy"
+                          cachedName="UnitPrice"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Outputs[Derived Column Output].Columns[SalesAmount]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Outputs[Derived Column Output].Columns[SalesAmount]"
+                          name="SalesAmount"
+                          precision="25"
+                          scale="4"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[UnitPrice]} * #{Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[OrderQuantity]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">UnitPrice * OrderQuantity</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Internet Sales"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT     SalesOrderDetail.ProductKey, SalesOrderHeader.CustomerKey, SalesOrderDetail.SalesOrderNumber, SalesOrderDetail.SalesOrderLineNumber, 
+                      SalesOrderDetail.OrderQuantity, SalesOrderDetail.UnitPrice, SalesOrderHeader.OrderDate,  SalesOrderHeader.ShipDate,
+ISNULL(PaymentTypes.PaymentTypeName, 'Other') PaymentType
+FROM         SalesOrderDetail INNER JOIN
+                      SalesOrderHeader ON SalesOrderDetail.SalesOrderNumber = SalesOrderHeader.SalesOrderNumber
+INNER JOIN PaymentTypes
+ON SalesOrderHeader.PaymentType = PaymentTypes.PaymentTypeKey
+WHERE LastModified &gt; ?
+AND LastModified &lt;= ?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0:Input",{672D2DD5-EC6D-4E6F-904A-02C881B2A422};"Parameter1:Input",{C1F6FF1C-91D7-4F83-887D-63B79593904D};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Connections[OleDbConnection]"
+                      connectionManagerID="{ADBDA206-1C25-42CC-8ECE-AC21DC510041}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.InternetSales]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[ProductKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[ProductKey]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[ProductKey]"
+                          name="ProductKey"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[CustomerKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[CustomerKey]"
+                          name="CustomerKey"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderNumber]"
+                          length="20"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]"
+                          name="SalesOrderNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[SalesOrderLineNumber]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderLineNumber]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[SalesOrderLineNumber]"
+                          name="SalesOrderLineNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[OrderQuantity]"
+                          dataType="i2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[OrderQuantity]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[OrderQuantity]"
+                          name="OrderQuantity"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                          name="UnitPrice"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[OrderDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[OrderDate]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[OrderDate]"
+                          name="OrderDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[ShipDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[ShipDate]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[ShipDate]"
+                          name="ShipDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[PaymentType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[PaymentType]"
+                          length="15"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[PaymentType]"
+                          name="PaymentType"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[ProductKey]"
+                          dataType="i4"
+                          name="ProductKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
+                          dataType="i4"
+                          name="CustomerKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderNumber]"
+                          dataType="wstr"
+                          length="20"
+                          name="SalesOrderNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderLineNumber]"
+                          dataType="ui1"
+                          name="SalesOrderLineNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[OrderQuantity]"
+                          dataType="i2"
+                          name="OrderQuantity" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                          dataType="cy"
+                          name="UnitPrice" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[OrderDate]"
+                          dataType="dbTimeStamp"
+                          name="OrderDate" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[ShipDate]"
+                          dataType="dbTimeStamp"
+                          name="ShipDate" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].ExternalColumns[PaymentType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="PaymentType" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[ProductKey]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[ProductKey]"
+                          name="ProductKey" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
+                          name="CustomerKey" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[SalesOrderNumber]"
+                          dataType="wstr"
+                          length="20"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[SalesOrderNumber]"
+                          name="SalesOrderNumber" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[SalesOrderLineNumber]"
+                          dataType="ui1"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[SalesOrderLineNumber]"
+                          name="SalesOrderLineNumber" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[OrderQuantity]"
+                          dataType="i2"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[OrderQuantity]"
+                          name="OrderQuantity" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                          dataType="cy"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                          name="UnitPrice" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[OrderDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[OrderDate]"
+                          name="OrderDate" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[ShipDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[ShipDate]"
+                          name="ShipDate" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[PaymentType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[PaymentType]"
+                          name="PaymentType" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                  name="Lookup Product Details"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT     Product.ProductKey, Product.ProductName, Product.StandardCost, Product.Color, Product.ListPrice, Product.[Size], Product.Weight, Product.Description, 
+                      ProductSubcategory.ProductSubCategoryKey, ProductSubcategory.ProductSubcategoryName, ProductCategory.ProductCategoryKey, 
+                      ProductCategory.ProductCategoryName
+FROM         Product INNER JOIN
+                      ProductSubcategory ON Product.ProductSubcategoryKey = ProductSubcategory.ProductSubCategoryKey INNER JOIN
+                      ProductCategory ON ProductSubcategory.ProductCategoryKey = ProductCategory.ProductCategoryKey</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT     Product.ProductKey, Product.ProductName, Product.StandardCost, Product.Color, Product.ListPrice, Product.[Size], Product.Weight, Product.Description, 
+                      ProductSubcategory.ProductSubCategoryKey, ProductSubcategory.ProductSubcategoryName, ProductCategory.ProductCategoryKey, 
+                      ProductCategory.ProductCategoryName
+FROM         Product INNER JOIN
+                      ProductSubcategory ON Product.ProductSubcategoryKey = ProductSubcategory.ProductSubCategoryKey INNER JOIN
+                      ProductCategory ON ProductSubcategory.ProductCategoryKey = ProductCategory.ProductCategoryKey) [refTable]
+where [refTable].[ProductKey] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ProductKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="StandardCost" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Color" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ListPrice" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Size" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Weight" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_WSTR" length="400" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductSubCategoryKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductSubcategoryName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductCategoryKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductCategoryName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[ProductKey]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Connections[OleDbConnection]"
+                      connectionManagerID="{0C4433B9-1AED-42A7-B5A6-D7638427E552}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.Products]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Inputs[Lookup Input].Columns[ProductKey]"
+                          cachedDataType="i4"
+                          cachedName="ProductKey"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[ProductKey]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">ProductKey</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductName]"
+                          name="ProductName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">ProductName</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[StandardCost]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[StandardCost]"
+                          name="StandardCost"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">StandardCost</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Color]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="15"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Color]"
+                          name="Color"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">Color</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ListPrice]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ListPrice]"
+                          name="ListPrice"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">ListPrice</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Size]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Size]"
+                          name="Size"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">Size</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Weight]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Weight]"
+                          name="Weight"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">Weight</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Description]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="400"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">Description</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductSubCategoryKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductSubCategoryKey]"
+                          name="ProductSubCategoryKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">ProductSubCategoryKey</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductSubcategoryName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductSubcategoryName]"
+                          name="ProductSubcategoryName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">ProductSubcategoryName</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductCategoryKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductCategoryKey]"
+                          name="ProductCategoryKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">ProductCategoryKey</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductCategoryName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="50"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductCategoryName]"
+                          name="ProductCategoryName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">ProductCategoryName</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="Orphaned Sales">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Orphaned Internet Sales]"
+                      connectionManagerRefId="Package.ConnectionManagers[Orphaned Internet Sales]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[ProductKey]"
+                          cachedDataType="i4"
+                          cachedName="ProductKey"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[ProductKey]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[ProductKey]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[CustomerKey]"
+                          cachedDataType="i4"
+                          cachedName="CustomerKey"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[CustomerKey]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[CustomerKey]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[SalesOrderNumber]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="SalesOrderNumber"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[SalesOrderNumber]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[SalesOrderLineNumber]"
+                          cachedDataType="ui1"
+                          cachedName="SalesOrderLineNumber"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[SalesOrderLineNumber]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[SalesOrderLineNumber]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[OrderQuantity]"
+                          cachedDataType="i2"
+                          cachedName="OrderQuantity"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[OrderQuantity]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[OrderQuantity]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[UnitPrice]"
+                          cachedDataType="cy"
+                          cachedName="UnitPrice"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[UnitPrice]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[OrderDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="OrderDate"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[OrderDate]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[OrderDate]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[ShipDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="ShipDate"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[ShipDate]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[ShipDate]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[PaymentType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="PaymentType"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[PaymentType]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[PaymentType]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[SalesAmount]"
+                          cachedDataType="numeric"
+                          cachedName="SalesAmount"
+                          cachedPrecision="25"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[SalesAmount]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Outputs[Derived Column Output].Columns[SalesAmount]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[ProductKey]"
+                          dataType="i4"
+                          name="ProductKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[CustomerKey]"
+                          dataType="i4"
+                          name="CustomerKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[SalesOrderNumber]"
+                          dataType="wstr"
+                          length="20"
+                          name="SalesOrderNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[SalesOrderLineNumber]"
+                          dataType="ui1"
+                          name="SalesOrderLineNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[OrderQuantity]"
+                          dataType="i2"
+                          name="OrderQuantity" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[UnitPrice]"
+                          dataType="cy"
+                          name="UnitPrice" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[OrderDate]"
+                          dataType="dbTimeStamp"
+                          name="OrderDate" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[ShipDate]"
+                          dataType="dbTimeStamp"
+                          name="ShipDate" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[PaymentType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="PaymentType" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[SalesAmount]"
+                          dataType="numeric"
+                          name="SalesAmount"
+                          precision="25"
+                          scale="4" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Staging DB"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[InternetSales]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">true</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Connections[OleDbConnection]"
+                      connectionManagerID="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[SalesOrderNumber]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="SalesOrderNumber"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderNumber]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[SalesOrderLineNumber]"
+                          cachedDataType="ui1"
+                          cachedName="SalesOrderLineNumber"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderLineNumber]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[SalesOrderLineNumber]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[OrderQuantity]"
+                          cachedDataType="i2"
+                          cachedName="OrderQuantity"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[OrderQuantity]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[OrderQuantity]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                          cachedDataType="cy"
+                          cachedName="UnitPrice"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[OrderDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="OrderDate"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[OrderDate]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[OrderDate]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ShipDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="ShipDate"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ShipDate]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[ShipDate]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[PaymentType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="PaymentType"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PaymentType]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[PaymentType]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[SalesAmount]"
+                          cachedDataType="numeric"
+                          cachedName="SalesAmount"
+                          cachedPrecision="25"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesAmount]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Outputs[Derived Column Output].Columns[SalesAmount]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ProductName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="ProductName"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductName]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[StandardCost]"
+                          cachedDataType="cy"
+                          cachedName="StandardCost"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[StandardCost]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[StandardCost]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[Color]"
+                          cachedDataType="wstr"
+                          cachedLength="15"
+                          cachedName="Color"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Color]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Color]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ListPrice]"
+                          cachedDataType="cy"
+                          cachedName="ListPrice"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ListPrice]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ListPrice]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[Size]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Size"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Size]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Size]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[Weight]"
+                          cachedDataType="r8"
+                          cachedName="Weight"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Weight]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Weight]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[Description]"
+                          cachedDataType="wstr"
+                          cachedLength="400"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ProductSubcategoryName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="ProductSubcategoryName"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductSubcategoryName]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductSubcategoryName]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ProductCategoryName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="ProductCategoryName"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategoryName]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductCategoryName]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ProductKey]"
+                          cachedDataType="i4"
+                          cachedName="ProductKey"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductBusinessKey]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[ProductKey]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[CustomerKey]"
+                          cachedDataType="i4"
+                          cachedName="CustomerKey"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CustomerBusinessKey]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output].Columns[CustomerKey]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ProductSubCategoryKey]"
+                          cachedDataType="i4"
+                          cachedName="ProductSubCategoryKey"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductSubcategoryBusinessKey]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductSubCategoryKey]" />
+                        <inputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ProductCategoryKey]"
+                          cachedDataType="i4"
+                          cachedName="ProductCategoryKey"
+                          externalMetadataColumnId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategoryBusinessKey]"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductCategoryKey]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductBusinessKey]"
+                          dataType="wstr"
+                          length="25"
+                          name="ProductBusinessKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CustomerBusinessKey]"
+                          dataType="i4"
+                          name="CustomerBusinessKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderNumber]"
+                          dataType="wstr"
+                          length="20"
+                          name="SalesOrderNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderLineNumber]"
+                          dataType="ui1"
+                          name="SalesOrderLineNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[OrderQuantity]"
+                          dataType="i2"
+                          name="OrderQuantity" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                          dataType="cy"
+                          name="UnitPrice" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesAmount]"
+                          dataType="cy"
+                          name="SalesAmount" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[OrderDate]"
+                          dataType="dbTimeStamp"
+                          name="OrderDate" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ShipDate]"
+                          dataType="dbTimeStamp"
+                          name="ShipDate" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PaymentType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="PaymentType" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                          dataType="wstr"
+                          length="50"
+                          name="ProductName" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[StandardCost]"
+                          dataType="cy"
+                          name="StandardCost" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Color]"
+                          dataType="wstr"
+                          length="15"
+                          name="Color" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ListPrice]"
+                          dataType="cy"
+                          name="ListPrice" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Size]"
+                          dataType="wstr"
+                          length="50"
+                          name="Size" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Weight]"
+                          dataType="r8"
+                          name="Weight" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="400"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductSubcategoryBusinessKey]"
+                          dataType="i4"
+                          name="ProductSubcategoryBusinessKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductSubcategoryName]"
+                          dataType="wstr"
+                          length="50"
+                          name="ProductSubcategoryName" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategoryBusinessKey]"
+                          dataType="i4"
+                          name="ProductCategoryBusinessKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategoryName]"
+                          dataType="wstr"
+                          length="50"
+                          name="ProductCategoryName" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Extract Internet Sales Data\Extract Internet Sales.Paths[Derived Column Output]"
+                  endId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Inputs[Lookup Input]"
+                  name="Derived Column Output"
+                  startId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Extract Internet Sales Data\Extract Internet Sales.Paths[Lookup Match Output]"
+                  endId="Package\Extract Internet Sales Data\Extract Internet Sales\Staging DB.Inputs[OLE DB Destination Input]"
+                  name="Lookup Match Output"
+                  startId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Extract Internet Sales Data\Extract Internet Sales.Paths[Lookup No Match Output]"
+                  endId="Package\Extract Internet Sales Data\Extract Internet Sales\Orphaned Sales.Inputs[Flat File Destination Input]"
+                  name="Lookup No Match Output"
+                  startId="Package\Extract Internet Sales Data\Extract Internet Sales\Lookup Product Details.Outputs[Lookup No Match Output]" />
+                <path
+                  refId="Package\Extract Internet Sales Data\Extract Internet Sales.Paths[OLE DB Source Output]"
+                  endId="Package\Extract Internet Sales Data\Extract Internet Sales\Calculate Sales Amount.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Extract Internet Sales Data\Extract Internet Sales\Internet Sales.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract Internet Sales Data\Get Current Time"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{833e95da-ddaa-4c3c-a5cf-ed57d3b50dec}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get Current Time"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::CurrentTime]  =  GETDATE()" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract Internet Sales Data\Get Last Extract Time"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8a15632a-88e9-4c4b-bd72-37baa2ae89f4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get Last Extract Time"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}"
+              SQLTask:SqlStatementSource="SELECT  MAX(LastExtract) LastExtract&#xA;FROM ExtractLog&#xA;WHERE DataSource = 'InternetSales'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="LastExtract"
+                SQLTask:DtsVariableName="User::InternetSalesLastExtract" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract Internet Sales Data\Update Last Extract Time"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0a191cc5-8169-40bb-a74f-92130ca385c6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Last Extract Time"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}"
+              SQLTask:SqlStatementSource="UPDATE ExtractLog&#xA;SET LastExtract = ?&#xA;WHERE DataSource = 'InternetSales'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::CurrentTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract Internet Sales Data.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{2cb13f17-08ed-4981-a49f-5aab1d44ff4f}"
+          DTS:From="Package\Extract Internet Sales Data\Extract Customers"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Extract Internet Sales Data\Extract Internet Sales" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract Internet Sales Data.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{772019b8-3c6f-47b4-9d43-14a7a1fc1066}"
+          DTS:From="Package\Extract Internet Sales Data\Extract Internet Sales"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Extract Internet Sales Data\Update Last Extract Time" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract Internet Sales Data.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{67ee5263-36eb-49cb-9cb2-ccf9f9778f23}"
+          DTS:From="Package\Extract Internet Sales Data\Get Last Extract Time"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Extract Internet Sales Data\Extract Customers" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract Internet Sales Data.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{46a5fe30-f5c7-44a7-b7c4-5046b7fef693}"
+          DTS:From="Package\Extract Internet Sales Data\Get Current Time"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Extract Internet Sales Data\Get Last Extract Time" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Failure Notification"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{6c580add-d236-474b-8213-9017969b545e}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Failure Notification"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{7C8E5EC2-0E16-4018-9D53-E4AD9D70E428}"
+          SendMailTask:From="ETL@adventureworks.msft"
+          SendMailTask:To="Student@adventureworks.msft"
+          SendMailTask:Subject="Data Extraction Failure"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="The Internet Sales data extraction process failed!" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Success Notification"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{3ac65a18-3879-4ebb-b916-77ed9182357a}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Success Notification"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{7C8E5EC2-0E16-4018-9D53-E4AD9D70E428}"
+          SendMailTask:From="ETL@adventureworks.msft"
+          SendMailTask:To="Student@adventureworks.msft"
+          SendMailTask:Subject="Data Extraction Notification"
+          SendMailTask:MessageSource="The Internet Sales data was successully extracted" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{4B9E7945-4D29-40D6-A6CF-CFF2D1148ABE}"
+      DTS:From="Package\Extract Internet Sales Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Send Success Notification" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{3064DC65-EFD7-4288-8B83-D1B6BC03C4C3}"
+      DTS:From="Package\Extract Internet Sales Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Send Failure Notification"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Extract Internet Sales Data\Extract Customers"
+          TopLeft="22,209.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Extract Internet Sales Data\Extract Internet Sales"
+          TopLeft="14,311.5" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Extract Internet Sales Data\Get Current Time"
+          TopLeft="24.5,5.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Extract Internet Sales Data\Get Last Extract Time"
+          TopLeft="14,107.5" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Extract Internet Sales Data\Update Last Extract Time"
+          TopLeft="5.50000000000004,413.5" />
+        <EdgeLayout
+          Id="Package\Extract Internet Sales Data.PrecedenceConstraints[Constraint]"
+          TopLeft="104.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Internet Sales Data.PrecedenceConstraints[Constraint 1]"
+          TopLeft="104.5,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Internet Sales Data.PrecedenceConstraints[Constraint 3]"
+          TopLeft="104.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Internet Sales Data.PrecedenceConstraints[Constraint 4]"
+          TopLeft="104.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="209,511"
+          Size="209,554"
+          Id="Package\Extract Internet Sales Data"
+          TopLeft="257.5,5.5" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Send Failure Notification"
+          TopLeft="265,619.5" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Send Success Notification"
+          TopLeft="5.50000000000011,619.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="328.5,559.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-223.5,60"
+              Start="0,0"
+              End="-223.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2735042735043" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2735042735043"
+                    Point2="0,24.2735042735043"
+                    Point3="-4,24.2735042735043" />
+                  <mssgle:LineSegment
+                    End="-219.5,24.2735042735043" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-219.5,24.2735042735043"
+                    Point2="-223.5,24.2735042735043"
+                    Point3="-223.5,28.2735042735043" />
+                  <mssgle:LineSegment
+                    End="-223.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="395.5,559.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-33.4999999999999,60"
+              Start="0,0"
+              End="-33.4999999999999,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2735042735043" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2735042735043"
+                    Point2="0,24.2735042735043"
+                    Point3="-4,24.2735042735043" />
+                  <mssgle:LineSegment
+                    End="-29.4999999999999,24.2735042735043" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-29.4999999999999,24.2735042735043"
+                    Point2="-33.4999999999999,24.2735042735043"
+                    Point3="-33.4999999999999,28.2735042735043" />
+                  <mssgle:LineSegment
+                    End="-33.4999999999999,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-31.99134765625,29.2735042735043,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="localhost Staging ADO NET"
+  DTS:DTSID="{CFD4F30E-11D0-4E4F-93E7-18B993648410}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=Staging;Integrated Security=True;Application Name=SSIS-AdventureWorksETL-{CFD4F30E-11D0-4E4F-93E7-18B993648410}localhost.Staging 1;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

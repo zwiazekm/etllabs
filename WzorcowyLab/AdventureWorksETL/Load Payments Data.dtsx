@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/22/2011 3:36:37 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MIA-SQLBI"
+  DTS:CreatorName="ADVENTUREWORKS\Student"
+  DTS:DTSID="{8616C69C-A56F-49AF-B361-FF52A97B6E96}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2299.1"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Load Payments Data"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{EC598526-255F-496F-B2D8-2E473D4E3E52}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Merge Payments Data"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{74A09A06-CA70-4ECC-840D-A0368A481210}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Merge Payments Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}"
+          SQLTask:SqlStatementSource="MERGE INTO AWDataWarehouse.dbo.FactPayments AS tgt&#xA;USING&#xA;&#x9;-- Query to return staged payments data and look up dimension keys&#xA;&#x9;(SELECT p.PaymentBusinessKey PaymentAlternateKey,&#xA;&#x9;&#x9;&#x9;r.ResellerKey,&#xA;&#x9;&#x9;&#x9;d.DateKey PaymentDateKey,&#xA;&#x9;&#x9;&#x9;p.SalesOrderNumber,&#xA;&#x9;&#x9;&#x9;p.PaymentAmount&#xA;&#x9;FROM staging.dbo.Payments p&#xA;&#x9;INNER JOIN AWDataWarehouse.dbo.DimReseller r ON p.ResellerBusinessKey = r.ResellerAlternateKey AND r.CurrentRecord = 1&#xA;&#x9;INNER JOIN AWDataWarehouse.dbo.DimDate d ON p.PaymentDate = d.FullDateAlternateKey)&#xA;&#x9;AS src (PaymentAlternateKey, ResellerKey, PaymentDateKey, SalesOrderNumber, PaymentAmount)&#xA;&#x9;&#xA;&#x9;-- Match staged payments to existing fact records&#xA;&#x9;ON (&#xA;&#x9;&#x9;src.PaymentAlternateKey = tgt.PaymentAlternateKey&#xA;&#x9;   )&#xA;&#xA;&#x9;   -- If a record for this payment already exists, update it&#xA;&#x9;WHEN MATCHED THEN&#xA;&#x9;&#x9;UPDATE &#xA;&#x9;&#x9;SET SalesOrderNumber = src.SalesOrderNumber,&#xA;&#x9;&#x9;&#x9;ResellerKey = src.ResellerKey,&#xA;&#x9;&#x9;&#x9;PaymentDateKey = src.PaymentDateKey,&#xA;&#x9;&#x9;&#x9;PaymentAmount = src.PaymentAmount&#xA;&#xA;&#x9;&#x9;-- If not, insert a new record&#xA;&#x9;WHEN NOT MATCHED THEN&#xA;&#x9;&#x9;&#x9;INSERT (PaymentAlternateKey, ResellerKey, SalesOrderNumber, PaymentDateKey, PaymentAmount)&#xA;&#x9;&#x9;&#x9;VALUES (src.PaymentAlternateKey, src.ResellerKey, src.SalesOrderNumber, src.PaymentDateKey, src.PaymentAmount);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Merge Payments Data"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

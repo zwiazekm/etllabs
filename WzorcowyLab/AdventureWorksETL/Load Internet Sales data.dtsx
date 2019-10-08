@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/22/2011 3:39:25 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MIA-SQLBI"
+  DTS:CreatorName="ADVENTUREWORKS\Student"
+  DTS:DTSID="{11F8AFDC-79CA-480D-AFB5-354A46E02E4E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2299.1"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Load Internet Sales data"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{9C99ED7F-EBA8-4B9A-A080-8930147FB0AC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Merge Internet Sales data"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3AF88F26-1E26-4DF4-975D-4E46B897D4D4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Merge Internet Sales data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}"
+          SQLTask:SqlStatementSource="MERGE INTO AWDataWarehouse.dbo.FactInternetSales AS tgt&#xA;USING&#xA;&#x9;-- Query to return staged Internet sales data and look up dimension keys&#xA;&#x9;(SELECT  p.ProductKey,&#xA;&#x9;&#x9;&#x9;c.CustomerKey,&#xA;&#x9;&#x9;&#x9;i.SalesOrderNumber,&#xA;&#x9;&#x9;&#x9;i.SalesOrderLineNumber,&#xA;&#x9;&#x9;&#x9;i.OrderQuantity,&#xA;&#x9;&#x9;&#x9;i.UnitPrice,&#xA;&#x9;&#x9;&#x9;i.SalesAmount,&#xA;&#x9;&#x9;&#x9;i.OrderDate,&#xA;&#x9;&#x9;&#x9;i.ShipDate,&#xA;&#x9;&#x9;&#x9;i.PaymentType,&#xA;&#x9;&#x9;&#x9;do.DateKey OrderDateKey,&#xA;&#x9;&#x9;&#x9;ds.DateKey ShipDateKey&#xA;&#x9;FROM AWDataWarehouse.dbo.DimProduct p&#xA;&#x9;INNER JOIN staging.dbo.InternetSales i ON i.ProductBusinessKey = p.ProductAlternateKey&#xA;&#x9;INNER JOIN AWDataWarehouse.dbo.DimCustomer c ON i.CustomerBusinessKey = c.CustomerAlternateKey AND c.CurrentRecord = 1&#xA;&#x9;INNER JOIN AWDataWarehouse.dbo.DimDate do ON i.OrderDate = do.FullDateAlternateKey&#xA;&#x9;INNER JOIN AWDataWarehouse.dbo.DimDate ds ON i.ShipDate = ds.FullDateAlternateKey)&#xA;&#x9;AS src (ProductKey, CustomerKey, SalesOrderNumber, SalesOrderLineNumber, OrderQuantity, UnitPrice, SalesAmount, OrderDate, ShipDate, PaymentType, OrderdateKey, ShipDateKey)&#xA;&#x9;&#xA;&#x9;-- Match staged order/lineitem combinations to existing fact records&#xA;&#x9;ON (&#xA;&#x9;&#x9;src.SalesOrderNumber = tgt.SalesOrderNumber&#xA;&#x9;&#x9;AND&#xA;&#x9;&#x9;src.SalesOrderLineNumber = tgt.SalesOrderLineNumber&#xA;&#x9;   )&#xA;&#xA;&#x9;   -- If a record for this order/lineitem already exists, update it&#xA;&#x9;WHEN MATCHED THEN&#xA;&#x9;&#x9;UPDATE &#xA;&#x9;&#x9;SET ProductKey = src.ProductKey,&#xA;&#x9;&#x9;&#x9;CustomerKey = src.CustomerKey,&#xA;&#x9;&#x9;&#x9;OrderQuantity = src.OrderQuantity,&#xA;&#x9;&#x9;&#x9;UnitPrice = src.UnitPrice,&#xA;&#x9;&#x9;&#x9;SalesAmount = src.SalesAmount,&#xA;&#x9;&#x9;&#x9;OrderDate = src.OrderDate,&#xA;&#x9;&#x9;&#x9;ShipDate = src.ShipDate,&#xA;&#x9;&#x9;&#x9;PaymentType = src.PaymentType,&#xA;&#x9;&#x9;&#x9;OrderdateKey = src.OrderdateKey,&#xA;&#x9;&#x9;&#x9;ShipDateKey = src.ShipDateKey&#xA;&#xA;&#x9;&#x9;-- If not, insert a new record&#xA;&#x9;WHEN NOT MATCHED THEN&#xA;&#x9;&#x9;INSERT (ProductKey, CustomerKey, SalesOrderNumber, SalesOrderLineNumber, OrderQuantity, UnitPrice, SalesAmount, OrderDate, ShipDate, PaymentType, OrderdateKey, ShipDateKey)&#xA;&#x9;&#x9;VALUES (src.ProductKey, src.CustomerKey, src.SalesOrderNumber, src.SalesOrderLineNumber, src.OrderQuantity, src.UnitPrice, src.SalesAmount, src.OrderDate, src.ShipDate, src.PaymentType, src.OrderdateKey, src.ShipDateKey);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="201,42"
+          Id="Package\Merge Internet Sales data"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

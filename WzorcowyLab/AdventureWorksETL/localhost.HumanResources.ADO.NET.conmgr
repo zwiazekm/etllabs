@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="localhost HumanResources ADO NET"
+  DTS:DTSID="{9735482F-51BF-4EB1-A353-9B87F4CA03A3}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=HumanResources;Integrated Security=True;Application Name=SSIS-AdventureWorksETL-{9735482F-51BF-4EB1-A353-9B87F4CA03A3}localhost.HumanResources;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

@@ -1,0 +1,1512 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/18/2011 7:15:39 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MIA-SQLBI"
+  DTS:CreatorName="ADVENTUREWORKS\Student"
+  DTS:DTSID="{9C6821E8-07F4-4585-99C3-72CFC70F6781}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2299.1"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Extract Payment Data"
+  DTS:PackageType="5"
+  DTS:VersionBuild="51"
+  DTS:VersionGUID="{87F96F5A-B79E-4CF9-9191-EC2EE2447D0F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Custom Log File]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{B0EBDF9E-D204-4481-A8ED-A4F58DF234C5}"
+      DTS:ObjectName="Custom Log File">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ETLFolderPath] + "PaymentsLog.txt"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\ETL\PaymentsLog.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EventTime"
+              DTS:DTSID="{82E4D8A7-9F40-498A-AF48-AC1E9578ED60}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Computer"
+              DTS:DTSID="{54D50733-A26D-444D-8298-989A1C9F5706}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Package"
+              DTS:DTSID="{AB68E6DB-F3FF-4659-AD23-71A146C7F8FF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AccountsFolder"
+              DTS:DTSID="{FD813097-ABFF-4051-9059-797D0FD022C8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FileName"
+              DTS:DTSID="{4509BC7A-156D-450D-99FE-3CC2D71154EA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="2000"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorMessage"
+              DTS:DTSID="{9C9FF81C-1A07-437D-9658-EF22D0DC15FB}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Invalid Payments Records]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{B1E1E038-A232-4C3E-9F05-09EF7FFC374C}"
+      DTS:ObjectName="Invalid Payments Records">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ETLFolderPath] + "InvalidPayments.csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\ETL\InvalidPayments.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 0"
+              DTS:DTSID="{F60368A0-2F09-4D03-92EB-C3C32F66A80C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 1"
+              DTS:DTSID="{C99322CD-5CA1-4855-B707-F1659A892C9F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 2"
+              DTS:DTSID="{DD44F416-9B47-46D3-89BA-4AAD8767BDE8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 3"
+              DTS:DTSID="{743233CB-70CC-459A-8CFD-750343444AE1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 4"
+              DTS:DTSID="{DA6351F9-7F1F-4986-B7D8-D1F575A10311}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 5"
+              DTS:DTSID="{1CEF68BF-2EC8-4732-AF88-98E7B45ECAA7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 6"
+              DTS:DTSID="{0D816D69-E359-4528-B626-E05DCC235897}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 7"
+              DTS:DTSID="{219A4A6D-A251-41C0-9D13-C70D89B6DF9D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 8"
+              DTS:DTSID="{2D5732F6-7DA2-420A-9589-47EDEABADE33}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Local SMTP Server]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{7A5BDFD5-5BBF-481C-B346-F70ED9B64C9A}"
+      DTS:ObjectName="Local SMTP Server">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=localhost;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Payments File]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{1283DC50-45F0-4502-BB3E-ACDD0C3BCCD5}"
+      DTS:ObjectName="Payments File">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::AccountsFolderPath] + @[User::fName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\Accounts\Payments - US.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PaymentNo"
+              DTS:DTSID="{5F250252-90E0-4BEE-B6AA-DA9CE18D4DC9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ResellerKey"
+              DTS:DTSID="{8C374D0E-598D-47A1-93EF-94A2565934CE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ResellerName"
+              DTS:DTSID="{4D86C968-0024-48FA-BA5E-9A32B8266CC5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CountryRegionCode"
+              DTS:DTSID="{8382231E-F023-4EA1-A5DE-A374C730FC82}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SalesOrderNumber"
+              DTS:DTSID="{B5517CF4-BC3A-4487-B2A1-A14A80C76859}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PaymentDate"
+              DTS:DTSID="{8C7398D9-F607-4713-A6ED-8B229EE6C5CB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PaymentAmount"
+              DTS:DTSID="{D1004109-2770-4C2F-8270-AACD9F44DFB4}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:CreationName="Microsoft.LogProviderEventLog"
+      DTS:Description="Writes log entries for events to the Event Log"
+      DTS:DTSID="{58A6C05F-4DDF-445A-A932-1FF6197F6749}"
+      DTS:ObjectName="SSIS log provider for Windows Event Log">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5F247B5D-2E29-4681-94BB-FB34FD5C3C99}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="fName">
+      <DTS:VariableValue
+        DTS:DataType="8">Payments - US.csv</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">2,7,OnError,12,OnTaskFailed</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{58A6C05F-4DDF-445A-A932-1FF6197F6749}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{C6D904EB-6DC0-43F3-9962-686B7D5A1576}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{62D1440A-EA01-483A-ACE6-77520EA63E0C}"
+        DTS:ObjectName="{62D1440A-EA01-483A-ACE6-77520EA63E0C}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[$Project::AccountsFolderPath]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="D:\Accounts\" />
+            <FEFEProperty
+              FileSpec="*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Extract Payments"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{fb0569d9-b5a8-44a2-8f4f-921476dba42e}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Extract Payments"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="Invalid Rows">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">false</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Invalid Payments Records]"
+                      connectionManagerRefId="Package.ConnectionManagers[Invalid Payments Records]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].Columns[PaymentNo]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PaymentNo"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 0]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[PaymentNo]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].Columns[ResellerKey]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ResellerKey"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 1]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[ResellerKey]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].Columns[ResellerName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ResellerName"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 2]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[ResellerName]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].Columns[CountryRegionCode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CountryRegionCode"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 3]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[CountryRegionCode]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].Columns[SalesOrderNumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SalesOrderNumber"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 4]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[SalesOrderNumber]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].Columns[PaymentDate]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PaymentDate"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 5]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[PaymentDate]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].Columns[PaymentAmount]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PaymentAmount"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 6]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[PaymentAmount]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].Columns[ErrorCode]"
+                          cachedDataType="i4"
+                          cachedName="ErrorCode"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 7]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].Columns[ErrorColumn]"
+                          cachedDataType="i4"
+                          cachedName="ErrorColumn"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 8]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 0]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 0" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 1" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 2" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 3" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 4]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 4" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 5]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 5" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 6]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 6" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 7]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 7" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input].ExternalColumns[Column 8]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 8" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Extract Payments\Payments File"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="Payments File"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">true</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Extract Payments\Payments File.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Payments File]"
+                      connectionManagerRefId="Package.ConnectionManagers[Payments File]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[PaymentNo]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[PaymentNo]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[PaymentNo]"
+                          name="PaymentNo"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[ResellerKey]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[ResellerKey]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[ResellerKey]"
+                          name="ResellerKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[ResellerName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[ResellerName]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[ResellerName]"
+                          name="ResellerName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[CountryRegionCode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[CountryRegionCode]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[CountryRegionCode]"
+                          name="CountryRegionCode"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[SalesOrderNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[SalesOrderNumber]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[SalesOrderNumber]"
+                          name="SalesOrderNumber"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[PaymentDate]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[PaymentDate]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[PaymentDate]"
+                          name="PaymentDate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[PaymentAmount]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[PaymentAmount]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[PaymentAmount]"
+                          name="PaymentAmount"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[PaymentNo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PaymentNo" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[ResellerKey]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ResellerKey" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[ResellerName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ResellerName" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[CountryRegionCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CountryRegionCode" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[SalesOrderNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SalesOrderNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[PaymentDate]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PaymentDate" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].ExternalColumns[PaymentAmount]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PaymentAmount" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Extract Payments\Staging DB"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Staging DB"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Payments]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">true</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Connections[OleDbConnection]"
+                      connectionManagerID="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="RedirectRow"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].Columns[SalesOrderNumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SalesOrderNumber"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderNumber]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[SalesOrderNumber]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].Columns[PaymentDate]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PaymentDate"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PaymentDate]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[PaymentDate]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].Columns[PaymentAmount]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PaymentAmount"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PaymentAmount]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[PaymentAmount]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].Columns[PaymentNo]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PaymentNo"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PaymentBusinessKey]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[PaymentNo]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].Columns[ResellerKey]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ResellerKey"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ResellerBusinessKey]"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output].Columns[ResellerKey]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PaymentBusinessKey]"
+                          dataType="i4"
+                          name="PaymentBusinessKey" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ResellerBusinessKey]"
+                          dataType="i4"
+                          name="ResellerBusinessKey" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SalesOrderNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PaymentDate]"
+                          dataType="dbTimeStamp"
+                          name="PaymentDate" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PaymentAmount]"
+                          dataType="cy"
+                          name="PaymentAmount" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Extract Payments\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Extract Payments\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\Extract Payments.Paths[Flat File Source Output]"
+                  endId="Package\Foreach Loop Container\Extract Payments\Staging DB.Inputs[OLE DB Destination Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Foreach Loop Container\Extract Payments\Payments File.Outputs[Flat File Source Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\Extract Payments.Paths[OLE DB Destination Error Output]"
+                  endId="Package\Foreach Loop Container\Extract Payments\Invalid Rows.Inputs[Flat File Destination Input]"
+                  name="OLE DB Destination Error Output"
+                  startId="Package\Foreach Loop Container\Extract Payments\Staging DB.Outputs[OLE DB Destination Error Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{BA7E14FA-6B21-4D5B-BBF1-FC40E7F080B1}"
+          DTS:ObjectName="{BA7E14FA-6B21-4D5B-BBF1-FC40E7F080B1}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::fName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{27DA1E4A-C46D-4A6E-9F70-7459044E624B}"
+      DTS:EventID="203584896"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{A638925C-34DC-4E53-95E0-4D9D95BC7B76}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Log Status"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{e6a019e8-a795-4065-ab77-2cc001ebc62b}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Log Status"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package.EventHandlers[OnError]\Log Status\Custom Log"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="Custom Log">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">false</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Custom Log File]"
+                      connectionManagerRefId="Package.ConnectionManagers[Custom Log File]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].Columns[EventTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="EventTime"
+                          externalMetadataColumnId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].ExternalColumns[EventTime]"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Output].Columns[EventTime]" />
+                        <inputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].Columns[Computer]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="Computer"
+                          externalMetadataColumnId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].ExternalColumns[Computer]"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[Computer]" />
+                        <inputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].Columns[Package]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="Package"
+                          externalMetadataColumnId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].ExternalColumns[Package]"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[Package]" />
+                        <inputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].Columns[AccountsFolder]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="AccountsFolder"
+                          externalMetadataColumnId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].ExternalColumns[AccountsFolder]"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[AccountsFolder]" />
+                        <inputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].Columns[FileName]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="FileName"
+                          externalMetadataColumnId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].ExternalColumns[FileName]"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[FileName]" />
+                        <inputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].Columns[ErrorMessage]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="ErrorMessage"
+                          externalMetadataColumnId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].ExternalColumns[ErrorMessage]"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[ErrorMessage]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].ExternalColumns[EventTime]"
+                          dataType="dbTimeStamp"
+                          name="EventTime" />
+                        <externalMetadataColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].ExternalColumns[Computer]"
+                          dataType="wstr"
+                          length="100"
+                          name="Computer" />
+                        <externalMetadataColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].ExternalColumns[Package]"
+                          dataType="wstr"
+                          length="100"
+                          name="Package" />
+                        <externalMetadataColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].ExternalColumns[AccountsFolder]"
+                          dataType="wstr"
+                          length="100"
+                          name="AccountsFolder" />
+                        <externalMetadataColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].ExternalColumns[FileName]"
+                          dataType="wstr"
+                          length="100"
+                          name="FileName" />
+                        <externalMetadataColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input].ExternalColumns[ErrorMessage]"
+                          dataType="wstr"
+                          length="2000"
+                          name="ErrorMessage" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package.EventHandlers[OnError]\Log Status\Get System Variables"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Get System Variables"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[Computer]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[Computer]"
+                          name="Computer"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_WSTR,100)@[System::MachineName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,100)@[System::MachineName]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[Package]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[Package]"
+                          name="Package"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_WSTR,100)@[System::PackageName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,100)@[System::PackageName]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[AccountsFolder]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[AccountsFolder]"
+                          name="AccountsFolder"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_WSTR,100)@[$Project::AccountsFolderPath]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,100)@[$Project::AccountsFolderPath]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[FileName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[FileName]"
+                          name="FileName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_WSTR,100)@[User::fName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,100)@[User::fName]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[ErrorMessage]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="2000"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output].Columns[ErrorMessage]"
+                          name="ErrorMessage"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_WSTR,2000)@[System::ErrorDescription]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,2000)@[System::ErrorDescription]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package.EventHandlers[OnError]\Log Status\GetDate"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="GetDate"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT GetDate() EventTime</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package.EventHandlers[OnError]\Log Status\GetDate.Connections[OleDbConnection]"
+                      connectionManagerID="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Output].Columns[EventTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Output].ExternalColumns[EventTime]"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Output].Columns[EventTime]"
+                          name="EventTime"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Output].ExternalColumns[EventTime]"
+                          dataType="dbTimeStamp"
+                          name="EventTime" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Error Output].Columns[EventTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Error Output].Columns[EventTime]"
+                          name="EventTime" />
+                        <outputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package.EventHandlers[OnError]\Log Status.Paths[Derived Column Output]"
+                  endId="Package.EventHandlers[OnError]\Log Status\Custom Log.Inputs[Flat File Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package.EventHandlers[OnError]\Log Status.Paths[OLE DB Source Output]"
+                  endId="Package.EventHandlers[OnError]\Log Status\Get System Variables.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package.EventHandlers[OnError]\Log Status\GetDate.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Foreach Loop Container\Extract Payments"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="172,103"
+          Size="172,146"
+          Id="Package\Foreach Loop Container"
+          TopLeft="5.50000000000003,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package.EventHandlers[OnError]\Log Status"
+          TopLeft="NaN,NaN" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

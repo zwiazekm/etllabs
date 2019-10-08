@@ -1,0 +1,2540 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CheckpointFileName="D:\ETL\Checkpoint.chk"
+  DTS:CheckpointUsage="1"
+  DTS:CreationDate="8/17/2011 2:30:31 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MIA-SQLBI"
+  DTS:CreatorName="ADVENTUREWORKS\Student"
+  DTS:DTSID="{5ED43976-1FF7-4A69-95E2-BE91A76B60FC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2299.1"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Extract Reseller Data"
+  DTS:PackageType="5"
+  DTS:SaveCheckpoints="True"
+  DTS:VersionBuild="50"
+  DTS:VersionGUID="{BCF43EC6-734A-46D1-8BC1-8A0243566F85}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Local SMTP Server]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{0B533513-3075-475E-92A2-1329E3599353}"
+      DTS:ObjectName="Local SMTP Server">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=localhost;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Orphaned Reseller Sales]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{0ADB5C6F-8F62-4E54-8E09-24E2392CC56F}"
+      DTS:ObjectName="Orphaned Reseller Sales">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ETLFolderPath] + "Orphaned Reseller Sales.csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\ETL\Orphaned Reseller Sales.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ProductKey"
+              DTS:DTSID="{5E3DFD0D-05D2-4B7B-8F93-B7D347721987}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ResellerKey"
+              DTS:DTSID="{496ECE2D-D7B7-4CF9-9A89-CA44A3BE1EEB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SalesOrderNumber"
+              DTS:DTSID="{8947D74F-65EC-470B-82AA-73B55353CDC6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="17"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SalesOrderLineNumber"
+              DTS:DTSID="{1EC72D7B-702B-49DB-A68C-5854A67EDBC6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="OrderQuantity"
+              DTS:DTSID="{F57A15D6-B435-4946-B1C7-A32384BABC9C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="UnitPrice"
+              DTS:DTSID="{B5DDD5A3-EAE9-415B-8C73-F97E16BBDE40}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="OrderDate"
+              DTS:DTSID="{EBA98AFC-9347-47F9-8FB5-B0EB3CD3BE2F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ShipDate"
+              DTS:DTSID="{526193AF-086C-453E-A562-944C2D04C811}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="15"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PaymentType"
+              DTS:DTSID="{A370432F-E1A0-46AB-AE31-ECDABD1062F0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="131"
+              DTS:DataPrecision="25"
+              DTS:DataScale="4"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SalesAmount"
+              DTS:DTSID="{432128F0-7D5C-4938-A0FA-6EBF4C1E590E}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2E82E515-531D-41B7-B847-54FC228BFB3B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentTime">
+      <DTS:VariableValue
+        DTS:DataType="7">8/30/2011 3:39:38 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AC7FFE5B-BA54-424A-AF66-B8C7F3E05B81}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PreviousVersion">
+      <DTS:VariableValue
+        DTS:DataType="14">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FB90E3B2-C49B-4CF7-8928-0170BE96CA62}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResellerSalesLastExtract">
+      <DTS:VariableValue
+        DTS:DataType="7">8/30/2011 3:40:33 AM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:PropertyExpression
+    DTS:Name="CheckpointFileName">@[$Project::ETLFolderPath] + "Checkpoint.chk"</DTS:PropertyExpression>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract Reseller Sales"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{f896eb45-25f4-4691-adf6-9f859fe470f2}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract Reseller Sales"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract Reseller Sales\Calculate Sales Amount"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Calculate Sales Amount"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Extract Reseller Sales\Calculate Sales Amount.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Calculate Sales Amount.Inputs[Derived Column Input].Columns[OrderQuantity]"
+                      cachedDataType="i2"
+                      cachedName="OrderQuantity"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[OrderQuantity]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Calculate Sales Amount.Inputs[Derived Column Input].Columns[UnitPrice]"
+                      cachedDataType="cy"
+                      cachedName="UnitPrice"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Reseller Sales\Calculate Sales Amount.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Extract Reseller Sales\Calculate Sales Amount.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Calculate Sales Amount.Outputs[Derived Column Output].Columns[SalesAmount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Extract Reseller Sales\Calculate Sales Amount.Outputs[Derived Column Output].Columns[SalesAmount]"
+                      name="SalesAmount"
+                      precision="25"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[UnitPrice]} * #{Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[OrderQuantity]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">UnitPrice * OrderQuantity</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Reseller Sales\Calculate Sales Amount.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Extract Reseller Sales\Calculate Sales Amount.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Calculate Sales Amount.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Reseller Sales\Calculate Sales Amount.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Calculate Sales Amount.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Reseller Sales\Calculate Sales Amount.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Reseller Sales\Lookup Product Details"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Product Details"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT     Product.ProductKey, Product.ProductName, Product.StandardCost, Product.Color, Product.ListPrice, Product.[Size], Product.Weight, Product.Description, 
+                      ProductSubcategory.ProductSubCategoryKey, ProductSubcategory.ProductSubcategoryName, ProductCategory.ProductCategoryKey, 
+                      ProductCategory.ProductCategoryName
+FROM         Product INNER JOIN
+                      ProductSubcategory ON Product.ProductSubcategoryKey = ProductSubcategory.ProductSubCategoryKey INNER JOIN
+                      ProductCategory ON ProductSubcategory.ProductCategoryKey = ProductCategory.ProductCategoryKey</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT     Product.ProductKey, Product.ProductName, Product.StandardCost, Product.Color, Product.ListPrice, Product.[Size], Product.Weight, Product.Description, 
+                      ProductSubcategory.ProductSubCategoryKey, ProductSubcategory.ProductSubcategoryName, ProductCategory.ProductCategoryKey, 
+                      ProductCategory.ProductCategoryName
+FROM         Product INNER JOIN
+                      ProductSubcategory ON Product.ProductSubcategoryKey = ProductSubcategory.ProductSubCategoryKey INNER JOIN
+                      ProductCategory ON ProductSubcategory.ProductCategoryKey = ProductCategory.ProductCategoryKey) [refTable]
+where [refTable].[ProductKey] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ProductKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="StandardCost" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Color" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ListPrice" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Size" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Weight" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_WSTR" length="400" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductSubCategoryKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductSubcategoryName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductCategoryKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductCategoryName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ProductKey]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Reseller Sales\Lookup Product Details.Connections[OleDbConnection]"
+                  connectionManagerID="{0C4433B9-1AED-42A7-B5A6-D7638427E552}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Products]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Reseller Sales\Lookup Product Details.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Inputs[Lookup Input].Columns[ProductKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductKey"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ProductKey]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ProductKey</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Extract Reseller Sales\Lookup Product Details.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductName]"
+                      name="ProductName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ProductName</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[StandardCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[StandardCost]"
+                      name="StandardCost"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">StandardCost</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Color]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="15"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Color]"
+                      name="Color"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Color</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ListPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ListPrice]"
+                      name="ListPrice"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ListPrice</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Size]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Size]"
+                      name="Size"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Size</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Weight]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Weight]"
+                      name="Weight"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Weight</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="400"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Description</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductSubCategoryKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductSubCategoryKey]"
+                      name="ProductSubCategoryKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ProductSubCategoryKey</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductSubcategoryName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductSubcategoryName]"
+                      name="ProductSubcategoryName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ProductSubcategoryName</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductCategoryKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductCategoryKey]"
+                      name="ProductCategoryKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ProductCategoryKey</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductCategoryName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductCategoryName]"
+                      name="ProductCategoryName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ProductCategoryName</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Extract Reseller Sales\Lookup Product Details.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Extract Reseller Sales\Lookup Product Details.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Reseller Sales\Orphaned Sales"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Orphaned Sales">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Reseller Sales\Orphaned Sales.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Orphaned Reseller Sales]"
+                  connectionManagerRefId="Package.ConnectionManagers[Orphaned Reseller Sales]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[ProductKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductKey"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[ProductKey]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ProductKey]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[ResellerKey]"
+                      cachedDataType="i4"
+                      cachedName="ResellerKey"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[ResellerKey]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ResellerKey]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[SalesOrderNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="SalesOrderNumber"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[SalesOrderNumber]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[SalesOrderLineNumber]"
+                      cachedDataType="ui1"
+                      cachedName="SalesOrderLineNumber"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[SalesOrderLineNumber]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[SalesOrderLineNumber]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[OrderQuantity]"
+                      cachedDataType="i2"
+                      cachedName="OrderQuantity"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[OrderQuantity]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[OrderQuantity]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[UnitPrice]"
+                      cachedDataType="cy"
+                      cachedName="UnitPrice"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[OrderDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="OrderDate"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[OrderDate]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[OrderDate]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[ShipDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ShipDate"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[ShipDate]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ShipDate]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[PaymentType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="PaymentType"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[PaymentType]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[PaymentType]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].Columns[SalesAmount]"
+                      cachedDataType="numeric"
+                      cachedName="SalesAmount"
+                      cachedPrecision="25"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[SalesAmount]"
+                      lineageId="Package\Extract Reseller Sales\Calculate Sales Amount.Outputs[Derived Column Output].Columns[SalesAmount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[ResellerKey]"
+                      dataType="i4"
+                      name="ResellerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[SalesOrderNumber]"
+                      dataType="wstr"
+                      length="20"
+                      name="SalesOrderNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[SalesOrderLineNumber]"
+                      dataType="ui1"
+                      name="SalesOrderLineNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[OrderQuantity]"
+                      dataType="i2"
+                      name="OrderQuantity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[UnitPrice]"
+                      dataType="cy"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      name="OrderDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[ShipDate]"
+                      dataType="dbTimeStamp"
+                      name="ShipDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[PaymentType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="PaymentType" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input].ExternalColumns[SalesAmount]"
+                      dataType="numeric"
+                      name="SalesAmount"
+                      precision="25"
+                      scale="4" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Extract Reseller Sales\Reseller Sales"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Reseller Sales"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT     SalesOrderDetail.ProductKey, SalesOrderHeader.ResellerKey, 
+SalesOrderHeader.EmployeeID,
+SalesOrderDetail.SalesOrderNumber, SalesOrderDetail.SalesOrderLineNumber, 
+                      SalesOrderDetail.OrderQuantity, SalesOrderDetail.UnitPrice, SalesOrderHeader.OrderDate,  SalesOrderHeader.ShipDate,
+ISNULL(PaymentTypes.PaymentTypeName, 'Other') PaymentType
+FROM         SalesOrderDetail INNER JOIN
+                      SalesOrderHeader ON SalesOrderDetail.SalesOrderNumber = SalesOrderHeader.SalesOrderNumber
+INNER JOIN PaymentTypes
+ON SalesOrderHeader.PaymentType = PaymentTypes.PaymentTypeKey
+WHERE LastModified &gt; ?
+AND LastModified &lt;= ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{FB90E3B2-C49B-4CF7-8928-0170BE96CA62};"Parameter1:Input",{2E82E515-531D-41B7-B847-54FC228BFB3B};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Reseller Sales\Reseller Sales.Connections[OleDbConnection]"
+                  connectionManagerID="{A4AD3551-E49D-42A3-924B-3E111BDD3EC0}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.ResellerSales]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ProductKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[ProductKey]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ProductKey]"
+                      name="ProductKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ResellerKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[ResellerKey]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ResellerKey]"
+                      name="ResellerKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderNumber]"
+                      length="20"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]"
+                      name="SalesOrderNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[SalesOrderLineNumber]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderLineNumber]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[SalesOrderLineNumber]"
+                      name="SalesOrderLineNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[OrderQuantity]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[OrderQuantity]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[OrderQuantity]"
+                      name="OrderQuantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[OrderDate]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[OrderDate]"
+                      name="OrderDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ShipDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[ShipDate]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ShipDate]"
+                      name="ShipDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[PaymentType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[PaymentType]"
+                      length="15"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[PaymentType]"
+                      name="PaymentType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[ResellerKey]"
+                      dataType="i4"
+                      name="ResellerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderNumber]"
+                      dataType="wstr"
+                      length="20"
+                      name="SalesOrderNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderLineNumber]"
+                      dataType="ui1"
+                      name="SalesOrderLineNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[OrderQuantity]"
+                      dataType="i2"
+                      name="OrderQuantity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      dataType="cy"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      name="OrderDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[ShipDate]"
+                      dataType="dbTimeStamp"
+                      name="ShipDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[PaymentType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="PaymentType" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      dataType="i4"
+                      name="EmployeeID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[ProductKey]"
+                      dataType="i4"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[ProductKey]"
+                      name="ProductKey" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[ResellerKey]"
+                      dataType="i4"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[ResellerKey]"
+                      name="ResellerKey" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      name="EmployeeID" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[SalesOrderNumber]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[SalesOrderNumber]"
+                      name="SalesOrderNumber" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[SalesOrderLineNumber]"
+                      dataType="ui1"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[SalesOrderLineNumber]"
+                      name="SalesOrderLineNumber" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[OrderQuantity]"
+                      dataType="i2"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[OrderQuantity]"
+                      name="OrderQuantity" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[OrderDate]"
+                      name="OrderDate" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[ShipDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[ShipDate]"
+                      name="ShipDate" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[PaymentType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[PaymentType]"
+                      name="PaymentType" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Reseller Sales\Staging DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Staging DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ResellerSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Reseller Sales\Staging DB.Connections[OleDbConnection]"
+                  connectionManagerID="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[SalesOrderNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="SalesOrderNumber"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderNumber]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[SalesOrderLineNumber]"
+                      cachedDataType="ui1"
+                      cachedName="SalesOrderLineNumber"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderLineNumber]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[SalesOrderLineNumber]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[OrderQuantity]"
+                      cachedDataType="i2"
+                      cachedName="OrderQuantity"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[OrderQuantity]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[OrderQuantity]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                      cachedDataType="cy"
+                      cachedName="UnitPrice"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[OrderDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="OrderDate"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[OrderDate]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[OrderDate]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ShipDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ShipDate"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ShipDate]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ShipDate]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[PaymentType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="PaymentType"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PaymentType]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[PaymentType]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[SalesAmount]"
+                      cachedDataType="numeric"
+                      cachedName="SalesAmount"
+                      cachedPrecision="25"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesAmount]"
+                      lineageId="Package\Extract Reseller Sales\Calculate Sales Amount.Outputs[Derived Column Output].Columns[SalesAmount]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ProductName"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductName]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[StandardCost]"
+                      cachedDataType="cy"
+                      cachedName="StandardCost"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[StandardCost]"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[StandardCost]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[Color]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="Color"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Color]"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Color]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ListPrice]"
+                      cachedDataType="cy"
+                      cachedName="ListPrice"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ListPrice]"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ListPrice]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[Size]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Size"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Size]"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Size]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[Weight]"
+                      cachedDataType="r8"
+                      cachedName="Weight"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Weight]"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Weight]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="400"
+                      cachedName="Description"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[Description]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ProductSubcategoryName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ProductSubcategoryName"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductSubcategoryName]"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductSubcategoryName]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ProductCategoryName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ProductCategoryName"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategoryName]"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductCategoryName]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ProductKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductKey"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductBusinessKey]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ProductKey]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ResellerKey]"
+                      cachedDataType="i4"
+                      cachedName="ResellerKey"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ResellerBusinessKey]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[ResellerKey]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ProductSubCategoryKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductSubCategoryKey"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductSubcategoryBusinessKey]"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductSubCategoryKey]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[ProductCategoryKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductCategoryKey"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategoryBusinessKey]"
+                      lineageId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output].Columns[ProductCategoryKey]" />
+                    <inputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].Columns[EmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeID"
+                      externalMetadataColumnId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeBusinessKey]"
+                      lineageId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output].Columns[EmployeeID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductBusinessKey]"
+                      dataType="wstr"
+                      length="25"
+                      name="ProductBusinessKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ResellerBusinessKey]"
+                      dataType="i4"
+                      name="ResellerBusinessKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderNumber]"
+                      dataType="wstr"
+                      length="20"
+                      name="SalesOrderNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderLineNumber]"
+                      dataType="ui1"
+                      name="SalesOrderLineNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[OrderQuantity]"
+                      dataType="i2"
+                      name="OrderQuantity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      dataType="cy"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[SalesAmount]"
+                      dataType="cy"
+                      name="SalesAmount" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      name="OrderDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ShipDate]"
+                      dataType="dbTimeStamp"
+                      name="ShipDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PaymentType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="PaymentType" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="50"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[StandardCost]"
+                      dataType="cy"
+                      name="StandardCost" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Color]"
+                      dataType="wstr"
+                      length="15"
+                      name="Color" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ListPrice]"
+                      dataType="cy"
+                      name="ListPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Size]"
+                      dataType="wstr"
+                      length="50"
+                      name="Size" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Weight]"
+                      dataType="r8"
+                      name="Weight" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="400"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductSubcategoryBusinessKey]"
+                      dataType="i4"
+                      name="ProductSubcategoryBusinessKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductSubcategoryName]"
+                      dataType="wstr"
+                      length="50"
+                      name="ProductSubcategoryName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategoryBusinessKey]"
+                      dataType="i4"
+                      name="ProductCategoryBusinessKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategoryName]"
+                      dataType="wstr"
+                      length="50"
+                      name="ProductCategoryName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeBusinessKey]"
+                      dataType="i4"
+                      name="EmployeeBusinessKey" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Reseller Sales\Staging DB.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Reseller Sales\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Reseller Sales\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Reseller Sales\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract Reseller Sales.Paths[Derived Column Output]"
+              endId="Package\Extract Reseller Sales\Lookup Product Details.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Extract Reseller Sales\Calculate Sales Amount.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Extract Reseller Sales.Paths[Lookup Match Output]"
+              endId="Package\Extract Reseller Sales\Staging DB.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract Reseller Sales.Paths[Lookup No Match Output]"
+              endId="Package\Extract Reseller Sales\Orphaned Sales.Inputs[Flat File Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Extract Reseller Sales\Lookup Product Details.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Extract Reseller Sales.Paths[OLE DB Source Output]"
+              endId="Package\Extract Reseller Sales\Calculate Sales Amount.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Extract Reseller Sales\Reseller Sales.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Extract Resellers"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6837d711-18d3-4c9a-b71e-c16d9e03e8ac}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract Resellers"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract Resellers\Resellers"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Resellers"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Resellers]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC GetChangedResellers ? OUTPUT</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@LastVersion:InputOutput",{AC7FFE5B-BA54-424A-AF66-B8C7F3E05B81};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Resellers\Resellers.Connections[OleDbConnection]"
+                  connectionManagerID="{A4AD3551-E49D-42A3-924B-3E111BDD3EC0}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.ResellerSales]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[ResellerKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[ResellerKey]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[ResellerKey]"
+                      name="ResellerKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[Phone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                      length="25"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[Phone]"
+                      name="Phone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[BusinessType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[BusinessType]"
+                      length="20"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[BusinessType]"
+                      name="BusinessType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[ResellerName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[ResellerName]"
+                      length="50"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[ResellerName]"
+                      name="ResellerName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[NumberEmployees]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[NumberEmployees]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[NumberEmployees]"
+                      name="NumberEmployees"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[AddressLine1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[AddressLine1]"
+                      length="60"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[AddressLine1]"
+                      name="AddressLine1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[AddressLine2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[AddressLine2]"
+                      length="60"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[AddressLine2]"
+                      name="AddressLine2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      length="30"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[StateProvinceName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[StateProvinceName]"
+                      length="50"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[StateProvinceName]"
+                      name="StateProvinceName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[CountryRegionCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[CountryRegionCode]"
+                      length="3"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[CountryRegionCode]"
+                      name="CountryRegionCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[CountryRegionName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[CountryRegionName]"
+                      length="50"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[CountryRegionName]"
+                      name="CountryRegionName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
+                      length="15"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[PostalCode]"
+                      name="PostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[YearOpened]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[YearOpened]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[YearOpened]"
+                      name="YearOpened"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[ResellerKey]"
+                      dataType="i4"
+                      name="ResellerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="25"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[BusinessType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="BusinessType" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[ResellerName]"
+                      dataType="wstr"
+                      length="50"
+                      name="ResellerName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[NumberEmployees]"
+                      dataType="i4"
+                      name="NumberEmployees" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[AddressLine1]"
+                      dataType="wstr"
+                      length="60"
+                      name="AddressLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[AddressLine2]"
+                      dataType="wstr"
+                      length="60"
+                      name="AddressLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="30"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[StateProvinceName]"
+                      dataType="wstr"
+                      length="50"
+                      name="StateProvinceName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[CountryRegionCode]"
+                      dataType="wstr"
+                      length="3"
+                      name="CountryRegionCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[CountryRegionName]"
+                      dataType="wstr"
+                      length="50"
+                      name="CountryRegionName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="15"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].ExternalColumns[YearOpened]"
+                      dataType="i4"
+                      name="YearOpened" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[ResellerKey]"
+                      dataType="i4"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[ResellerKey]"
+                      name="ResellerKey" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                      name="Phone" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[BusinessType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[BusinessType]"
+                      name="BusinessType" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[ResellerName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[ResellerName]"
+                      name="ResellerName" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[NumberEmployees]"
+                      dataType="i4"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[NumberEmployees]"
+                      name="NumberEmployees" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
+                      name="AddressLine1" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[AddressLine2]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[AddressLine2]"
+                      name="AddressLine2" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[City]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[StateProvinceName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[StateProvinceName]"
+                      name="StateProvinceName" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[CountryRegionCode]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[CountryRegionCode]"
+                      name="CountryRegionCode" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[CountryRegionName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[CountryRegionName]"
+                      name="CountryRegionName" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
+                      name="PostalCode" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[YearOpened]"
+                      dataType="i4"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[YearOpened]"
+                      name="YearOpened" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Resellers\Staging DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Staging DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Resellers]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Resellers\Staging DB.Connections[OleDbConnection]"
+                  connectionManagerID="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].Columns[Phone]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="Phone"
+                      externalMetadataColumnId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[Phone]" />
+                    <inputColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].Columns[BusinessType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="BusinessType"
+                      externalMetadataColumnId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[BusinessType]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[BusinessType]" />
+                    <inputColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].Columns[ResellerName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ResellerName"
+                      externalMetadataColumnId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ResellerName]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[ResellerName]" />
+                    <inputColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].Columns[NumberEmployees]"
+                      cachedDataType="i4"
+                      cachedName="NumberEmployees"
+                      externalMetadataColumnId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[NumberEmployees]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[NumberEmployees]" />
+                    <inputColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].Columns[AddressLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="AddressLine1"
+                      externalMetadataColumnId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[AddressLine1]" />
+                    <inputColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].Columns[AddressLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="AddressLine2"
+                      externalMetadataColumnId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[AddressLine2]" />
+                    <inputColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].Columns[StateProvinceName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StateProvinceName"
+                      externalMetadataColumnId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[StateProvinceName]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[StateProvinceName]" />
+                    <inputColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].Columns[CountryRegionCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CountryRegionCode"
+                      externalMetadataColumnId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegionCode]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[CountryRegionCode]" />
+                    <inputColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].Columns[CountryRegionName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CountryRegionName"
+                      externalMetadataColumnId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegionName]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[CountryRegionName]" />
+                    <inputColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].Columns[PostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="PostalCode"
+                      externalMetadataColumnId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[PostalCode]" />
+                    <inputColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].Columns[YearOpened]"
+                      cachedDataType="i4"
+                      cachedName="YearOpened"
+                      externalMetadataColumnId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[YearOpened]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[YearOpened]" />
+                    <inputColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].Columns[ResellerKey]"
+                      cachedDataType="i4"
+                      cachedName="ResellerKey"
+                      externalMetadataColumnId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ResellerBusinessKey]"
+                      lineageId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output].Columns[ResellerKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ResellerBusinessKey]"
+                      dataType="wstr"
+                      length="15"
+                      name="ResellerBusinessKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="25"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[BusinessType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="BusinessType" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[ResellerName]"
+                      dataType="wstr"
+                      length="50"
+                      name="ResellerName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[NumberEmployees]"
+                      dataType="i4"
+                      name="NumberEmployees" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1]"
+                      dataType="wstr"
+                      length="60"
+                      name="AddressLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                      dataType="wstr"
+                      length="60"
+                      name="AddressLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[YearOpened]"
+                      dataType="i4"
+                      name="YearOpened" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="30"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[StateProvinceName]"
+                      dataType="wstr"
+                      length="50"
+                      name="StateProvinceName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegionCode]"
+                      dataType="wstr"
+                      length="3"
+                      name="CountryRegionCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegionName]"
+                      dataType="wstr"
+                      length="50"
+                      name="CountryRegionName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="15"
+                      name="PostalCode" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Resellers\Staging DB.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Resellers\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Resellers\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Resellers\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Resellers\Staging DB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract Resellers.Paths[OLE DB Source Output]"
+              endId="Package\Extract Resellers\Staging DB.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Extract Resellers\Resellers.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Current Time"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{a9570495-29af-432f-8c99-358d3d2af6d9}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Current Time"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::CurrentTime]  =  GETDATE()" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Last Extract Time"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{84a5f132-a443-4781-987d-90063bcb73eb}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Last Extract Time"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}"
+          SQLTask:SqlStatementSource="SELECT  MAX(LastExtract) LastExtract&#xA;FROM ExtractLog&#xA;WHERE DataSource = 'ResellerSales'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="LastExtract"
+            SQLTask:DtsVariableName="User::ResellerSalesLastExtract" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Previously Extracted  Version"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{de9640d4-5bc8-4bfd-ae4f-a18383a76312}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Previously Extracted  Version"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}"
+          SQLTask:SqlStatementSource="SELECT  MAX(LastVersion) LastVersion&#xA;&#xA;FROM ExtractLog&#xA;&#xA;WHERE DataSource = 'ResellerSales'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="LastVersion"
+            SQLTask:DtsVariableName="User::PreviousVersion" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Failure Notification"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{eea7d1c5-5f7e-429a-b6ef-4097d0a89071}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Failure Notification"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{0B533513-3075-475E-92A2-1329E3599353}"
+          SendMailTask:From="ETL@adventureworks.msft"
+          SendMailTask:To="Student@adventureworks.msft"
+          SendMailTask:Subject="Data Extraction Failure"
+          SendMailTask:Priority="High"
+          SendMailTask:MessageSource="The Reseller data extraction process failed!" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Success Notification"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{ED690DA9-2428-433E-AADE-2D8F0C8E9DA7}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Success Notification"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{0B533513-3075-475E-92A2-1329E3599353}"
+          SendMailTask:From="ETL@adventureworks.msft"
+          SendMailTask:To="Student@adventureworks.msft"
+          SendMailTask:Subject="Data Extraction Notification"
+          SendMailTask:MessageSource="The Reseller data was successully extracted" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Last Extract Time"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{99619f0f-6237-4da6-b580-c8ec9b3bd1e2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Last Extract Time"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}"
+          SQLTask:SqlStatementSource="UPDATE ExtractLog&#xA;SET LastExtract = ?&#xA;WHERE DataSource = 'ResellerSales'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::CurrentTime"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Previous Version"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1d433e44-5816-4770-81bc-03291b2afa97}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Previous Version"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server &quot;Denali&quot; CTP3; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C0F7791C-1EA7-456D-B6BF-54D3368FD07B}"
+          SQLTask:SqlStatementSource="UPDATE ExtractLog&#xA;&#xA;SET LastVersion = ?&#xA;&#xA;WHERE DataSource = 'ResellerSales'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::PreviousVersion"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{55daed9c-677a-4121-ac25-10b7e340c03c}"
+      DTS:From="Package\Extract Resellers"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Extract Reseller Sales" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{f701b06d-bc44-401c-9763-5cf74fddf33b}"
+      DTS:From="Package\Get Previously Extracted  Version"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Extract Resellers" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{B3683DDF-D93B-4323-A8D6-03300C8E6FAD}"
+      DTS:From="Package\Extract Reseller Sales"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Update Last Extract Time" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{3BFD6CF1-F831-4AF3-8567-208828BA769D}"
+      DTS:From="Package\Update Previous Version"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Send Success Notification" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{4963BB33-70D2-494C-B0C9-1585DAAA6576}"
+      DTS:From="Package\Extract Reseller Sales"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Send Failure Notification"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{B5CF8603-4702-468B-9AAE-E6325237B00F}"
+      DTS:From="Package\Update Last Extract Time"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Update Previous Version" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{E10FAD8C-DEF5-4139-8410-537600EC6898}"
+      DTS:From="Package\Get Current Time"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Get Last Extract Time" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{A00A5356-D9E3-4D37-BEB9-EF2A2F94E66C}"
+      DTS:From="Package\Get Last Extract Time"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Get Previously Extracted  Version" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{EFC964BA-F9E4-48ED-9C97-A6126942C1C8}"
+      DTS:From="Package\Extract Resellers"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Send Failure Notification"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Extract Reseller Sales"
+          TopLeft="121,413.5" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Extract Resellers"
+          TopLeft="283.5,311.5" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Get Current Time"
+          TopLeft="282,5.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Get Last Extract Time"
+          TopLeft="271.5,107.5" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\Get Previously Extracted  Version"
+          TopLeft="244.5,209.5" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Send Failure Notification"
+          TopLeft="265,515.5" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Send Success Notification"
+          TopLeft="5.50000000000011,719.5" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Update Last Extract Time"
+          TopLeft="6.00000000000006,515.5" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Update Previous Version"
+          TopLeft="8.00000000000011,617.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="337.166666666667,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-126.166666666667,60"
+              Start="0,0"
+              End="-126.166666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3631778058008" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3631778058008"
+                    Point2="0,24.3631778058008"
+                    Point3="-4,24.3631778058008" />
+                  <mssgle:LineSegment
+                    End="-122.166666666667,24.3631778058008" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-122.166666666667,24.3631778058008"
+                    Point2="-126.166666666667,24.3631778058008"
+                    Point3="-126.166666666667,28.3631778058008" />
+                  <mssgle:LineSegment
+                    End="-126.166666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="362,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="182.333333333333,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-77.3333333333333,60"
+              Start="0,0"
+              End="-77.3333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3171806167401" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3171806167401"
+                    Point2="0,24.3171806167401"
+                    Point3="-4,24.3171806167401" />
+                  <mssgle:LineSegment
+                    End="-73.3333333333333,24.3171806167401" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-73.3333333333333,24.3171806167401"
+                    Point2="-77.3333333333333,24.3171806167401"
+                    Point3="-77.3333333333333,28.3171806167401" />
+                  <mssgle:LineSegment
+                    End="-77.3333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="105,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="239.666666666667,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91.3333333333333,60"
+              Start="0,0"
+              End="91.3333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.0235505214758" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.0235505214758"
+                    Point2="0,30.0235505214758"
+                    Point3="4,30.0235505214758" />
+                  <mssgle:LineSegment
+                    End="87.3333333333333,30.0235505214758" />
+                  <mssgle:CubicBezierSegment
+                    Point1="87.3333333333333,30.0235505214758"
+                    Point2="91.3333333333333,30.0235505214758"
+                    Point3="91.3333333333333,34.0235505214758" />
+                  <mssgle:LineSegment
+                    End="91.3333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="30.4253190104167,35.0235505214758,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="105,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="362,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="362,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="389.916666666667,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,162"
+              Start="0,0"
+              End="0,154.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,154.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.24134765625,72.37548828125,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
