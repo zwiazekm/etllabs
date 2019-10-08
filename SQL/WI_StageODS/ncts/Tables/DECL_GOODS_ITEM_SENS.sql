@@ -1,8 +1,0 @@
-﻿CREATE TABLE [ncts].[DECL_GOODS_ITEM_SENS] (
-    [SID]                  INT             NOT NULL,
-    [DECL_GOODS_ITEM_SID]  INT             NULL,
-    [SENS_GOODS_CLASS_SID] INT             NULL,
-    [SENS_QUANT]           DECIMAL (14, 3) NOT NULL,
-    CONSTRAINT [PK_DECL_GOODS_ITEM_SENS] PRIMARY KEY CLUSTERED ([SID] ASC)
-);
-

@@ -1,3 +1,0 @@
-﻿CREATE SCHEMA [aimp2]
-    AUTHORIZATION [dbo];
-

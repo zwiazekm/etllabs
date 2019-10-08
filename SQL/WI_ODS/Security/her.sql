@@ -1,3 +1,0 @@
-﻿CREATE USER [her] WITHOUT LOGIN
-    WITH DEFAULT_SCHEMA = [her];
-

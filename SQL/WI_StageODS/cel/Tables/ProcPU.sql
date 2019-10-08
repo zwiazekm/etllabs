@@ -1,7 +1,0 @@
-﻿CREATE TABLE [cel].[ProcPU] (
-    [id_dok]  VARCHAR (30) NOT NULL,
-    [PozId]   NUMERIC (2)  NOT NULL,
-    [KodProc] VARCHAR (6)  NULL,
-    CONSTRAINT [PK_PROCPU] PRIMARY KEY CLUSTERED ([id_dok] ASC, [PozId] ASC) WITH (FILLFACTOR = 90)
-);
-

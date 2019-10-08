@@ -1,3 +1,0 @@
-﻿CREATE SCHEMA [MF\BZRJ]
-    AUTHORIZATION [dbo]--[MF\BZRJ];
-

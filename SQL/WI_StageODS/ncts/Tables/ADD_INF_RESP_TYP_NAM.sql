@@ -1,8 +1,0 @@
-﻿CREATE TABLE [ncts].[ADD_INF_RESP_TYP_NAM] (
-    [ADD_INF_RESP_TYP_ID] CHAR (2)      NOT NULL,
-    [LANG_ID]             CHAR (2)      NOT NULL,
-    [NAM]                 VARCHAR (210) NOT NULL,
-    [DAT_START]           DATETIME      NULL,
-    [DAT_END]             DATETIME      NULL
-);
-

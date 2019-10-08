@@ -1,7 +1,0 @@
-﻿CREATE TABLE [cel].[PozwolPU] (
-    [id_dok] VARCHAR (30) NOT NULL,
-    [PozId]  NUMERIC (2)  NOT NULL,
-    [Numer]  VARCHAR (40) NULL,
-    CONSTRAINT [PK_POZWOLPU] PRIMARY KEY CLUSTERED ([id_dok] ASC, [PozId] ASC) WITH (FILLFACTOR = 90)
-);
-

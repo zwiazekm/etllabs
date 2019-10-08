@@ -1,5 +1,0 @@
-﻿CREATE TABLE [aimp2].[ICS_OPER_POMOC] (
-    [DECL_ID] NUMERIC (19)  NULL,
-    [TIME]    DATETIME2 (3) NULL
-) ON [FG_AIMP2];
-

@@ -1,7 +1,0 @@
-﻿CREATE TABLE [intr2].[INTRASTAT_Podmiot] (
-    [IdPodmiotu] NVARCHAR (35) NOT NULL,
-    [NIP]        NVARCHAR (10) NULL,
-    [REGON]      NVARCHAR (14) NULL,
-    CONSTRAINT [INTRASTAT_Podmiot$PK_INTRASTAT_Podmiot] PRIMARY KEY CLUSTERED ([IdPodmiotu] ASC) ON [FG_INTR2]
-);
-

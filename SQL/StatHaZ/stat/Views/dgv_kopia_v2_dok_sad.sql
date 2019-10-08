@@ -1,5 +1,0 @@
-﻿CREATE VIEW stat.dgv_kopia_v2_dok_sad
-AS
-SELECT [DataDoKalkulacji], [DostarczenieSAD], [generacjaId], [IdDok], [idDokNr], [idGlownyZobowiazany], [idOdbiorcaKarty3], [idUpowaznionyOdbiorca], [idZglaszajacy], [IloscZamkniec], [KodDost], [KodWynKontr], [Kontenery], [KrajPrzeznaczenia], [KrajWysylki], [KursWaluty], [LiczbaOpakowan], [LiczbaPozycji], [ListyTowarowe], [MasaBrutto], [MiejsceDost], [MiejsceKodDost], [NrCelina2], [P1a], [P1b], [P1c], [PlatnoscOdroczona], [Podtyp], [PotwierdzenieWywozu], [Powiadomienie], [PozycjaWykazu], [RejestrDluguCelnego], [RodzajTransakcji], [Sprostowanie_Data], [Sprostowanie_Nr], [Sprostowanie_NrCelina], [SzczegolyWartosci], [TerminDostarczenia], [TerminNaSAD], [TerminPU], [Typ], [TypWPR1], [Waluta], [Wartosc], [Wykaz], [Zefir], [Zgla_DataWpisu], [Zgla_NrWpisu], [Zgla_Przedstawicielstwo], [Zgla_Wskaznik], [ZwolnienieTowaru]
-FROM stat.dgt_kopia_v2_dok_sad
-WHERE GeneracjaId = 201305002;

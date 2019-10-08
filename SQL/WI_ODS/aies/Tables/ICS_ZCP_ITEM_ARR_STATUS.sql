@@ -1,8 +1,0 @@
-﻿CREATE TABLE [aies].[ICS_ZCP_ITEM_ARR_STATUS] (
-    [ID]                   NUMERIC (19) NOT NULL,
-    [ZCP_ITEM_ARR_DATA_ID] NUMERIC (19) NULL,
-    [DATE]                 DATETIME     NULL,
-    [STATE]                VARCHAR (4)  NULL,
-    CONSTRAINT [pk_ICS_ZCP_ITEM_ARR_STATUS] PRIMARY KEY CLUSTERED ([ID] ASC) ON [FG_AIES]
-);
-

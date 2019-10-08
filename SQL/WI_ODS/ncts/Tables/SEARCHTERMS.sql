@@ -1,6 +1,0 @@
-﻿CREATE TABLE [ncts].[SEARCHTERMS] (
-    [CTRY]    VARCHAR (50)  NULL,
-    [TERM]    VARCHAR (100) NULL,
-    [LANG_ID] CHAR (2)      NULL
-) ON [FG_NCTS];
-

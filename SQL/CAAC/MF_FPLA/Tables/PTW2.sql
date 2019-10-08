@@ -1,4 +1,0 @@
-﻿CREATE TABLE [MF\FPLA].[PTW2] (
-    [REF_NO] VARCHAR (35) NULL
-);
-

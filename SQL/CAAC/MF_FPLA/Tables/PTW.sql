@@ -1,4 +1,0 @@
-﻿CREATE TABLE [MF\FPLA].[PTW] (
-    [MRN] NVARCHAR (255) NULL
-);
-

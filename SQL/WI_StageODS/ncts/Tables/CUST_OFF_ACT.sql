@@ -1,9 +1,0 @@
-﻿CREATE TABLE [ncts].[CUST_OFF_ACT] (
-    [SID]         INT         NOT NULL,
-    [CUST_OFF_ID] VARCHAR (8) NOT NULL,
-    [MOD_TYP]     DECIMAL (1) NULL,
-    [DAT_VAL]     DATETIME    NULL,
-    [OPER]        CHAR (1)    NOT NULL,
-    CONSTRAINT [PK_CUST_OFF_ACT] PRIMARY KEY CLUSTERED ([SID] ASC)
-);
-

@@ -1,9 +1,0 @@
-﻿CREATE TABLE [aies].[ICS_DSK_WSP_INFORMACJA_DOD] (
-    [ID]               NUMERIC (19)  NOT NULL,
-    [ICS_DSK]          NUMERIC (19)  NULL,
-    [ICS_DSK_TOWAR_ID] NUMERIC (19)  NULL,
-    [KOD]              CHAR (5)      NULL,
-    [OPIS]             VARCHAR (512) NULL,
-    CONSTRAINT [pk_ICS_DSK_WSP_INFORMACJA_DOD] PRIMARY KEY CLUSTERED ([ID] ASC)
-);
-

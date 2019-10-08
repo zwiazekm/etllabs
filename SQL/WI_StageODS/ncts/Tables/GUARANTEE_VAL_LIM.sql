@@ -1,7 +1,0 @@
-﻿CREATE TABLE [ncts].[GUARANTEE_VAL_LIM] (
-    [SID]               INT      NOT NULL,
-    [GUARANTEE_REF_SID] INT      NOT NULL,
-    [COUNTRY_ID]        CHAR (2) NULL,
-    CONSTRAINT [GVL_PK] PRIMARY KEY CLUSTERED ([SID] ASC)
-);
-

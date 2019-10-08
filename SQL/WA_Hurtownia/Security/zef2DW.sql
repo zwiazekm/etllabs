@@ -1,3 +1,0 @@
-﻿CREATE SCHEMA [zef2DW]
-    AUTHORIZATION [dbo];
-

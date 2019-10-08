@@ -1,3 +1,0 @@
-﻿CREATE SCHEMA [pdr]
-    AUTHORIZATION [dbo];
-

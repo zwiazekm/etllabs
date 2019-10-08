@@ -1,3 +1,0 @@
-﻿CREATE SCHEMA [fplc]
-    AUTHORIZATION [MF\FPLC];
-

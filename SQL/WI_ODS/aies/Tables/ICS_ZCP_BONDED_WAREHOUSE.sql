@@ -1,9 +1,0 @@
-﻿CREATE TABLE [aies].[ICS_ZCP_BONDED_WAREHOUSE] (
-    [ID]                    NUMERIC (19) NOT NULL,
-    [ZCP_ID]                NUMERIC (19) NULL,
-    [COUNTRY_OF_PERMISSION] VARCHAR (2)  NULL,
-    [ID_NO]                 VARCHAR (17) NULL,
-    [TYPE]                  VARCHAR (1)  NULL,
-    CONSTRAINT [pk_ICS_ZCP_BONDED_WAREHOUSE] PRIMARY KEY CLUSTERED ([ID] ASC) ON [FG_AIES]
-);
-

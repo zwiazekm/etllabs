@@ -1,3 +1,0 @@
-﻿CREATE SCHEMA [MF\CQMD]
-    AUTHORIZATION [dbo]--[MF\CQMD];
-

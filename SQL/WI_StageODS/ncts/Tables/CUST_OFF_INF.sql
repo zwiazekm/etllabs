@@ -1,7 +1,0 @@
-﻿CREATE TABLE [ncts].[CUST_OFF_INF] (
-    [SID]         DECIMAL (10)   NOT NULL,
-    [CUST_OFF_ID] VARCHAR (8)    NOT NULL,
-    [ADDRESS]     NVARCHAR (420) NULL,
-    [CONT_PERSON] NVARCHAR (420) NULL
-);
-
