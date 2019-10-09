@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="MIA-SQL.AWDataWarehouseMZ.sqluser"
+  DTS:DTSID="{C2BC7915-2BDE-4505-B22F-5448E09EF39F}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MIA-SQL;User ID=sqluser;Initial Catalog=AWDataWarehouseMZ;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="EyLdFcidmHw="
+        p4:IV="L9TRQ0/ytnBwbCPgj1EFtw=="
+        p4:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p4="www.microsoft.com/SqlServer/SSIS">aUKnaSMhYoyQwN2ofPJYZ0vnaWZubt7/evV6beLLAIKTNCZII/mCrf/0QdQm2oQlDqCdGsqD9zaGLsCjzEEqUt0I79ue+JjhKWatnOajQXcP9wcmrw5hzxyHhw/pNZJG/C7y4Wx5rqVKaYLvkyP+x4VP3IJKz6kHYUHJW6NCsTY=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
